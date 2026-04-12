@@ -19,6 +19,7 @@ import CompletionBanner from "@/components/CompletionBanner";
 import ResumeSnapshot from "@/components/ResumeSnapshot";
 import ConnectFooter from "@/components/ConnectFooter";
 import { ZONES, EASTER_EGGS, ASSET_URLS, type Zone } from "@/lib/gameData";
+import { playStartGame, playBuildingEnter, playDiscovery, playClose, playTab, playClick, setMuted } from "@/lib/sfx";
 
 export default function Home() {
   const [gameStarted, setGameStarted] = useState(false);
@@ -88,12 +89,18 @@ export default function Home() {
   }, [musicMuted]);
 
   const handleToggleMusic = useCallback(() => {
-    setMusicMuted((prev) => !prev);
+    setMusicMuted((prev) => {
+      const next = !prev;
+      setMuted(next); // Sync SFX mute with music mute
+      return next;
+    });
+    playClick();
   }, []);
 
   const [gameStartTime, setGameStartTime] = useState(0);
 
   const handleStartGame = useCallback(() => {
+    playStartGame();
     setGameStarted(true);
     setGameStartTime(Date.now());
     // Delay showing dialog to avoid Enter key double-trigger
@@ -104,6 +111,8 @@ export default function Home() {
   }, []);
 
   const handleZoneClick = useCallback((zone: Zone) => {
+    const wasDiscovered = discoveredZones.has(zone.id);
+    playBuildingEnter();
     setActiveZone(zone);
     setShowDialog(false);
     setDiscoveredZones((prev) => {
@@ -111,9 +120,14 @@ export default function Home() {
       next.add(zone.id);
       return next;
     });
-  }, []);
+    // Play discovery fanfare if this is a new zone
+    if (!wasDiscovered) {
+      setTimeout(() => playDiscovery(), 400);
+    }
+  }, [discoveredZones]);
 
   const handleCloseZone = useCallback(() => {
+    playClose();
     setActiveZone(null);
   }, []);
 
@@ -203,14 +217,15 @@ export default function Home() {
               discoveredZones={discoveredZones}
               totalZones={ZONES.length}
               easterEggs={easterEggCount}
-              onAboutClick={() => setShowAbout(true)}
-              onTestimonialsClick={() => setShowTestimonials(true)}
+              onAboutClick={() => { playTab(); setShowAbout(true); }}
+              onTestimonialsClick={() => { playTab(); setShowTestimonials(true); }}
               onHintClick={() => {
+                playClick();
                 setShowDialog(true);
                 setDialogIndex(Math.floor(Math.random() * EASTER_EGGS.punnyDialogues.length));
               }}
-              onSnapshotClick={() => setShowSnapshot(true)}
-              onConnectClick={() => setShowConnect(true)}
+              onSnapshotClick={() => { playTab(); setShowSnapshot(true); }}
+              onConnectClick={() => { playTab(); setShowConnect(true); }}
               musicMuted={musicMuted}
               onToggleMusic={handleToggleMusic}
             />
@@ -261,25 +276,25 @@ export default function Home() {
 
             <AnimatePresence>
               {showAbout && (
-                <AboutSection onClose={() => setShowAbout(false)} />
+                <AboutSection onClose={() => { playClose(); setShowAbout(false); }} />
               )}
             </AnimatePresence>
 
             <AnimatePresence>
               {showTestimonials && (
-                <TestimonialsSection onClose={() => setShowTestimonials(false)} />
+                <TestimonialsSection onClose={() => { playClose(); setShowTestimonials(false); }} />
               )}
             </AnimatePresence>
 
             <AnimatePresence>
               {showSnapshot && (
-                <ResumeSnapshot onClose={() => setShowSnapshot(false)} />
+                <ResumeSnapshot onClose={() => { playClose(); setShowSnapshot(false); }} />
               )}
             </AnimatePresence>
 
             <AnimatePresence>
               {showConnect && (
-                <ConnectFooter onClose={() => setShowConnect(false)} />
+                <ConnectFooter onClose={() => { playClose(); setShowConnect(false); }} />
               )}
             </AnimatePresence>
 
