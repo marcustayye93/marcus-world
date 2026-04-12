@@ -89,7 +89,7 @@ export const ZONES: Zone[] = [
   },
   {
     id: "dfs",
-    name: "DFS Tower",
+    name: "DFS Group",
     icon: "🏢",
     tagline: "From beauty counters to global IT transformation",
     description: "A journey through luxury retail — from managing 43 beauty brands to orchestrating technology rollouts across 6 countries.",

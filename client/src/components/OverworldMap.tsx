@@ -3,8 +3,8 @@
  * Design: Top-down RPG overworld. Click on buildings to explore zones.
  * The Meta Emerald City is the grand centerpiece.
  * No character movement — pure click-to-explore.
- * The map image has baked-in brown wooden sign labels, so we use
- * invisible hotspots with hover glow effects instead of overlay labels.
+ * Labels styled to match the baked-in wooden plaque signs (MUSIC HALL style):
+ *   cream/tan inner background, dark border frame, dark pixel text
  */
 
 import { useState } from "react";
@@ -19,26 +19,106 @@ interface OverworldMapProps {
 }
 
 // Clickable hotspot areas over each building (percentage of map)
-// These match the actual building positions in the overworld-v2 image
 const BUILDING_HOTSPOTS: Record<string, {
   x: number; y: number; w: number; h: number;
 }> = {
-  meta:       { x: 35, y: 5,  w: 25, h: 52 },   // Emerald City — center, massive
-  dfs:        { x: 8,  y: 12, w: 18, h: 32 },   // Tech Co. — upper left
-  music:      { x: 57, y: 22, w: 20, h: 32 },   // Music Hall — right of center
-  university: { x: 12, y: 50, w: 22, h: 30 },   // University — lower left
-  farm:       { x: 40, y: 65, w: 22, h: 22 },   // Barn — lower center
-  coffee:     { x: 70, y: 50, w: 18, h: 24 },   // Coffee Shop — lower right
+  meta:       { x: 35, y: 5,  w: 25, h: 52 },
+  dfs:        { x: 8,  y: 12, w: 18, h: 32 },
+  music:      { x: 57, y: 22, w: 20, h: 32 },
+  university: { x: 12, y: 50, w: 22, h: 30 },
+  farm:       { x: 40, y: 65, w: 22, h: 22 },
+  coffee:     { x: 70, y: 50, w: 18, h: 24 },
 };
 
-// Special zones that aren't regular Zone objects (handled separately)
-const SPECIAL_HOTSPOTS: Record<string, {
-  x: number; y: number; w: number; h: number;
-  label: string; color: string;
-}> = {
-  // The compass/scroll icon in the top-left corner of the map image
-  snapshot: { x: 0, y: 0, w: 7, h: 12, label: "📋", color: "#8B6914" },
-};
+// Full plaque labels for buildings that need name replacement or have no baked-in label
+const FULL_PLAQUE_LABELS: Array<{
+  text: string;
+  year: string;
+  x: number;
+  y: number;
+}> = [
+  { text: "META HQ",   year: "2024–PRESENT", x: 47.5, y: 55 },   // No baked-in label
+  { text: "DFS GROUP", year: "2019–2024",    x: 15,   y: 43 },   // Replaces "TECH CO."
+];
+
+// Year-only subtitles for buildings that already have correct baked-in name labels
+const YEAR_ONLY_LABELS: Array<{
+  year: string;
+  x: number;
+  y: number;
+}> = [
+  { year: "2006–PRESENT", x: 67,  y: 53.5 },  // Below baked-in MUSIC HALL
+  { year: "2010–2019",    x: 22,  y: 80 },    // Below baked-in UNIVERSITY
+  { year: "2019",         x: 50,  y: 87 },    // Below baked-in BARN
+  { year: "2016–2018",    x: 78,  y: 75 },    // Below baked-in COFFEE SHOP
+];
+
+/*
+ * WoodenPlaqueLabel — Matches the baked-in MUSIC HALL sign style exactly:
+ * - Cream/tan inner background (#D4C4A0 to #C8B88A)
+ * - Dark brown outer border frame (#3D2B1A)
+ * - Inner lighter border (#8B7355)
+ * - Dark brown pixel text (#2A1A0A)
+ * - Subtle inset shadow for depth
+ */
+function WoodenPlaqueLabel({ text, year }: { text: string; year: string }) {
+  return (
+    <div
+      className="flex flex-col items-center gap-0"
+      style={{ imageRendering: "pixelated" as any }}
+    >
+      {/* Main plaque */}
+      <div
+        style={{
+          background: "linear-gradient(180deg, #D4C4A0 0%, #C8B88A 50%, #BCA87A 100%)",
+          border: "3px solid #3D2B1A",
+          outline: "1px solid #8B7355",
+          outlineOffset: "-5px",
+          boxShadow: "2px 3px 0px rgba(0,0,0,0.5), inset 0 1px 0px rgba(255,255,255,0.3), inset 0 -1px 0px rgba(0,0,0,0.15)",
+          padding: "3px 10px 2px 10px",
+          lineHeight: 1,
+        }}
+      >
+        <span
+          className="pixel-text"
+          style={{
+            color: "#2A1A0A",
+            fontSize: "clamp(7px, 1.1vw, 14px)",
+            letterSpacing: "2px",
+            textShadow: "none",
+            display: "block",
+            textAlign: "center",
+          }}
+        >
+          {text}
+        </span>
+      </div>
+      {/* Year subtitle — small, below the plaque */}
+      <div
+        style={{
+          background: "rgba(42, 26, 10, 0.75)",
+          borderRadius: "2px",
+          padding: "1px 6px",
+          marginTop: "2px",
+          boxShadow: "1px 1px 0px rgba(0,0,0,0.3)",
+        }}
+      >
+        <span
+          className="pixel-text"
+          style={{
+            color: "#D4C4A0",
+            fontSize: "clamp(5px, 0.65vw, 8px)",
+            letterSpacing: "1.5px",
+            textAlign: "center",
+            display: "block",
+          }}
+        >
+          {year}
+        </span>
+      </div>
+    </div>
+  );
+}
 
 export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSnapshotClick }: OverworldMapProps) {
   const [hoveredZone, setHoveredZone] = useState<string | null>(null);
@@ -58,37 +138,55 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
         }}
       />
 
-      {/* Permanent META HQ label — matching the baked-in wooden signs (MUSIC HALL, TECH CO.) */}
-      <div
-        className="absolute z-[15] pointer-events-none flex justify-center"
-        style={{ left: "35%", top: "53%", width: "25%" }}
-      >
+      {/* Full plaque labels for META HQ and DFS GROUP */}
+      {FULL_PLAQUE_LABELS.map((label, i) => (
         <div
-          className="px-3 py-0.5 sm:px-5 sm:py-1"
+          key={`plaque-${i}`}
+          className="absolute z-[15] pointer-events-none"
           style={{
-            background: "#8B6D3F",
-            border: "3px solid #5C4422",
-            borderTop: "3px solid #A68454",
-            borderLeft: "3px solid #A68454",
-            borderRight: "3px solid #4A3518",
-            borderBottom: "3px solid #4A3518",
-            borderRadius: "0px",
-            imageRendering: "pixelated" as any,
-            boxShadow: "2px 3px 0px rgba(0,0,0,0.45)",
+            left: `${label.x}%`,
+            top: `${label.y}%`,
+            transform: "translate(-50%, -50%)",
           }}
         >
-          <span
-            className="pixel-text text-[8px] sm:text-[10px] md:text-[13px]"
+          <WoodenPlaqueLabel text={label.text} year={label.year} />
+        </div>
+      ))}
+
+      {/* Year-only subtitles for zones with baked-in name labels */}
+      {YEAR_ONLY_LABELS.map((label, i) => (
+        <div
+          key={`year-${i}`}
+          className="absolute z-[15] pointer-events-none"
+          style={{
+            left: `${label.x}%`,
+            top: `${label.y}%`,
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <div
             style={{
-              color: "#1A0E02",
-              letterSpacing: "4px",
-              textShadow: "1px 1px 0px rgba(166,132,84,0.4)",
+              background: "rgba(42, 26, 10, 0.75)",
+              borderRadius: "2px",
+              padding: "1px 6px",
+              boxShadow: "1px 1px 0px rgba(0,0,0,0.3)",
             }}
           >
-            META HQ
-          </span>
+            <span
+              className="pixel-text"
+              style={{
+                color: "#D4C4A0",
+                fontSize: "clamp(5px, 0.65vw, 8px)",
+                letterSpacing: "1.5px",
+                textAlign: "center",
+                display: "block",
+              }}
+            >
+              {label.year}
+            </span>
+          </div>
         </div>
-      </div>
+      ))}
 
       {/* Clickable building hotspots */}
       {zones.map((zone) => {
@@ -113,7 +211,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
             onMouseLeave={() => setHoveredZone(null)}
             whileTap={{ scale: 0.98 }}
           >
-            {/* Hover glow effect — subtle radial glow around the building */}
+            {/* Hover glow effect */}
             <motion.div
               className="absolute inset-0 rounded-lg pointer-events-none"
               style={{
@@ -143,7 +241,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
               </motion.div>
             )}
 
-            {/* Floating tooltip on hover — positioned BELOW for Meta (since it's at the top), ABOVE for others */}
+            {/* Floating tooltip on hover */}
             <motion.div
               className="absolute left-1/2 -translate-x-1/2 z-20 pointer-events-none"
               style={isMeta ? { top: "calc(100% + 8px)" } : { bottom: "calc(100% + 8px)" }}
@@ -151,7 +249,6 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
               animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : (isMeta ? -8 : 8) }}
               transition={{ duration: 0.2 }}
             >
-              {/* Arrow on top for Meta tooltip */}
               {isMeta && (
                 <div
                   className="w-0 h-0 mx-auto mb-0"
@@ -170,9 +267,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
                 }}
               >
                 <span className="text-sm mr-1.5">{zone.icon}</span>
-                <span
-                  className="pixel-text text-[7px] sm:text-[8px] text-white"
-                >
+                <span className="pixel-text text-[7px] sm:text-[8px] text-white">
                   {zone.name}
                 </span>
                 <p
@@ -182,7 +277,6 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
                   {zone.tagline}
                 </p>
               </div>
-              {/* Arrow on bottom for non-Meta tooltips */}
               {!isMeta && (
                 <div
                   className="w-0 h-0 mx-auto"
@@ -195,7 +289,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
               )}
             </motion.div>
 
-            {/* Pulsing "click me" indicator for undiscovered zones */}
+            {/* Pulsing indicator for undiscovered zones */}
             {!isDiscovered && !isHovered && (
               <motion.div
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
@@ -227,7 +321,6 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
           whileTap={{ scale: 0.95 }}
           title="Marcus at a Glance"
         >
-          {/* Hover tooltip */}
           <motion.div
             className="absolute left-full ml-2 top-1/2 -translate-y-1/2 z-30 pointer-events-none whitespace-nowrap"
             initial={{ opacity: 0, x: -8 }}
@@ -247,7 +340,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
                 className="text-[10px] text-white/60 mt-0.5"
                 style={{ fontFamily: "'Nunito', sans-serif" }}
               >
-                One-sheet r\u00e9sum\u00e9 snapshot
+                One-sheet résumé snapshot
               </p>
             </div>
           </motion.div>
@@ -268,9 +361,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
             backdropFilter: "blur(4px)",
           }}
         >
-          <span
-            className="pixel-text text-[6px] sm:text-[7px] text-white/80"
-          >
+          <span className="pixel-text text-[6px] sm:text-[7px] text-white/80">
             CLICK ON BUILDINGS TO EXPLORE
           </span>
         </div>
