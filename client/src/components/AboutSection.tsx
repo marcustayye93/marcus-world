@@ -22,7 +22,7 @@ const RPG_STATS = [
     icon: Swords,
     color: "#10B981",
     bgColor: "#D1FAE5",
-    description: "Managing Meta's top 1% clients across ANZ",
+    description: "Meta's top 1% clients in ANZ — 2025 Client Hero (Infinite Potential Award, APAC)",
   },
   {
     name: "Leadership",
