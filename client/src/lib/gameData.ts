@@ -97,7 +97,7 @@ export const ZONES: Zone[] = [
     icon: "🏢",
     tagline: "From beauty counters to global IT transformation",
     description: "A journey through luxury retail — from managing 43 beauty brands to orchestrating technology rollouts across 6 countries.",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/dfs-zone-8bit-7652qEdcsaUAzdPfTozJKN.webp",
     color: "#2E7D32",
     bgGradient: "from-emerald-500/10 to-green-500/10",
     details: [
@@ -232,7 +232,7 @@ export const ZONES: Zone[] = [
     icon: "🎓",
     tagline: "Honors with Distinction and global exchange programs",
     description: "From Nanyang Polytechnic to NUS to an exchange in Germany — a journey of academic excellence and global learning.",
-    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/university-zone-8bit-7riFBX7BEFz8t2Uin9ZuJu.webp",
     color: "#1565C0",
     bgGradient: "from-blue-500/10 to-indigo-500/10",
     details: [
