@@ -1,6 +1,7 @@
 /*
  * IntroScreen — The "Press Start" landing screen
  * Design: Pixel art title card with animated elements, Ghibli warmth
+ * Title: "The Journey of Marcus"
  */
 
 import { useState, useEffect } from "react";
@@ -45,14 +46,14 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
           backgroundPosition: "center",
         }}
       />
-      {/* Dark overlay gradient for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/55 to-black/80" />
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 z-[1] bg-black/85" />
 
       {/* Animated stars / particles */}
       {Array.from({ length: 15 }).map((_, i) => (
         <motion.div
           key={i}
-          className="absolute pointer-events-none"
+          className="absolute pointer-events-none z-[2]"
           style={{
             left: `${10 + Math.random() * 80}%`,
             top: `${10 + Math.random() * 80}%`,
@@ -75,7 +76,7 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
 
       {/* Main content */}
       <motion.div
-        className="relative z-10 text-center px-6 max-w-lg"
+        className="relative z-[5] text-center px-6 max-w-lg"
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -90,19 +91,36 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
         </motion.div>
 
         {/* Title */}
-        <h1
-          className="pixel-text text-white text-xl sm:text-2xl md:text-3xl mb-4"
-          style={{
-            textShadow: "3px 3px 0 #1B5E20, 6px 6px 0 rgba(0,0,0,0.3)",
-            letterSpacing: "2px",
-          }}
-        >
-          MARCUS'S WORLD
-        </h1>
+        <motion.div className="mb-2">
+          <p
+            className="pixel-text text-emerald-300/80 text-[8px] sm:text-[9px] tracking-widest mb-2"
+            style={{ textShadow: "1px 1px 0 rgba(0,0,0,0.5)" }}
+          >
+            WELCOME TO
+          </p>
+          <h1
+            className="pixel-text text-white text-lg sm:text-xl md:text-2xl mb-1"
+            style={{
+              textShadow: "3px 3px 0 #065F46, 6px 6px 0 rgba(0,0,0,0.3)",
+              letterSpacing: "2px",
+            }}
+          >
+            THE JOURNEY OF
+          </h1>
+          <h1
+            className="pixel-text text-emerald-300 text-2xl sm:text-3xl md:text-4xl"
+            style={{
+              textShadow: "3px 3px 0 #065F46, 6px 6px 0 rgba(0,0,0,0.3)",
+              letterSpacing: "3px",
+            }}
+          >
+            MARCUS
+          </h1>
+        </motion.div>
 
         {/* Subtitle */}
         <motion.div
-          className="flex items-center justify-center gap-2 sm:gap-3 mb-3"
+          className="flex items-center justify-center gap-2 sm:gap-3 mb-3 mt-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
@@ -134,7 +152,7 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
         >
-          An interactive journey through the world of Marcus Tay — account manager at Meta, musician, coffee lover, farmer, and lifelong explorer.
+          An interactive adventure through the world of Marcus — account manager at Meta, musician, coffee lover, farmer, and lifelong explorer. Walk around and discover each chapter.
         </motion.p>
 
         {/* Start button */}

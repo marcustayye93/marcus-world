@@ -1,5 +1,5 @@
 /*
- * Marcus's World — Game Data
+ * The Journey of Marcus — Game Data
  * Design: Ghibli Pixel Overworld — 8-bit RPG meets Studio Ghibli warmth
  * All content for zones, testimonials, experience, and Easter eggs
  */
@@ -30,12 +30,36 @@ export interface Testimonial {
 }
 
 export const ASSET_URLS = {
-  overworld: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/overworld-map-KTjTHqGXpXsiUbkgUkLTaY.webp",
+  overworld: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/overworld-v2-kk3XnkrSV3qJT9HSU6Ppau.webp",
   heroBanner: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/hero-banner-YMBrx9qDKh5f9D6vUa5Rn5.webp",
   metaZone: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/meta-zone-PkF4uLVE2rTffZCUxrcZEq.webp",
   coffeeZone: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/coffee-zone-6ACcPwrxrVFNXvv2J37j5h.webp",
   farmZone: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/farm-zone-nqWu2CgWo7jWD8nc2o2LRv.webp",
   musicZone: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/music-zone-AcvduB7tx7g4g9p6ZycqL2.webp",
+};
+
+// Zone hitbox rectangles (percentage of map dimensions) for character collision
+export interface ZoneHitbox {
+  x1: number; y1: number; x2: number; y2: number;
+}
+
+export const ZONE_HITBOXES: Record<string, ZoneHitbox> = {
+  meta:       { x1: 35, y1: 5,  x2: 60, y2: 55 },   // Emerald City — center, huge
+  dfs:        { x1: 7,  y1: 15, x2: 23, y2: 42 },   // Tech Co. / DFS — upper left
+  music:      { x1: 58, y1: 25, x2: 76, y2: 50 },   // Music Hall — right of center
+  university: { x1: 12, y1: 52, x2: 33, y2: 78 },   // University — lower left
+  farm:       { x1: 40, y1: 60, x2: 60, y2: 82 },   // Barn — lower center
+  coffee:     { x1: 70, y1: 52, x2: 86, y2: 72 },   // Coffee Shop — lower right
+};
+
+// Label positions for each zone on the map (percentage)
+export const ZONE_LABEL_POSITIONS: Record<string, { x: number; y: number }> = {
+  meta:       { x: 47, y: 55 },
+  dfs:        { x: 15, y: 42 },
+  music:      { x: 67, y: 50 },
+  university: { x: 22, y: 78 },
+  farm:       { x: 50, y: 82 },
+  coffee:     { x: 78, y: 72 },
 };
 
 export const ZONES: Zone[] = [
@@ -46,8 +70,8 @@ export const ZONES: Zone[] = [
     tagline: "Managing the top 1% of clients in ANZ",
     description: "Account Manager at Meta, scaling businesses and achieving unbelievable returns on ad spend across 25+ business verticals.",
     image: ASSET_URLS.metaZone,
-    color: "#1877F2",
-    bgGradient: "from-blue-500/10 to-cyan-500/10",
+    color: "#10B981",
+    bgGradient: "from-emerald-500/10 to-teal-500/10",
     details: [
       {
         title: "Account Manager — Meta",
@@ -280,11 +304,11 @@ export const EASTER_EGGS = {
   farmSounds: ["🐄 Moo!", "🐑 Baa!", "🐔 Cluck cluck!", "🐴 Neigh!"],
   musicNotes: ["♪", "♫", "♬", "♩", "♭", "♮"],
   punnyDialogues: [
-    "Welcome to Marcus's World! Use arrow keys or click zones to explore.",
+    "Welcome! Use WASD or arrow keys to walk around. Enter buildings to explore!",
     "Did you know? Marcus once managed 43 beauty brands. Talk about a glow-up!",
     "Fun fact: Marcus can play 6 instruments. He's basically a one-man band!",
     "Marcus scaled a business from $8K to $50K/day. That's not growth, that's a rocket ship! 🚀",
-    "Psst... try clicking the animals on the farm. They have something to say!",
+    "Head to the Emerald City in the center — that's where the Meta magic happens!",
     "Marcus is in Mensa. So yes, he's probably smarter than both of us combined.",
     "From farming sheep to managing Meta's top clients. What a plot twist!",
     "Marcus's coffee philosophy: Life's too short for bad coffee (and manual machines).",

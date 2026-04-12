@@ -1,7 +1,7 @@
 /*
- * Marcus's World — Home Page
+ * The Journey of Marcus — Home Page
  * Design: Ghibli Pixel Overworld — 8-bit RPG meets Studio Ghibli warmth
- * An interactive overworld map where visitors explore zones of Marcus's life
+ * An interactive overworld map where visitors walk a character to explore zones
  */
 
 import { useState, useEffect, useCallback } from "react";
@@ -47,10 +47,16 @@ export default function Home() {
     }
   }, [discoveredZones, completionShown]);
 
+  const [gameStartTime, setGameStartTime] = useState(0);
+
   const handleStartGame = useCallback(() => {
     setGameStarted(true);
-    setShowDialog(true);
-    setDialogIndex(0);
+    setGameStartTime(Date.now());
+    // Delay showing dialog to avoid Enter key double-trigger
+    setTimeout(() => {
+      setShowDialog(true);
+      setDialogIndex(0);
+    }, 300);
   }, []);
 
   const handleZoneClick = useCallback((zone: Zone) => {
@@ -79,12 +85,15 @@ export default function Home() {
     setShowDialog(false);
   }, []);
 
-  // Keyboard handler
+  // Keyboard handler for modals (Escape to close)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (showDialog && (e.key === " " || e.key === "Enter")) {
-        e.preventDefault();
-        handleNextDialog();
+      // Only handle dialog advancement when dialog is showing and no zone is open
+      // Ignore for first 600ms after game start to prevent double-trigger
+      if (showDialog && !activeZone && (e.key === " " || e.key === "Enter")) {
+        if (Date.now() - gameStartTime > 600) {
+          handleNextDialog();
+        }
       }
       if (e.key === "Escape") {
         if (activeZone) handleCloseZone();
@@ -96,9 +105,9 @@ export default function Home() {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [showDialog, activeZone, showAbout, showTestimonials, showCompletion, handleNextDialog, handleCloseZone]);
+  }, [showDialog, activeZone, showAbout, showTestimonials, showCompletion, handleNextDialog, handleCloseZone, gameStartTime]);
 
-  // Konami code Easter egg
+  // Konami code Easter egg (only triggers on specific sequence, won't conflict with movement)
   useEffect(() => {
     const konamiCode = [
       "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
@@ -106,8 +115,16 @@ export default function Home() {
       "KeyB", "KeyA",
     ];
     let konamiIndex = 0;
+    let lastKeyTime = 0;
 
     const handleKonami = (e: KeyboardEvent) => {
+      const now = Date.now();
+      // Reset if too much time between keys (user is just moving around)
+      if (now - lastKeyTime > 800) {
+        konamiIndex = 0;
+      }
+      lastKeyTime = now;
+
       if (e.code === konamiCode[konamiIndex]) {
         konamiIndex++;
         if (konamiIndex === konamiCode.length) {

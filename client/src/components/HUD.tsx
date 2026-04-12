@@ -1,6 +1,7 @@
 /*
  * HUD — Heads-Up Display bar at the top
  * Design: RPG-style status bar with zone progress, navigation buttons
+ * Title: "The Journey of Marcus"
  */
 
 import { motion } from "framer-motion";
@@ -35,8 +36,8 @@ export default function HUD({
       <div
         className="h-full flex items-center justify-between px-3 sm:px-5"
         style={{
-          background: "linear-gradient(180deg, rgba(30,100,35,0.95) 0%, rgba(20,75,25,0.97) 100%)",
-          borderBottom: "3px solid #0D3B10",
+          background: "linear-gradient(180deg, rgba(6,78,59,0.95) 0%, rgba(4,60,45,0.97) 100%)",
+          borderBottom: "3px solid #022c22",
           boxShadow: "0 4px 16px rgba(0,0,0,0.35)",
         }}
       >
@@ -50,11 +51,11 @@ export default function HUD({
             🌍
           </motion.span>
           <div className="hidden sm:block">
-            <h1 className="pixel-text text-white text-[8px] sm:text-[9px] leading-none">
-              MARCUS'S WORLD
+            <h1 className="pixel-text text-emerald-200 text-[7px] sm:text-[8px] leading-none">
+              THE JOURNEY OF MARCUS
             </h1>
-            <p className="text-emerald-300/60 text-[10px] mt-0.5" style={{ fontFamily: "'Nunito', sans-serif" }}>
-              Click zones to explore
+            <p className="text-emerald-300/50 text-[10px] mt-0.5" style={{ fontFamily: "'Nunito', sans-serif" }}>
+              Walk around &bull; Enter buildings
             </p>
           </div>
         </div>

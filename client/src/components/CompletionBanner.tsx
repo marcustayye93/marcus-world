@@ -73,7 +73,7 @@ export default function CompletionBanner({ onDismiss }: CompletionBannerProps) {
             className="text-gray-600 text-sm sm:text-base leading-relaxed mb-4"
             style={{ fontFamily: "'Nunito', sans-serif" }}
           >
-            You've explored every zone in Marcus's World! You now know about his career at Meta, his DFS journey, his musical talents, his coffee obsession, his farming adventures, and his academic path.
+            You've explored every zone in The Journey of Marcus! You now know about his career at Meta, his DFS journey, his musical talents, his coffee obsession, his farming adventures, and his academic path.
           </p>
 
           <p
