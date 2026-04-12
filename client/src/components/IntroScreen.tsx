@@ -1,7 +1,8 @@
 /*
  * IntroScreen — The "Press Start" landing screen
  * Design: Pixel art title card with animated elements, Ghibli warmth
- * Title: "The Journey of Marcus"
+ * Title: "The Journey of Marcus" with pixel art portrait
+ * Layout: Compact vertical layout that fits all content on any viewport
  */
 
 import { useState, useEffect } from "react";
@@ -74,53 +75,89 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
         </motion.div>
       ))}
 
-      {/* Main content */}
+      {/* Main content — compact layout */}
       <motion.div
-        className="relative z-[5] text-center px-6 max-w-lg"
+        className="relative z-[5] text-center px-6 max-w-xl"
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        {/* Globe icon */}
-        <motion.div
-          className="mb-6"
-          animate={{ y: [0, -10, 0] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <span className="text-6xl sm:text-7xl md:text-8xl drop-shadow-2xl">🌍</span>
-        </motion.div>
+        {/* Portrait + Title row */}
+        <div className="flex flex-col items-center gap-1">
+          {/* Marcus pixel art portrait in RPG frame */}
+          <motion.div
+            className="flex justify-center"
+            initial={{ scale: 0, rotate: -10 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+          >
+            <div className="relative">
+              {/* Outer glow */}
+              <div
+                className="absolute -inset-4 rounded-full opacity-60 blur-xl"
+                style={{ background: "radial-gradient(circle, #10B981 0%, #D4A853 40%, transparent 70%)" }}
+              />
+              {/* RPG-style portrait frame */}
+              <div
+                className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full overflow-hidden"
+                style={{
+                  border: "3px solid #D4A853",
+                  boxShadow:
+                    "0 0 0 2px #1a2e1a, 0 0 0 5px #8B6914, 0 0 20px rgba(212,168,83,0.4), inset 0 0 10px rgba(0,0,0,0.3)",
+                }}
+              >
+                <motion.img
+                  src={ASSET_URLS.marcusPortrait}
+                  alt="Marcus — pixel art portrait"
+                  className="w-full h-full object-cover"
+                  style={{ imageRendering: "auto" }}
+                  animate={{ y: [0, -2, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                />
+              </div>
+              {/* Small sparkle on the frame */}
+              <motion.div
+                className="absolute -top-0.5 -right-0.5 text-xs"
+                animate={{ opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+              >
+                ✨
+              </motion.div>
+            </div>
+          </motion.div>
 
-        {/* Title */}
-        <motion.div className="mb-2">
-          <p
-            className="pixel-text text-emerald-300/80 text-[8px] sm:text-[9px] tracking-widest mb-2"
-            style={{ textShadow: "1px 1px 0 rgba(0,0,0,0.5)" }}
-          >
-            WELCOME TO
-          </p>
-          <h1
-            className="pixel-text text-white text-lg sm:text-xl md:text-2xl mb-1"
-            style={{
-              textShadow: "3px 3px 0 #065F46, 6px 6px 0 rgba(0,0,0,0.3)",
-              letterSpacing: "2px",
-            }}
-          >
-            THE JOURNEY OF
-          </h1>
-          <h1
-            className="pixel-text text-emerald-300 text-2xl sm:text-3xl md:text-4xl"
-            style={{
-              textShadow: "3px 3px 0 #065F46, 6px 6px 0 rgba(0,0,0,0.3)",
-              letterSpacing: "3px",
-            }}
-          >
-            MARCUS
-          </h1>
-        </motion.div>
+          {/* Title */}
+          <motion.div>
+            <p
+              className="pixel-text text-emerald-300/80 text-[7px] sm:text-[8px] tracking-widest mb-0.5"
+              style={{ textShadow: "1px 1px 0 rgba(0,0,0,0.5)" }}
+            >
+              WELCOME TO
+            </p>
+            <h1
+              className="pixel-text text-white text-sm sm:text-base md:text-lg mb-0"
+              style={{
+                textShadow: "2px 2px 0 #065F46, 4px 4px 0 rgba(0,0,0,0.3)",
+                letterSpacing: "2px",
+              }}
+            >
+              THE JOURNEY OF
+            </h1>
+            <h1
+              className="pixel-text text-emerald-300 text-lg sm:text-xl md:text-2xl"
+              style={{
+                textShadow: "2px 2px 0 #065F46, 4px 4px 0 rgba(0,0,0,0.3)",
+                letterSpacing: "3px",
+              }}
+            >
+              MARCUS
+            </h1>
+          </motion.div>
+        </div>
 
-        {/* Subtitle */}
+        {/* Personality tags */}
         <motion.div
-          className="flex items-center justify-center gap-2 sm:gap-3 mb-3 mt-4"
+          className="flex items-center justify-center gap-2 sm:gap-3 my-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
@@ -128,7 +165,7 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
           {["Radiant", "Relentless", "Curious"].map((word, i) => (
             <motion.span
               key={word}
-              className="px-3 py-1 rounded-full text-xs sm:text-sm font-bold"
+              className="px-2.5 py-0.5 rounded-full text-[11px] sm:text-xs font-bold"
               style={{
                 fontFamily: "'Nunito', sans-serif",
                 background: ["rgba(250,204,21,0.3)", "rgba(239,68,68,0.3)", "rgba(96,165,250,0.3)"][i],
@@ -144,15 +181,15 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
           ))}
         </motion.div>
 
-        {/* Description */}
+        {/* Description — short version */}
         <motion.p
-          className="text-white/70 text-xs sm:text-sm leading-relaxed mb-8"
+          className="text-white/60 text-[10px] sm:text-[11px] leading-snug mb-3 max-w-sm mx-auto"
           style={{ fontFamily: "'Nunito', sans-serif" }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
         >
-          An interactive adventure through the world of Marcus — account manager at Meta, musician, coffee lover, farmer, and lifelong explorer. Click on buildings and discover each chapter.
+          An interactive adventure through the world of Marcus — account manager at Meta, musician, coffee lover, farmer, and lifelong explorer.
         </motion.p>
 
         {/* Start button */}
@@ -163,7 +200,7 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
         >
           <motion.button
             onClick={onStart}
-            className="pixel-text text-white text-[10px] sm:text-xs tracking-wider px-10 py-4 rounded-xl
+            className="pixel-text text-white text-[9px] sm:text-[10px] tracking-wider px-8 py-2.5 rounded-xl
                        bg-gradient-to-b from-emerald-500 to-emerald-700 border-b-4 border-emerald-900
                        hover:from-emerald-400 hover:to-emerald-600 active:border-b-0 active:mt-1
                        transition-all shadow-xl shadow-emerald-900/40"
@@ -178,7 +215,7 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
             </motion.span>
           </motion.button>
 
-          <p className="text-white/40 text-[10px] mt-3" style={{ fontFamily: "'Nunito', sans-serif" }}>
+          <p className="text-white/30 text-[9px] mt-1.5" style={{ fontFamily: "'Nunito', sans-serif" }}>
             or press ENTER / SPACE
           </p>
         </motion.div>
@@ -186,7 +223,7 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
 
       {/* Bottom credits */}
       <motion.div
-        className="absolute bottom-4 sm:bottom-6 text-center z-10"
+        className="absolute bottom-3 sm:bottom-5 text-center z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
