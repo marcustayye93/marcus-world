@@ -1,17 +1,75 @@
 /*
  * AboutSection — Full-screen modal with Marcus's personal story
  * Design: RPG character sheet / stats page aesthetic
- * Emphasis on Mensa membership and intellectual depth
+ * Features RPG-style animated stats bars for professional strengths
  */
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { X, Brain, Heart, Leaf, ChefHat, Mail, Linkedin } from "lucide-react";
-import { ABOUT_ME } from "@/lib/gameData";
+import { X, Brain, Heart, Leaf, ChefHat, Mail, Linkedin, Swords, Shield, Sparkles, Music, Flame, Zap } from "lucide-react";
+import { ABOUT_ME, ASSET_URLS } from "@/lib/gameData";
 
 interface AboutSectionProps {
   onClose: () => void;
 }
+
+/* ── RPG stat definitions based on Marcus's actual strengths ── */
+const RPG_STATS = [
+  {
+    name: "Client Mastery",
+    value: 95,
+    maxValue: 100,
+    icon: Swords,
+    color: "#10B981",
+    bgColor: "#D1FAE5",
+    description: "Managing Meta's top 1% clients across ANZ",
+  },
+  {
+    name: "Leadership",
+    value: 92,
+    maxValue: 100,
+    icon: Shield,
+    color: "#3B82F6",
+    bgColor: "#DBEAFE",
+    description: "Led 80 baristas, scaled teams & budgets 10x",
+  },
+  {
+    name: "Creativity",
+    value: 90,
+    maxValue: 100,
+    icon: Sparkles,
+    color: "#F59E0B",
+    bgColor: "#FEF3C7",
+    description: "5 instruments, DJ sets, and pixel-perfect campaigns",
+  },
+  {
+    name: "Adaptability",
+    value: 94,
+    maxValue: 100,
+    icon: Zap,
+    color: "#8B5CF6",
+    bgColor: "#EDE9FE",
+    description: "Beauty counters → IT → Meta → Farming → Music",
+  },
+  {
+    name: "Music",
+    value: 88,
+    maxValue: 100,
+    icon: Music,
+    color: "#EF4444",
+    bgColor: "#FEE2E2",
+    description: "Orchestra clarinetist, performed for Singapore's PM",
+  },
+  {
+    name: "Resilience",
+    value: 96,
+    maxValue: 100,
+    icon: Flame,
+    color: "#F97316",
+    bgColor: "#FFEDD5",
+    description: "Earthquake relief in Yunnan, 70 animals on 2 farms",
+  },
+];
 
 export default function AboutSection({ onClose }: AboutSectionProps) {
   useEffect(() => {
@@ -45,13 +103,29 @@ export default function AboutSection({ onClose }: AboutSectionProps) {
       >
         {/* Header */}
         <div className="p-5 sm:p-6 border-b-2 border-dashed border-emerald-200 flex items-start justify-between bg-gradient-to-r from-emerald-50 to-sky-50">
-          <div>
-            <h2 className="pixel-text text-emerald-800 text-sm sm:text-base mb-1.5">
-              ABOUT MARCUS
-            </h2>
-            <p className="text-gray-500 text-xs" style={{ fontFamily: "'Nunito', sans-serif" }}>
-              Character Sheet — The Full Story
-            </p>
+          <div className="flex items-center gap-3">
+            {/* Small portrait in header */}
+            <div
+              className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0"
+              style={{
+                border: "2px solid #D4A853",
+                boxShadow: "0 0 0 1px #1a2e1a, 0 0 8px rgba(212,168,83,0.3)",
+              }}
+            >
+              <img
+                src={ASSET_URLS.marcusPortrait}
+                alt="Marcus"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <h2 className="pixel-text text-emerald-800 text-sm sm:text-base mb-0.5">
+                ABOUT MARCUS
+              </h2>
+              <p className="text-gray-500 text-xs" style={{ fontFamily: "'Nunito', sans-serif" }}>
+                Character Sheet — Stats &amp; Story
+              </p>
+            </div>
           </div>
           <button
             onClick={onClose}
@@ -88,7 +162,67 @@ export default function AboutSection({ onClose }: AboutSectionProps) {
             ))}
           </motion.div>
 
-          {/* Mensa Badge - PROMINENT */}
+          {/* ═══ RPG STATS BAR ═══ */}
+          <motion.div
+            className="rounded-xl overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, #1a2e1a 0%, #0f1f0f 100%)",
+              border: "3px solid #2E7D32",
+              boxShadow: "inset 0 2px 8px rgba(0,0,0,0.4), 0 0 15px rgba(46,125,50,0.15)",
+            }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+          >
+            {/* Stats header */}
+            <div
+              className="px-4 py-2.5 flex items-center justify-between"
+              style={{
+                background: "linear-gradient(90deg, #2E7D32 0%, #1B5E20 100%)",
+                borderBottom: "2px solid #4CAF50",
+              }}
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-base">⚔️</span>
+                <span className="pixel-text text-[8px] sm:text-[9px] text-emerald-100 tracking-wider">
+                  CHARACTER STATS
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="pixel-text text-[7px] text-emerald-300/70">LVL</span>
+                <span className="pixel-text text-[10px] text-amber-300">30</span>
+              </div>
+            </div>
+
+            {/* Stats list */}
+            <div className="p-3 sm:p-4 space-y-2.5">
+              {RPG_STATS.map((stat, i) => (
+                <RPGStatBar key={stat.name} stat={stat} index={i} />
+              ))}
+            </div>
+
+            {/* Total power footer */}
+            <div
+              className="px-4 py-2 flex items-center justify-between"
+              style={{
+                background: "linear-gradient(90deg, rgba(212,168,83,0.15), rgba(212,168,83,0.05))",
+                borderTop: "1px solid rgba(212,168,83,0.2)",
+              }}
+            >
+              <span className="pixel-text text-[7px] text-amber-400/80 tracking-wider">TOTAL POWER</span>
+              <div className="flex items-center gap-1">
+                <motion.span
+                  className="pixel-text text-[11px] sm:text-xs text-amber-300"
+                  animate={{ textShadow: ["0 0 4px rgba(251,191,36,0)", "0 0 8px rgba(251,191,36,0.6)", "0 0 4px rgba(251,191,36,0)"] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  {RPG_STATS.reduce((sum, s) => sum + s.value, 0)} / {RPG_STATS.reduce((sum, s) => sum + s.maxValue, 0)}
+                </motion.span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Mensa Badge */}
           <motion.div
             className="relative p-4 rounded-xl text-center overflow-hidden"
             style={{
@@ -221,6 +355,104 @@ export default function AboutSection({ onClose }: AboutSectionProps) {
   );
 }
 
+/* ── RPG Stat Bar Component ── */
+function RPGStatBar({ stat, index }: { stat: typeof RPG_STATS[0]; index: number }) {
+  const [animatedValue, setAnimatedValue] = useState(0);
+  const percentage = (stat.value / stat.maxValue) * 100;
+  const Icon = stat.icon;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimatedValue(stat.value);
+    }, 300 + index * 120);
+    return () => clearTimeout(timer);
+  }, [stat.value, index]);
+
+  return (
+    <motion.div
+      className="group"
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 0.2 + index * 0.08 }}
+    >
+      <div className="flex items-center gap-2.5">
+        {/* Icon */}
+        <div
+          className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+          style={{
+            background: `${stat.color}20`,
+            border: `1.5px solid ${stat.color}40`,
+          }}
+        >
+          <Icon size={14} style={{ color: stat.color }} />
+        </div>
+
+        {/* Name + bar */}
+        <div className="flex-1 min-w-0">
+          <div className="flex items-baseline justify-between mb-0.5">
+            <span
+              className="pixel-text text-[6px] sm:text-[7px] tracking-wider"
+              style={{ color: stat.color }}
+            >
+              {stat.name.toUpperCase()}
+            </span>
+            <span className="pixel-text text-[7px] sm:text-[8px] text-white/80">
+              {animatedValue}<span className="text-white/30">/{stat.maxValue}</span>
+            </span>
+          </div>
+
+          {/* Bar track */}
+          <div
+            className="h-3 sm:h-3.5 rounded-sm overflow-hidden relative"
+            style={{
+              background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.08)",
+            }}
+          >
+            {/* Filled bar */}
+            <motion.div
+              className="h-full rounded-sm relative overflow-hidden"
+              style={{
+                background: `linear-gradient(90deg, ${stat.color}CC, ${stat.color})`,
+                boxShadow: `0 0 8px ${stat.color}40`,
+              }}
+              initial={{ width: "0%" }}
+              animate={{ width: `${percentage}%` }}
+              transition={{ duration: 1.2, delay: 0.3 + index * 0.12, ease: "easeOut" }}
+            >
+              {/* Shine effect */}
+              <motion.div
+                className="absolute inset-0"
+                style={{
+                  background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%)",
+                }}
+                animate={{ x: ["-100%", "200%"] }}
+                transition={{ duration: 2.5, delay: 1.5 + index * 0.12, repeat: Infinity, repeatDelay: 4 }}
+              />
+              {/* Pixel grid overlay for retro feel */}
+              <div
+                className="absolute inset-0 opacity-20"
+                style={{
+                  backgroundImage: "repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,0,0,0.3) 3px, rgba(0,0,0,0.3) 4px)",
+                }}
+              />
+            </motion.div>
+          </div>
+
+          {/* Description on hover / always visible on mobile */}
+          <p
+            className="text-[9px] sm:text-[10px] mt-0.5 leading-tight"
+            style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Nunito', sans-serif" }}
+          >
+            {stat.description}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ── Stat Card (existing) ── */
 function StatCard({
   icon,
   title,
