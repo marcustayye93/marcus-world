@@ -33,8 +33,8 @@ const SOCIAL_LINKS = [
 
 const FUN_FACTS = [
   "Marcus once performed clarinet for Singapore's Prime Minister.",
-  "He scaled a brand from $8K/day to $50K/day in ad spend — with 3x ROAS.",
-  "He's a member of Mensa Singapore — always curious, always learning.",
+  "He scaled a brand from $8K/day to $50K/day in ad spend \u2014 with 3x ROAS.",
+  "He once traveled to Yun Nan, China for 5 weeks of earthquake disaster relief.",
   "He shepherded 70 animals across 2 farms in New Zealand.",
   "He launched a coffee enterprise with 80 student baristas.",
   "He plays 5 musical instruments and was a DJ.",

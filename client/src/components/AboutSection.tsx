@@ -222,42 +222,27 @@ export default function AboutSection({ onClose }: AboutSectionProps) {
             </div>
           </motion.div>
 
-          {/* Mensa Badge */}
+          {/* Languages */}
           <motion.div
-            className="relative p-4 rounded-xl text-center overflow-hidden"
-            style={{
-              background: "linear-gradient(135deg, #312E81, #4338CA)",
-              border: "3px solid #6366F1",
-              boxShadow: "0 0 20px rgba(99,102,241,0.3)",
-            }}
+            className="flex flex-wrap gap-2 justify-center"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <motion.div
-              className="absolute inset-0 opacity-10"
-              style={{
-                backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px), radial-gradient(circle at 60% 80%, white 1px, transparent 1px)",
-                backgroundSize: "60px 60px, 40px 40px, 50px 50px",
-              }}
-            />
-            <div className="relative">
-              <motion.div
-                className="text-4xl mb-2"
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                🧠
-              </motion.div>
-              <p className="pixel-text text-[9px] sm:text-[10px] text-indigo-200 mb-1">
-                MENSA SINGAPORE
-              </p>
-              <p className="text-white text-sm sm:text-base font-bold" style={{ fontFamily: "'Nunito', sans-serif" }}>
-                Member of Mensa Singapore
-              </p>
-              <p className="text-indigo-300 text-xs mt-1" style={{ fontFamily: "'Nunito', sans-serif" }}>
-                A lifelong love of learning and problem-solving
-              </p>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "#3B82F610", border: "1px solid #3B82F620" }}>
+              <span className="text-sm">🇬🇧</span>
+              <span className="text-xs font-bold text-blue-600" style={{ fontFamily: "'Nunito', sans-serif" }}>English</span>
+              <span className="text-[10px] text-gray-400" style={{ fontFamily: "'Nunito', sans-serif" }}>Fluent</span>
+            </div>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "#EF444410", border: "1px solid #EF444420" }}>
+              <span className="text-sm">🇨🇳</span>
+              <span className="text-xs font-bold text-red-500" style={{ fontFamily: "'Nunito', sans-serif" }}>Chinese</span>
+              <span className="text-[10px] text-gray-400" style={{ fontFamily: "'Nunito', sans-serif" }}>Fluent</span>
+            </div>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "#F59E0B10", border: "1px solid #F59E0B20" }}>
+              <span className="text-sm">🇭🇰</span>
+              <span className="text-xs font-bold text-amber-500" style={{ fontFamily: "'Nunito', sans-serif" }}>Cantonese</span>
+              <span className="text-[10px] text-gray-400" style={{ fontFamily: "'Nunito', sans-serif" }}>Basic</span>
             </div>
           </motion.div>
 
@@ -311,12 +296,12 @@ export default function AboutSection({ onClose }: AboutSectionProps) {
 
             <StatCard
               icon={<Brain className="text-violet-500" size={18} />}
-              title="SELF-AWARENESS"
+              title="MENSA MEMBER"
               color="#7C3AED"
               bgColor="#F5F3FF"
               delay={0.7}
             >
-              Believes deeply in self-awareness as the foundation for growth, kindness, and authentic connection with others.
+              Member of Mensa Singapore — a lifelong love of learning, problem-solving, and staying curious.
             </StatCard>
           </div>
 

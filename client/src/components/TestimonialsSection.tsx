@@ -42,10 +42,10 @@ export default function TestimonialsSection({ onClose }: TestimonialsSectionProp
         <div className="p-5 sm:p-6 border-b-2 border-dashed border-amber-200 flex items-start justify-between">
           <div>
             <h2 className="pixel-text text-amber-900 text-sm sm:text-base mb-2">
-              KIND WORDS
+              TESTIMONIALS
             </h2>
             <p className="text-gray-500 text-xs italic" style={{ fontFamily: "'Nunito', sans-serif" }}>
-              What the villagers say about Marcus...
+              What colleagues and leaders say about Marcus...
             </p>
           </div>
           <button

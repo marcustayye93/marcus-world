@@ -2,11 +2,12 @@
  * ResumeSnapshot — A clean, one-sheet résumé view
  * Design: Professional yet themed to match the pixel art world.
  * Opens as a full-screen modal with a scrollable, print-friendly résumé layout.
+ * Includes: Skills & Tools, Languages, DFS promotion clarity, What I'm Looking For
  */
 
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { X, Mail, Phone, Linkedin, Brain, Globe, Music, Coffee, Leaf, Download } from "lucide-react";
+import { X, Mail, Linkedin, Brain, Globe, Music, Coffee, Leaf, Download, Languages, Wrench, Target } from "lucide-react";
 import { ASSET_URLS } from "@/lib/gameData";
 
 interface ResumeSnapshotProps {
@@ -82,14 +83,14 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
                 <Mail size={13} />
                 marcustayve@gmail.com
               </a>
-              <span className="flex items-center gap-1.5">
-                <Phone size={13} />
-                +65 82017955
-              </span>
-              <a href="https://www.linkedin.com/in/marcustay" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <a href="https://www.linkedin.com/in/mtye/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
                 <Linkedin size={13} />
                 LinkedIn
               </a>
+              <span className="flex items-center gap-1.5">
+                <Languages size={13} />
+                English · Chinese · Cantonese
+              </span>
             </div>
           </motion.div>
         </div>
@@ -112,6 +113,82 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
             </p>
           </motion.div>
 
+          {/* What I'm Looking For */}
+          <motion.div
+            className="mb-6 p-3.5 rounded-xl"
+            style={{ background: "#EFF6FF", border: "2px solid #3B82F620" }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.17 }}
+          >
+            <div className="flex items-center gap-2 mb-1.5">
+              <Target size={15} className="text-blue-600" />
+              <span className="pixel-text text-[7px] sm:text-[8px] text-blue-700" style={{ letterSpacing: "1px" }}>
+                WHAT I'M LOOKING FOR
+              </span>
+            </div>
+            <p
+              className="text-xs sm:text-[13px] text-gray-600 leading-relaxed"
+              style={{ fontFamily: "'Nunito', sans-serif" }}
+            >
+              A client-facing or business development role where I can combine strategic thinking with genuine relationship-building — ideally at the intersection of technology, media, and commerce. I thrive in fast-paced, cross-functional environments where curiosity is rewarded and impact is measurable.
+            </p>
+          </motion.div>
+
+          {/* Skills & Tools */}
+          <motion.div
+            className="mb-6"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.18 }}
+          >
+            <SectionHeader title="SKILLS & TOOLS" />
+            <div className="flex flex-wrap gap-1.5">
+              {[
+                { label: "Meta Ads Manager", color: "#10B981" },
+                { label: "Meta Business Suite", color: "#10B981" },
+                { label: "Performance Marketing", color: "#10B981" },
+                { label: "Client Relationship Management", color: "#3B82F6" },
+                { label: "Stakeholder Management", color: "#3B82F6" },
+                { label: "Cross-Functional Leadership", color: "#3B82F6" },
+                { label: "IT Project Delivery", color: "#8B5CF6" },
+                { label: "Business Development", color: "#8B5CF6" },
+                { label: "Data Analysis", color: "#F59E0B" },
+                { label: "Retail Operations", color: "#F59E0B" },
+                { label: "Event Management", color: "#F59E0B" },
+                { label: "Digital Transformation", color: "#8B5CF6" },
+              ].map((skill) => (
+                <span
+                  key={skill.label}
+                  className="px-2.5 py-1 rounded-md text-[10px] sm:text-[11px] font-semibold"
+                  style={{
+                    fontFamily: "'Nunito', sans-serif",
+                    background: `${skill.color}10`,
+                    color: skill.color,
+                    border: `1px solid ${skill.color}25`,
+                  }}
+                >
+                  {skill.label}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Languages */}
+          <motion.div
+            className="mb-6"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.19 }}
+          >
+            <SectionHeader title="LANGUAGES" />
+            <div className="flex gap-3">
+              <LanguageBadge language="English" level="Fluent" color="#3B82F6" />
+              <LanguageBadge language="Chinese (Mandarin)" level="Fluent" color="#EF4444" />
+              <LanguageBadge language="Cantonese" level="Basic" color="#F59E0B" />
+            </div>
+          </motion.div>
+
           {/* Professional Experience */}
           <motion.div
             className="mb-6"
@@ -132,64 +209,85 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
                 "Portfolio spanning 25+ business verticals — from healthcare to top e-commerce brands",
                 "Scaled an e-commerce brand from $8K/day to $50K/day in ad spend while achieving 3x ROAS",
                 "Consistently scaling businesses 10x while maintaining impressive return on ad spend",
+                "2025 Infinite Potential Award — Client Hero (sole recipient in APAC)",
               ]}
               delay={0.25}
             />
 
-            <ExperienceEntry
-              company="DFS Group"
-              role="IT Project Manager — Global Business Transformation"
-              period="Apr 2022 – 2024"
-              location="Singapore"
-              color="#2E7D32"
-              bullets={[
-                "Orchestrated end-to-end technology rollouts for new retail complexes and airports across 6 countries",
-                "Collaborated with CTO & CIO on market entry strategy and risk mitigation",
-                "Managed 90+ internal and external client relationships across 16 departments",
-              ]}
-              delay={0.3}
-            />
+            {/* DFS Group — show as one block with internal promotions */}
+            <motion.div
+              className="mb-4"
+              initial={{ opacity: 0, x: -8 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <div className="flex items-center gap-2 mb-1">
+                <h3
+                  className="text-sm font-bold"
+                  style={{ fontFamily: "'Nunito', sans-serif", color: "#2E7D32" }}
+                >
+                  DFS Group
+                </h3>
+                <span
+                  className="px-2 py-0.5 rounded text-[9px] font-bold"
+                  style={{
+                    fontFamily: "'Nunito', sans-serif",
+                    background: "#2E7D3215",
+                    color: "#2E7D32",
+                    border: "1px solid #2E7D3225",
+                  }}
+                >
+                  4 promotions in 5 years
+                </span>
+              </div>
 
-            <ExperienceEntry
-              company="DFS Group"
-              role="Flagship Product Sales Manager — Fashion"
-              period="Mar 2021 – Apr 2022"
-              location="Hong Kong"
-              color="#2E7D32"
-              bullets={[
-                "Directed operations of 8 luxury boutiques within DFS Hong Kong's Flagship store",
-                "Orchestrated a remarkable 60% YoY surge in brand sales during COVID",
-                "Executed 4 exclusive fashion events for VIP clientele, surpassing targets by +205%",
-                "Drove revenue +78% through an innovative 'digital shopper' solution",
-              ]}
-              delay={0.35}
-            />
+              {/* DFS Role 1 */}
+              <DFSRoleEntry
+                role="IT Project Manager — Global Business Transformation"
+                period="Apr 2022 – 2024"
+                location="Singapore"
+                bullets={[
+                  "Orchestrated end-to-end technology rollouts for new retail complexes and airports across 6 countries",
+                  "Collaborated with CTO & CIO on market entry strategy and risk mitigation",
+                  "Managed 90+ internal and external client relationships across 16 departments",
+                ]}
+              />
 
-            <ExperienceEntry
-              company="DFS Group"
-              role="Global Strategy & Business Development"
-              period="Mar 2020 – Mar 2021"
-              location="Hong Kong"
-              color="#2E7D32"
-              bullets={[
-                "Spearheaded store operations in Hainan, China across 13 departments",
-                "Conducted strategic analyses across 6 nations for Board-level expansion decisions",
-              ]}
-              delay={0.4}
-            />
+              {/* DFS Role 2 */}
+              <DFSRoleEntry
+                role="Flagship Product Sales Manager — Fashion"
+                period="Mar 2021 – Apr 2022"
+                location="Hong Kong"
+                bullets={[
+                  "Directed operations of 8 luxury boutiques within DFS Hong Kong's Flagship store",
+                  "60% YoY surge in brand sales during COVID; +205% above target on VIP fashion events",
+                  "Drove revenue +78% through an innovative 'digital shopper' solution",
+                ]}
+              />
 
-            <ExperienceEntry
-              company="DFS Group"
-              role="Product Sales Manager — Beauty"
-              period="Sep 2019 – Mar 2020"
-              location="Singapore"
-              color="#2E7D32"
-              bullets={[
-                "Oversaw a portfolio of 43 brands and led a team of 40+ professionals",
-                "Drove growth in sales volume, UPTs, and conversion rates across Skincare, Make-up, and Fragrances",
-              ]}
-              delay={0.45}
-            />
+              {/* DFS Role 3 */}
+              <DFSRoleEntry
+                role="Global Strategy & Business Development"
+                period="Mar 2020 – Mar 2021"
+                location="Hong Kong"
+                bullets={[
+                  "Spearheaded store operations in Hainan, China across 13 departments",
+                  "Conducted strategic analyses across 6 nations for Board-level expansion decisions",
+                ]}
+              />
+
+              {/* DFS Role 4 */}
+              <DFSRoleEntry
+                role="Product Sales Manager — Beauty"
+                period="Sep 2019 – Mar 2020"
+                location="Singapore"
+                bullets={[
+                  "Oversaw a portfolio of 43 brands and led a team of 40+ professionals",
+                  "Drove growth in sales volume, UPTs, and conversion rates across Skincare, Make-up, and Fragrances",
+                ]}
+                isLast
+              />
+            </motion.div>
 
             <ExperienceEntry
               company="Young Sustainable Impact SEA"
@@ -231,7 +329,7 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
                 school="Nanyang Polytechnic — Singapore"
                 degree="Diploma in Banking and Financial Services"
                 period="2010 – 2013"
-                highlights={["GPA: 3.71 / 4.00"]}
+                highlights={[]}
               />
             </div>
           </motion.div>
@@ -245,7 +343,7 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
           >
             <SectionHeader title="WHAT MAKES MARCUS UNIQUE" />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
               <UniqueCard
                 icon={<Brain size={16} />}
                 title="Mensa Member"
@@ -285,8 +383,8 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
           className="px-5 sm:px-8 py-3 border-t-2 flex items-center justify-between"
           style={{ borderColor: "#8B691425", background: "#8B691408" }}
         >
-          <span className="pixel-text text-[6px] sm:text-[7px] opacity-40">
-            MARCUS AT A GLANCE
+          <span className="pixel-text text-[5px] sm:text-[6px] opacity-30">
+            LAST UPDATED: APRIL 2026
           </span>
           <div className="flex items-center gap-2">
             <a
@@ -324,6 +422,28 @@ function SectionHeader({ title }: { title: string }) {
         {title}
       </h2>
       <div className="flex-1 h-px bg-[#2D5016]/20" />
+    </div>
+  );
+}
+
+function LanguageBadge({ language, level, color }: { language: string; level: string; color: string }) {
+  return (
+    <div
+      className="flex items-center gap-2 px-3 py-1.5 rounded-lg"
+      style={{ background: `${color}08`, border: `1px solid ${color}20` }}
+    >
+      <span
+        className="text-xs font-bold"
+        style={{ fontFamily: "'Nunito', sans-serif", color }}
+      >
+        {language}
+      </span>
+      <span
+        className="text-[10px] text-gray-400"
+        style={{ fontFamily: "'Nunito', sans-serif" }}
+      >
+        {level}
+      </span>
     </div>
   );
 }
@@ -398,6 +518,62 @@ function ExperienceEntry({
         ))}
       </ul>
     </motion.div>
+  );
+}
+
+function DFSRoleEntry({
+  role,
+  period,
+  location,
+  bullets,
+  isLast = false,
+}: {
+  role: string;
+  period: string;
+  location: string;
+  bullets: string[];
+  isLast?: boolean;
+}) {
+  return (
+    <div className={`ml-3 pl-3 ${!isLast ? "mb-3 pb-3 border-b border-dashed border-gray-200" : ""}`} style={{ borderLeft: "2px solid #2E7D3230" }}>
+      <div className="flex items-start justify-between gap-2 mb-1">
+        <p
+          className="text-xs text-gray-700 font-semibold"
+          style={{ fontFamily: "'Nunito', sans-serif" }}
+        >
+          {role}
+        </p>
+        <div className="text-right flex-shrink-0">
+          <span
+            className="text-[10px] sm:text-[11px] font-semibold text-gray-500 block"
+            style={{ fontFamily: "'Nunito', sans-serif" }}
+          >
+            {period}
+          </span>
+          <span
+            className="text-[10px] text-gray-400"
+            style={{ fontFamily: "'Nunito', sans-serif" }}
+          >
+            {location}
+          </span>
+        </div>
+      </div>
+      <ul className="space-y-1 ml-0.5">
+        {bullets.map((bullet, i) => (
+          <li
+            key={i}
+            className="flex items-start gap-2 text-[12px] sm:text-[13px] text-gray-600"
+            style={{ fontFamily: "'Nunito', sans-serif" }}
+          >
+            <span
+              className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
+              style={{ background: "#2E7D32" }}
+            />
+            <span className="leading-relaxed">{bullet}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

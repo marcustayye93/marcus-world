@@ -204,7 +204,17 @@ export default function Home() {
     <div className="min-h-screen bg-[#f0e6d3] overflow-hidden relative">
       <AnimatePresence mode="wait">
         {!gameStarted ? (
-          <IntroScreen key="intro" onStart={handleStartGame} />
+          <IntroScreen
+            key="intro"
+            onStart={handleStartGame}
+            onSkipToResume={() => {
+              playStartGame();
+              setGameStarted(true);
+              setGameStartTime(Date.now());
+              // Open Resume Snapshot immediately after game starts
+              setTimeout(() => setShowSnapshot(true), 400);
+            }}
+          />
         ) : (
           <motion.div
             key="game"

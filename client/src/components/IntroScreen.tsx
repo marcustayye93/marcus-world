@@ -11,9 +11,10 @@ import { ASSET_URLS } from "@/lib/gameData";
 
 interface IntroScreenProps {
   onStart: () => void;
+  onSkipToResume?: () => void;
 }
 
-export default function IntroScreen({ onStart }: IntroScreenProps) {
+export default function IntroScreen({ onStart, onSkipToResume }: IntroScreenProps) {
   const [showPrompt, setShowPrompt] = useState(false);
 
   useEffect(() => {
@@ -218,6 +219,20 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
           <p className="text-white/30 text-[9px] mt-1.5" style={{ fontFamily: "'Nunito', sans-serif" }}>
             or press ENTER / SPACE
           </p>
+
+          {/* Skip to Resume for recruiters */}
+          {onSkipToResume && (
+            <motion.button
+              onClick={onSkipToResume}
+              className="mt-3 text-white/40 hover:text-white/70 text-[10px] sm:text-[11px] underline underline-offset-2 transition-colors"
+              style={{ fontFamily: "'Nunito', sans-serif" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.8 }}
+            >
+              Short on time? Skip to resume
+            </motion.button>
+          )}
         </motion.div>
       </motion.div>
 
