@@ -89,7 +89,7 @@ export default function MobileNav({ zones, onZoneClick, onAboutClick, onTestimon
                   >
                     <FileText size={18} className="text-emerald-700" />
                     <span className="text-xs font-semibold text-gray-700" style={{ fontFamily: "'Nunito', sans-serif" }}>
-                      R\u00e9sum\u00e9 Snapshot
+                      Resume
                     </span>
                   </button>
                 )}
@@ -116,7 +116,7 @@ export default function MobileNav({ zones, onZoneClick, onAboutClick, onTestimon
                 >
                   <MessageSquare size={18} className="text-amber-600" />
                   <span className="text-xs font-semibold text-gray-700" style={{ fontFamily: "'Nunito', sans-serif" }}>
-                    Kind Words
+                    Testimonials
                   </span>
                 </button>
 
