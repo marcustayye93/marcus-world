@@ -31,7 +31,7 @@ const RPG_STATS = [
     icon: Shield,
     color: "#3B82F6",
     bgColor: "#DBEAFE",
-    description: "Led 80 baristas, scaled teams & budgets 10x",
+    description: "IT rollouts across 6 countries at DFS, 90+ stakeholders & 16 departments",
   },
   {
     name: "Creativity",
