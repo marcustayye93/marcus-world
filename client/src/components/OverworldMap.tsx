@@ -41,12 +41,11 @@ const YEAR_LABELS: Array<{
   { year: "2019–2024",    x: 17,   y: 50, isCareer: true },   // Below baked-in DFS GROUP
   { year: "2006–PRESENT", x: 67,   y: 59 },                   // Below baked-in MUSIC HALL
   { year: "2015–2019",    x: 22,   y: 84, isCareer: true },   // Below baked-in UNIVERSITY
-  { year: "2019",         x: 50,   y: 93 },                   // Below baked-in BARN / THE FARM
+  { year: "2019",         x: 50,   y: 87 },                   // Below baked-in BARN
   { year: "2016–2018",    x: 78,   y: 81 },                   // Below baked-in COFFEE SHOP
 ];
 
-// "THE FARM" overlay plaque to replace the baked-in "BARN" label
-const FARM_PLAQUE = { text: "THE FARM", x: 50, y: 88 };
+// Baked-in "BARN" label is kept as-is on the map (no overlay needed)
 
 /*
  * WoodenPlaqueLabel — Matches the baked-in sign style:
@@ -101,17 +100,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
         }}
       />
 
-      {/* "THE FARM" plaque overlay to replace baked-in "BARN" */}
-      <div
-        className="absolute z-[15] pointer-events-none"
-        style={{
-          left: `${FARM_PLAQUE.x}%`,
-          top: `${FARM_PLAQUE.y}%`,
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <WoodenPlaqueLabel text={FARM_PLAQUE.text} />
-      </div>
+
 
       {/* Year subtitles below each building's baked-in label */}
       {YEAR_LABELS.map((label, i) => (

@@ -203,7 +203,7 @@ export const ZONES: Zone[] = [
   },
   {
     id: "farm",
-    name: "The Farm",
+    name: "Barn",
     icon: "🐄",
     tagline: "70 animals, 2 farms, 1 incredible adventure",
     description: "Shepherding sheep in New Zealand, selling eggs at farmer's markets, and discovering that the best perspective comes from roaming pastures at dawn.",
@@ -291,7 +291,7 @@ export const TESTIMONIALS: Testimonial[] = [
 ];
 
 export const ABOUT_ME = {
-  motto: "No matter how kind you are to others, people can only meet you as deeply as they meet themselves.",
+  motto: "The best things happen when you stay curious enough to say yes and committed enough to see it through.",
   threeWords: ["Radiant", "Relentless", "Curious"],
   mensa: "Member of Mensa Singapore — a lifelong love of learning and problem-solving",
   humanitarian: "Individually travelled to Yun Nan, China for earthquake and disaster relief for 5 weeks. Visited leprosy villages and burned victims. Interviewed by 7 Chinese newspapers and a local radio station.",

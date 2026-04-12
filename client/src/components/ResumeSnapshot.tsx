@@ -296,7 +296,7 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
               style={{ background: "#1565C0", boxShadow: "0 2px 0 #0D47A1" }}
             >
               <Download size={12} />
-              DOWNLOAD RÉSUMÉ
+              DOWNLOAD RESUME
             </a>
             <button
               onClick={onClose}
