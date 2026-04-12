@@ -27,7 +27,7 @@ const BUILDING_HOTSPOTS: Record<string, {
   dfs:        { x: 8,  y: 12, w: 18, h: 32 },   // Tech Co. — upper left
   music:      { x: 57, y: 22, w: 20, h: 32 },   // Music Hall — right of center
   university: { x: 12, y: 50, w: 22, h: 30 },   // University — lower left
-  farm:       { x: 40, y: 60, w: 22, h: 25 },   // Barn — lower center
+  farm:       { x: 40, y: 65, w: 22, h: 22 },   // Barn — lower center
   coffee:     { x: 70, y: 50, w: 18, h: 24 },   // Coffee Shop — lower right
 };
 
@@ -58,31 +58,31 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
         }}
       />
 
-      {/* Permanent META HQ label — matching the baked-in wooden sign style */}
+      {/* Permanent META HQ label — matching the baked-in wooden signs (MUSIC HALL, TECH CO.) */}
       <div
-        className="absolute z-[5] pointer-events-none flex justify-center"
-        style={{ left: "35%", top: "55%", width: "25%" }}
+        className="absolute z-[15] pointer-events-none flex justify-center"
+        style={{ left: "35%", top: "53%", width: "25%" }}
       >
         <div
           className="px-3 py-0.5 sm:px-5 sm:py-1"
           style={{
-            background: "#C4A67D",
-            border: "3px solid #8B7355",
-            borderTop: "2px solid #D4BC9A",
-            borderLeft: "2px solid #D4BC9A",
-            borderRight: "3px solid #7A6548",
-            borderBottom: "3px solid #7A6548",
+            background: "#8B6D3F",
+            border: "3px solid #5C4422",
+            borderTop: "3px solid #A68454",
+            borderLeft: "3px solid #A68454",
+            borderRight: "3px solid #4A3518",
+            borderBottom: "3px solid #4A3518",
             borderRadius: "0px",
             imageRendering: "pixelated" as any,
-            boxShadow: "1px 2px 0px rgba(0,0,0,0.25)",
+            boxShadow: "2px 3px 0px rgba(0,0,0,0.45)",
           }}
         >
           <span
-            className="pixel-text text-[8px] sm:text-[10px] md:text-[12px]"
+            className="pixel-text text-[8px] sm:text-[10px] md:text-[13px]"
             style={{
-              color: "#2D1F0E",
-              letterSpacing: "3px",
-              textShadow: "0.5px 0.5px 0px rgba(210,190,160,0.4)",
+              color: "#1A0E02",
+              letterSpacing: "4px",
+              textShadow: "1px 1px 0px rgba(166,132,84,0.4)",
             }}
           >
             META HQ

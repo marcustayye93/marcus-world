@@ -16,6 +16,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import MobileNav from "@/components/MobileNav";
 import CompletionBanner from "@/components/CompletionBanner";
 import ResumeSnapshot from "@/components/ResumeSnapshot";
+import ConnectFooter from "@/components/ConnectFooter";
 import { ZONES, EASTER_EGGS, type Zone } from "@/lib/gameData";
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
   const [showAbout, setShowAbout] = useState(false);
   const [showTestimonials, setShowTestimonials] = useState(false);
   const [showSnapshot, setShowSnapshot] = useState(false);
+  const [showConnect, setShowConnect] = useState(false);
   const [easterEggCount, setEasterEggCount] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [showCompletion, setShowCompletion] = useState(false);
@@ -102,15 +104,16 @@ export default function Home() {
         else if (showAbout) setShowAbout(false);
         else if (showTestimonials) setShowTestimonials(false);
         else if (showSnapshot) setShowSnapshot(false);
+        else if (showConnect) setShowConnect(false);
         else if (showCompletion) setShowCompletion(false);
         else if (showDialog) setShowDialog(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [showDialog, activeZone, showAbout, showTestimonials, showSnapshot, showCompletion, handleNextDialog, handleCloseZone, gameStartTime]);
+  }, [showDialog, activeZone, showAbout, showTestimonials, showSnapshot, showConnect, showCompletion, handleNextDialog, handleCloseZone, gameStartTime]);
 
-  // Konami code Easter egg (only triggers on specific sequence, won't conflict with movement)
+  // Konami code Easter egg
   useEffect(() => {
     const konamiCode = [
       "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
@@ -122,7 +125,6 @@ export default function Home() {
 
     const handleKonami = (e: KeyboardEvent) => {
       const now = Date.now();
-      // Reset if too much time between keys (user is just moving around)
       if (now - lastKeyTime > 800) {
         konamiIndex = 0;
       }
@@ -168,6 +170,7 @@ export default function Home() {
                 setDialogIndex(Math.floor(Math.random() * EASTER_EGGS.punnyDialogues.length));
               }}
               onSnapshotClick={() => setShowSnapshot(true)}
+              onConnectClick={() => setShowConnect(true)}
             />
 
             <OverworldMap
@@ -184,6 +187,7 @@ export default function Home() {
                 onAboutClick={() => setShowAbout(true)}
                 onTestimonialsClick={() => setShowTestimonials(true)}
                 onSnapshotClick={() => setShowSnapshot(true)}
+                onConnectClick={() => setShowConnect(true)}
               />
             )}
 
@@ -219,6 +223,12 @@ export default function Home() {
             <AnimatePresence>
               {showSnapshot && (
                 <ResumeSnapshot onClose={() => setShowSnapshot(false)} />
+              )}
+            </AnimatePresence>
+
+            <AnimatePresence>
+              {showConnect && (
+                <ConnectFooter onClose={() => setShowConnect(false)} />
               )}
             </AnimatePresence>
 

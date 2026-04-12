@@ -5,7 +5,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, User, MessageSquare, FileText } from "lucide-react";
+import { Menu, X, User, MessageSquare, FileText, Mail } from "lucide-react";
 import type { Zone } from "@/lib/gameData";
 
 interface MobileNavProps {
@@ -14,9 +14,10 @@ interface MobileNavProps {
   onAboutClick: () => void;
   onTestimonialsClick: () => void;
   onSnapshotClick?: () => void;
+  onConnectClick?: () => void;
 }
 
-export default function MobileNav({ zones, onZoneClick, onAboutClick, onTestimonialsClick, onSnapshotClick }: MobileNavProps) {
+export default function MobileNav({ zones, onZoneClick, onAboutClick, onTestimonialsClick, onSnapshotClick, onConnectClick }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -118,6 +119,21 @@ export default function MobileNav({ zones, onZoneClick, onAboutClick, onTestimon
                     Kind Words
                   </span>
                 </button>
+
+                {onConnectClick && (
+                  <button
+                    onClick={() => {
+                      onConnectClick();
+                      setIsOpen(false);
+                    }}
+                    className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-emerald-50 transition-colors text-left"
+                  >
+                    <Mail size={18} className="text-blue-600" />
+                    <span className="text-xs font-semibold text-gray-700" style={{ fontFamily: "'Nunito', sans-serif" }}>
+                      Connect with Marcus
+                    </span>
+                  </button>
+                )}
               </div>
             </div>
           </motion.div>
