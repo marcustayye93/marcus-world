@@ -48,7 +48,7 @@ const YEAR_ONLY_LABELS: Array<{
   y: number;
 }> = [
   { year: "2006–PRESENT", x: 67,  y: 53.5 },  // Below baked-in MUSIC HALL
-  { year: "2010–2019",    x: 22,  y: 80 },    // Below baked-in UNIVERSITY
+  { year: "2015–2019",    x: 22,  y: 80 },    // Below baked-in UNIVERSITY
   { year: "2019",         x: 50,  y: 87 },    // Below baked-in BARN
   { year: "2016–2018",    x: 78,  y: 75 },    // Below baked-in COFFEE SHOP
 ];
