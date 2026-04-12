@@ -311,7 +311,6 @@ export const EASTER_EGGS = {
     "Fun fact: Marcus can play 5 instruments. He's basically a one-man band!",
     "Marcus scaled a business from $8K to $50K/day. That's not growth, that's a rocket ship! 🚀",
     "See that grand Emerald City in the center? That's where the Meta magic happens!",
-    "Fun fact: Marcus is a member of Mensa Singapore — just one of the many things that keep him curious.",
     "From farming sheep to managing Meta's top clients. What a plot twist!",
     "Marcus's coffee philosophy: Life's too short for bad coffee (and manual machines).",
   ],

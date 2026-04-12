@@ -24,7 +24,7 @@ const SOCIAL_LINKS = [
     icon: Linkedin,
     label: "LinkedIn",
     value: "Marcus Tay",
-    href: "https://www.linkedin.com/in/marcustay/",
+    href: "https://www.linkedin.com/in/mtye/",
     color: "#0A66C2",
     description: "Let's connect professionally",
   },

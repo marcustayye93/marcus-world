@@ -89,7 +89,7 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
               </a>
               <span className="flex items-center gap-1.5">
                 <Languages size={13} />
-                English · Chinese · Cantonese
+                English · Chinese/Mandarin · Cantonese
               </span>
             </div>
           </motion.div>

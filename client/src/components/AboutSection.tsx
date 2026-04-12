@@ -236,7 +236,7 @@ export default function AboutSection({ onClose }: AboutSectionProps) {
             </div>
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "#EF444410", border: "1px solid #EF444420" }}>
               <span className="text-sm">🇨🇳</span>
-              <span className="text-xs font-bold text-red-500" style={{ fontFamily: "'Nunito', sans-serif" }}>Chinese</span>
+              <span className="text-xs font-bold text-red-500" style={{ fontFamily: "'Nunito', sans-serif" }}>Chinese/Mandarin</span>
               <span className="text-[10px] text-gray-400" style={{ fontFamily: "'Nunito', sans-serif" }}>Fluent</span>
             </div>
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "#F59E0B10", border: "1px solid #F59E0B20" }}>
