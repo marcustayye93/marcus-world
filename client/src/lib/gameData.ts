@@ -304,11 +304,11 @@ export const EASTER_EGGS = {
   farmSounds: ["🐄 Moo!", "🐑 Baa!", "🐔 Cluck cluck!", "🐴 Neigh!"],
   musicNotes: ["♪", "♫", "♬", "♩", "♭", "♮"],
   punnyDialogues: [
-    "Welcome! Use WASD or arrow keys to walk around. Enter buildings to explore!",
+    "Welcome! Click on any building to explore a chapter of Marcus's journey!",
     "Did you know? Marcus once managed 43 beauty brands. Talk about a glow-up!",
     "Fun fact: Marcus can play 6 instruments. He's basically a one-man band!",
     "Marcus scaled a business from $8K to $50K/day. That's not growth, that's a rocket ship! 🚀",
-    "Head to the Emerald City in the center — that's where the Meta magic happens!",
+    "See that grand Emerald City in the center? That's where the Meta magic happens!",
     "Marcus is in Mensa. So yes, he's probably smarter than both of us combined.",
     "From farming sheep to managing Meta's top clients. What a plot twist!",
     "Marcus's coffee philosophy: Life's too short for bad coffee (and manual machines).",

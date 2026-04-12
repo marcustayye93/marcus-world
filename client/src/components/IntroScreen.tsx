@@ -47,7 +47,7 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
         }}
       />
       {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 z-[1] bg-black/85" />
+      <div className="absolute inset-0 z-[1] bg-black/90" />
 
       {/* Animated stars / particles */}
       {Array.from({ length: 15 }).map((_, i) => (
@@ -152,7 +152,7 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
         >
-          An interactive adventure through the world of Marcus — account manager at Meta, musician, coffee lover, farmer, and lifelong explorer. Walk around and discover each chapter.
+          An interactive adventure through the world of Marcus — account manager at Meta, musician, coffee lover, farmer, and lifelong explorer. Click on buildings and discover each chapter.
         </motion.p>
 
         {/* Start button */}

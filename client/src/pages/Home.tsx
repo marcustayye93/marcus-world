@@ -1,7 +1,7 @@
 /*
  * The Journey of Marcus — Home Page
  * Design: Ghibli Pixel Overworld — 8-bit RPG meets Studio Ghibli warmth
- * An interactive overworld map where visitors walk a character to explore zones
+ * An interactive overworld map where visitors click on buildings to explore zones
  */
 
 import { useState, useEffect, useCallback } from "react";

@@ -55,7 +55,7 @@ export default function HUD({
               THE JOURNEY OF MARCUS
             </h1>
             <p className="text-emerald-300/50 text-[10px] mt-0.5" style={{ fontFamily: "'Nunito', sans-serif" }}>
-              Walk around &bull; Enter buildings
+              Click buildings to explore
             </p>
           </div>
         </div>
