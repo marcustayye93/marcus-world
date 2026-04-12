@@ -4,7 +4,7 @@
  * An interactive overworld map where visitors click on buildings to explore zones
  */
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import IntroScreen from "@/components/IntroScreen";
 import OverworldMap from "@/components/OverworldMap";
@@ -17,7 +17,7 @@ import MobileNav from "@/components/MobileNav";
 import CompletionBanner from "@/components/CompletionBanner";
 import ResumeSnapshot from "@/components/ResumeSnapshot";
 import ConnectFooter from "@/components/ConnectFooter";
-import { ZONES, EASTER_EGGS, type Zone } from "@/lib/gameData";
+import { ZONES, EASTER_EGGS, ASSET_URLS, type Zone } from "@/lib/gameData";
 
 export default function Home() {
   const [gameStarted, setGameStarted] = useState(false);
@@ -33,6 +33,10 @@ export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
   const [showCompletion, setShowCompletion] = useState(false);
   const [completionShown, setCompletionShown] = useState(false);
+
+  // Music state
+  const [musicMuted, setMusicMuted] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -50,6 +54,41 @@ export default function Home() {
       }, 800);
     }
   }, [discoveredZones, completionShown]);
+
+  // Initialize audio when game starts
+  useEffect(() => {
+    if (gameStarted && !audioRef.current) {
+      const audio = new Audio(ASSET_URLS.bgMusic);
+      audio.loop = true;
+      audio.volume = 0.25;
+      audioRef.current = audio;
+      // Try to play — browsers may block autoplay until user interaction
+      audio.play().catch(() => {
+        // Autoplay blocked; will play on next user interaction
+        const playOnInteraction = () => {
+          audio.play().catch(() => {});
+          document.removeEventListener("click", playOnInteraction);
+          document.removeEventListener("keydown", playOnInteraction);
+        };
+        document.addEventListener("click", playOnInteraction);
+        document.addEventListener("keydown", playOnInteraction);
+      });
+    }
+    return () => {
+      // Cleanup on unmount
+    };
+  }, [gameStarted]);
+
+  // Sync mute state with audio element
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.muted = musicMuted;
+    }
+  }, [musicMuted]);
+
+  const handleToggleMusic = useCallback(() => {
+    setMusicMuted((prev) => !prev);
+  }, []);
 
   const [gameStartTime, setGameStartTime] = useState(0);
 
@@ -171,6 +210,8 @@ export default function Home() {
               }}
               onSnapshotClick={() => setShowSnapshot(true)}
               onConnectClick={() => setShowConnect(true)}
+              musicMuted={musicMuted}
+              onToggleMusic={handleToggleMusic}
             />
 
             <OverworldMap

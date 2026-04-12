@@ -5,7 +5,7 @@
  */
 
 import { motion } from "framer-motion";
-import { User, MessageSquare, Lightbulb, Map, FileText, Mail } from "lucide-react";
+import { User, MessageSquare, Lightbulb, Map, FileText, Mail, Volume2, VolumeX } from "lucide-react";
 
 interface HUDProps {
   discoveredZones: Set<string>;
@@ -16,6 +16,8 @@ interface HUDProps {
   onHintClick: () => void;
   onSnapshotClick?: () => void;
   onConnectClick?: () => void;
+  musicMuted?: boolean;
+  onToggleMusic?: () => void;
 }
 
 export default function HUD({
@@ -27,6 +29,8 @@ export default function HUD({
   onHintClick,
   onSnapshotClick,
   onConnectClick,
+  musicMuted,
+  onToggleMusic,
 }: HUDProps) {
   const progress = discoveredZones.size;
 
@@ -102,6 +106,13 @@ export default function HUD({
             <HUDButton icon={<Mail size={13} />} label="CONNECT" onClick={onConnectClick} />
           )}
           <HUDButton icon={<Lightbulb size={13} />} label="HINT" onClick={onHintClick} className="hidden sm:flex" />
+          {onToggleMusic && (
+            <HUDButton
+              icon={musicMuted ? <VolumeX size={13} /> : <Volume2 size={13} />}
+              label={musicMuted ? "UNMUTE" : "MUTE"}
+              onClick={onToggleMusic}
+            />
+          )}
         </div>
       </div>
     </motion.div>

@@ -3,8 +3,8 @@
  * Design: Top-down RPG overworld. Click on buildings to explore zones.
  * The Meta Emerald City is the grand centerpiece.
  * No character movement — pure click-to-explore.
- * Labels styled to match the baked-in wooden plaque signs (MUSIC HALL style):
- *   cream/tan inner background, dark border frame, dark pixel text
+ * v3 map has baked-in labels for: META HQ, DFS GROUP, MUSIC HALL, UNIVERSITY, COFFEE SHOP, BARN
+ * We only overlay year subtitles + a "THE FARM" plaque over BARN
  */
 
 import { useState } from "react";
@@ -30,92 +30,54 @@ const BUILDING_HOTSPOTS: Record<string, {
   coffee:     { x: 70, y: 50, w: 18, h: 24 },
 };
 
-// Full plaque labels for buildings that need name replacement or have no baked-in label
-const FULL_PLAQUE_LABELS: Array<{
-  text: string;
+// Year-only subtitles positioned below each baked-in label
+const YEAR_LABELS: Array<{
   year: string;
   x: number;
   y: number;
 }> = [
-  { text: "META HQ",   year: "2024–PRESENT", x: 47.5, y: 55 },   // No baked-in label
-  { text: "DFS GROUP", year: "2019–2024",    x: 15,   y: 43 },   // Replaces "TECH CO."
+  { year: "2024–PRESENT", x: 47.5, y: 47 },  // Below baked-in META HQ
+  { year: "2019–2024",    x: 18,   y: 47 },  // Below baked-in DFS GROUP
+  { year: "2006–PRESENT", x: 67,   y: 57 },  // Below baked-in MUSIC HALL
+  { year: "2015–2019",    x: 22,   y: 82 },  // Below baked-in UNIVERSITY
+  { year: "2019",         x: 50,   y: 91 },  // Below baked-in BARN / THE FARM
+  { year: "2016–2018",    x: 78,   y: 79 },  // Below baked-in COFFEE SHOP
 ];
 
-// Year-only subtitles for buildings that already have correct baked-in name labels
-const YEAR_ONLY_LABELS: Array<{
-  year: string;
-  x: number;
-  y: number;
-}> = [
-  { year: "2006–PRESENT", x: 67,  y: 53.5 },  // Below baked-in MUSIC HALL
-  { year: "2015–2019",    x: 22,  y: 80 },    // Below baked-in UNIVERSITY
-  { year: "2019",         x: 50,  y: 87 },    // Below baked-in BARN
-  { year: "2016–2018",    x: 78,  y: 75 },    // Below baked-in COFFEE SHOP
-];
+// "THE FARM" overlay plaque to replace the baked-in "BARN" label
+const FARM_PLAQUE = { text: "THE FARM", x: 50, y: 88 };
 
 /*
- * WoodenPlaqueLabel — Matches the baked-in MUSIC HALL sign style exactly:
- * - Cream/tan inner background (#D4C4A0 to #C8B88A)
- * - Dark brown outer border frame (#3D2B1A)
- * - Inner lighter border (#8B7355)
- * - Dark brown pixel text (#2A1A0A)
- * - Subtle inset shadow for depth
+ * WoodenPlaqueLabel — Matches the baked-in sign style:
+ * cream/tan inner background, dark border frame, dark pixel text
  */
-function WoodenPlaqueLabel({ text, year }: { text: string; year: string }) {
+function WoodenPlaqueLabel({ text }: { text: string }) {
   return (
     <div
-      className="flex flex-col items-center gap-0"
-      style={{ imageRendering: "pixelated" as any }}
+      style={{
+        background: "linear-gradient(180deg, #D4C4A0 0%, #C8B88A 50%, #BCA87A 100%)",
+        border: "3px solid #3D2B1A",
+        outline: "1px solid #8B7355",
+        outlineOffset: "-5px",
+        boxShadow: "2px 3px 0px rgba(0,0,0,0.5), inset 0 1px 0px rgba(255,255,255,0.3), inset 0 -1px 0px rgba(0,0,0,0.15)",
+        padding: "3px 10px 2px 10px",
+        lineHeight: 1,
+        imageRendering: "pixelated" as any,
+      }}
     >
-      {/* Main plaque */}
-      <div
+      <span
+        className="pixel-text"
         style={{
-          background: "linear-gradient(180deg, #D4C4A0 0%, #C8B88A 50%, #BCA87A 100%)",
-          border: "3px solid #3D2B1A",
-          outline: "1px solid #8B7355",
-          outlineOffset: "-5px",
-          boxShadow: "2px 3px 0px rgba(0,0,0,0.5), inset 0 1px 0px rgba(255,255,255,0.3), inset 0 -1px 0px rgba(0,0,0,0.15)",
-          padding: "3px 10px 2px 10px",
-          lineHeight: 1,
+          color: "#2A1A0A",
+          fontSize: "clamp(6px, 0.9vw, 12px)",
+          letterSpacing: "2px",
+          textShadow: "none",
+          display: "block",
+          textAlign: "center",
         }}
       >
-        <span
-          className="pixel-text"
-          style={{
-            color: "#2A1A0A",
-            fontSize: "clamp(7px, 1.1vw, 14px)",
-            letterSpacing: "2px",
-            textShadow: "none",
-            display: "block",
-            textAlign: "center",
-          }}
-        >
-          {text}
-        </span>
-      </div>
-      {/* Year subtitle — small, below the plaque */}
-      <div
-        style={{
-          background: "rgba(42, 26, 10, 0.75)",
-          borderRadius: "2px",
-          padding: "1px 6px",
-          marginTop: "2px",
-          boxShadow: "1px 1px 0px rgba(0,0,0,0.3)",
-        }}
-      >
-        <span
-          className="pixel-text"
-          style={{
-            color: "#D4C4A0",
-            fontSize: "clamp(5px, 0.65vw, 8px)",
-            letterSpacing: "1.5px",
-            textAlign: "center",
-            display: "block",
-          }}
-        >
-          {year}
-        </span>
-      </div>
+        {text}
+      </span>
     </div>
   );
 }
@@ -138,23 +100,20 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
         }}
       />
 
-      {/* Full plaque labels for META HQ and DFS GROUP */}
-      {FULL_PLAQUE_LABELS.map((label, i) => (
-        <div
-          key={`plaque-${i}`}
-          className="absolute z-[15] pointer-events-none"
-          style={{
-            left: `${label.x}%`,
-            top: `${label.y}%`,
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <WoodenPlaqueLabel text={label.text} year={label.year} />
-        </div>
-      ))}
+      {/* "THE FARM" plaque overlay to replace baked-in "BARN" */}
+      <div
+        className="absolute z-[15] pointer-events-none"
+        style={{
+          left: `${FARM_PLAQUE.x}%`,
+          top: `${FARM_PLAQUE.y}%`,
+          transform: "translate(-50%, -50%)",
+        }}
+      >
+        <WoodenPlaqueLabel text={FARM_PLAQUE.text} />
+      </div>
 
-      {/* Year-only subtitles for zones with baked-in name labels */}
-      {YEAR_ONLY_LABELS.map((label, i) => (
+      {/* Year subtitles below each building's baked-in label */}
+      {YEAR_LABELS.map((label, i) => (
         <div
           key={`year-${i}`}
           className="absolute z-[15] pointer-events-none"

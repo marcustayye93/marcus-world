@@ -6,7 +6,8 @@
 
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { X, Mail, Phone, Linkedin, Brain, Globe, Music, Coffee, Leaf } from "lucide-react";
+import { X, Mail, Phone, Linkedin, Brain, Globe, Music, Coffee, Leaf, Download } from "lucide-react";
+import { ASSET_URLS } from "@/lib/gameData";
 
 interface ResumeSnapshotProps {
   onClose: () => void;
@@ -287,13 +288,25 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
           <span className="pixel-text text-[6px] sm:text-[7px] opacity-40">
             MARCUS AT A GLANCE
           </span>
-          <button
-            onClick={onClose}
-            className="pixel-text text-[7px] sm:text-[8px] px-4 py-2 rounded-lg text-white transition-all hover:opacity-80 active:scale-95"
-            style={{ background: "#2D5016", boxShadow: "0 2px 0 #1a3a0a" }}
-          >
-            CLOSE
-          </button>
+          <div className="flex items-center gap-2">
+            <a
+              href={ASSET_URLS.resumePdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pixel-text text-[7px] sm:text-[8px] px-4 py-2 rounded-lg text-white transition-all hover:opacity-80 active:scale-95 flex items-center gap-1.5 no-underline"
+              style={{ background: "#1565C0", boxShadow: "0 2px 0 #0D47A1" }}
+            >
+              <Download size={12} />
+              PDF
+            </a>
+            <button
+              onClick={onClose}
+              className="pixel-text text-[7px] sm:text-[8px] px-4 py-2 rounded-lg text-white transition-all hover:opacity-80 active:scale-95"
+              style={{ background: "#2D5016", boxShadow: "0 2px 0 #1a3a0a" }}
+            >
+              CLOSE
+            </button>
+          </div>
         </div>
       </motion.div>
     </motion.div>
