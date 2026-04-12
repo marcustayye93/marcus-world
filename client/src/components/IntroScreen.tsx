@@ -83,10 +83,10 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         {/* Portrait + Title row */}
-        <div className="flex flex-col items-center gap-1">
+        <div className="flex flex-col items-center gap-3">
           {/* Marcus pixel art portrait in RPG frame */}
           <motion.div
-            className="flex justify-center"
+            className="flex justify-center mb-1"
             initial={{ scale: 0, rotate: -10 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
