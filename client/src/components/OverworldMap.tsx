@@ -91,8 +91,9 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
   const isDragging = useRef(false);
   const dragDistance = useRef(0);
 
-  // Mobile: map is 180vw wide so buildings on edges are visible
-  const MAP_WIDTH_VW = 180;
+  // Mobile: map is 260vw wide so ALL buildings are fully visible when swiping
+  // DFS Group & University on the far left, Coffee Shop on the far right
+  const MAP_WIDTH_VW = 260;
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
