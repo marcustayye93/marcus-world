@@ -293,7 +293,7 @@ export const TESTIMONIALS: Testimonial[] = [
 
 export const ABOUT_ME = {
   motto: "No matter how kind you are to others, people can only meet you as deeply as they meet themselves.",
-  threeWords: ["Cheerful", "Passionate", "Curious"],
+  threeWords: ["Radiant", "Relentless", "Curious"],
   mensa: "Member of Mensa Singapore — IQ ranked at the 99th percentile",
   humanitarian: "Individually travelled to Yun Nan, China for earthquake and disaster relief for 5 weeks. Visited leprosy villages and burned victims. Interviewed by 7 Chinese newspapers and a local radio station.",
   sustainability: "Secured over USD $280,000 in funding for Young Sustainable Impact SEA. Orchestrated zero-waste Demo Days engaging 700+ investors.",

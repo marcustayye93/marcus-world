@@ -291,13 +291,12 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
           <div className="flex items-center gap-2">
             <a
               href={ASSET_URLS.resumePdf}
-              target="_blank"
-              rel="noopener noreferrer"
+              download="resume.pdf"
               className="pixel-text text-[7px] sm:text-[8px] px-4 py-2 rounded-lg text-white transition-all hover:opacity-80 active:scale-95 flex items-center gap-1.5 no-underline"
               style={{ background: "#1565C0", boxShadow: "0 2px 0 #0D47A1" }}
             >
               <Download size={12} />
-              PDF
+              DOWNLOAD RÉSUMÉ
             </a>
             <button
               onClick={onClose}

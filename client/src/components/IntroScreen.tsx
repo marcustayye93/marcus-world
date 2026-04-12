@@ -125,15 +125,15 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
         >
-          {["Cheerful", "Passionate", "Curious"].map((word, i) => (
+          {["Radiant", "Relentless", "Curious"].map((word, i) => (
             <motion.span
               key={word}
               className="px-3 py-1 rounded-full text-xs sm:text-sm font-bold"
               style={{
                 fontFamily: "'Nunito', sans-serif",
-                background: ["rgba(96,165,250,0.3)", "rgba(74,222,128,0.3)", "rgba(250,204,21,0.3)"][i],
-                color: ["#93C5FD", "#86EFAC", "#FDE047"][i],
-                border: `1px solid ${["rgba(96,165,250,0.4)", "rgba(74,222,128,0.4)", "rgba(250,204,21,0.4)"][i]}`,
+                background: ["rgba(250,204,21,0.3)", "rgba(239,68,68,0.3)", "rgba(96,165,250,0.3)"][i],
+                color: ["#FDE047", "#FCA5A5", "#93C5FD"][i],
+                border: `1px solid ${["rgba(250,204,21,0.4)", "rgba(239,68,68,0.4)", "rgba(96,165,250,0.4)"][i]}`,
               }}
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}

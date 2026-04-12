@@ -134,9 +134,14 @@ function HUDButton({
     <motion.button
       onClick={onClick}
       className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg
-                 bg-white/10 hover:bg-white/20 border border-white/10
-                 text-emerald-100 transition-all ${className}`}
-      whileHover={{ scale: 1.05 }}
+                 transition-all ${className}`}
+      style={{
+        background: "rgba(250, 204, 21, 0.25)",
+        border: "1.5px solid rgba(250, 204, 21, 0.5)",
+        color: "#FDE68A",
+        textShadow: "0 1px 2px rgba(0,0,0,0.4)",
+      }}
+      whileHover={{ scale: 1.05, backgroundColor: "rgba(250, 204, 21, 0.4)" }}
       whileTap={{ scale: 0.95 }}
     >
       {icon}

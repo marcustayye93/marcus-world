@@ -30,18 +30,19 @@ const BUILDING_HOTSPOTS: Record<string, {
   coffee:     { x: 70, y: 50, w: 18, h: 24 },
 };
 
-// Year-only subtitles positioned below each baked-in label
+// Year-only subtitles positioned cleanly below each baked-in label
 const YEAR_LABELS: Array<{
   year: string;
   x: number;
   y: number;
+  isCareer?: boolean; // Professional zones get a golden career badge
 }> = [
-  { year: "2024–PRESENT", x: 47.5, y: 47 },  // Below baked-in META HQ
-  { year: "2019–2024",    x: 18,   y: 47 },  // Below baked-in DFS GROUP
-  { year: "2006–PRESENT", x: 67,   y: 57 },  // Below baked-in MUSIC HALL
-  { year: "2015–2019",    x: 22,   y: 82 },  // Below baked-in UNIVERSITY
-  { year: "2019",         x: 50,   y: 91 },  // Below baked-in BARN / THE FARM
-  { year: "2016–2018",    x: 78,   y: 79 },  // Below baked-in COFFEE SHOP
+  { year: "2024–PRESENT", x: 47.5, y: 49, isCareer: true },   // Below baked-in META HQ
+  { year: "2019–2024",    x: 17,   y: 50, isCareer: true },   // Below baked-in DFS GROUP
+  { year: "2006–PRESENT", x: 67,   y: 59 },                   // Below baked-in MUSIC HALL
+  { year: "2015–2019",    x: 22,   y: 84, isCareer: true },   // Below baked-in UNIVERSITY
+  { year: "2019",         x: 50,   y: 93 },                   // Below baked-in BARN / THE FARM
+  { year: "2016–2018",    x: 78,   y: 81 },                   // Below baked-in COFFEE SHOP
 ];
 
 // "THE FARM" overlay plaque to replace the baked-in "BARN" label
@@ -125,16 +126,21 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
         >
           <div
             style={{
-              background: "rgba(42, 26, 10, 0.75)",
-              borderRadius: "2px",
-              padding: "1px 6px",
-              boxShadow: "1px 1px 0px rgba(0,0,0,0.3)",
+              background: label.isCareer
+                ? "linear-gradient(180deg, rgba(139, 105, 20, 0.9) 0%, rgba(100, 75, 10, 0.95) 100%)"
+                : "rgba(42, 26, 10, 0.75)",
+              borderRadius: label.isCareer ? "3px" : "2px",
+              padding: label.isCareer ? "2px 8px" : "1px 6px",
+              boxShadow: label.isCareer
+                ? "1px 2px 0px rgba(0,0,0,0.4), inset 0 1px 0px rgba(255,215,0,0.3)"
+                : "1px 1px 0px rgba(0,0,0,0.3)",
+              border: label.isCareer ? "1px solid rgba(255, 215, 0, 0.4)" : "none",
             }}
           >
             <span
               className="pixel-text"
               style={{
-                color: "#D4C4A0",
+                color: label.isCareer ? "#FFD700" : "#D4C4A0",
                 fontSize: "clamp(5px, 0.65vw, 8px)",
                 letterSpacing: "1.5px",
                 textAlign: "center",
