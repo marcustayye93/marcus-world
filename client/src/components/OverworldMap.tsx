@@ -48,12 +48,40 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick }: Ov
         }}
       />
 
+      {/* Permanent META HQ label — matching the brown wooden sign style of other buildings */}
+      <div
+        className="absolute z-[5] pointer-events-none flex justify-center"
+        style={{ left: "35%", top: "55%", width: "25%" }}
+      >
+        <div
+          className="px-3 py-1 sm:px-4 sm:py-1.5"
+          style={{
+            background: "linear-gradient(180deg, #C4A265 0%, #A0844A 100%)",
+            border: "3px solid #7A6235",
+            borderRadius: "4px",
+            boxShadow: "0 3px 6px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2)",
+          }}
+        >
+          <span
+            className="pixel-text text-[8px] sm:text-[10px] md:text-[12px]"
+            style={{
+              color: "#3D2B0F",
+              textShadow: "0 1px 0 rgba(255,255,255,0.2)",
+              letterSpacing: "2px",
+            }}
+          >
+            META HQ
+          </span>
+        </div>
+      </div>
+
       {/* Clickable building hotspots */}
       {zones.map((zone) => {
         const hotspot = BUILDING_HOTSPOTS[zone.id];
         if (!hotspot) return null;
         const isDiscovered = discoveredZones.has(zone.id);
         const isHovered = hoveredZone === zone.id;
+        const isMeta = zone.id === "meta";
 
         return (
           <motion.button
@@ -100,14 +128,25 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick }: Ov
               </motion.div>
             )}
 
-            {/* Floating tooltip on hover */}
+            {/* Floating tooltip on hover — positioned BELOW for Meta (since it's at the top), ABOVE for others */}
             <motion.div
               className="absolute left-1/2 -translate-x-1/2 z-20 pointer-events-none"
-              style={{ bottom: "calc(100% + 8px)" }}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 8 }}
+              style={isMeta ? { top: "calc(100% + 8px)" } : { bottom: "calc(100% + 8px)" }}
+              initial={{ opacity: 0, y: isMeta ? -8 : 8 }}
+              animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : (isMeta ? -8 : 8) }}
               transition={{ duration: 0.2 }}
             >
+              {/* Arrow on top for Meta tooltip */}
+              {isMeta && (
+                <div
+                  className="w-0 h-0 mx-auto mb-0"
+                  style={{
+                    borderLeft: "6px solid transparent",
+                    borderRight: "6px solid transparent",
+                    borderBottom: "6px solid rgba(0,0,0,0.85)",
+                  }}
+                />
+              )}
               <div
                 className="px-3 py-2 rounded-lg whitespace-nowrap text-center"
                 style={{
@@ -128,15 +167,17 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick }: Ov
                   {zone.tagline}
                 </p>
               </div>
-              {/* Arrow */}
-              <div
-                className="w-0 h-0 mx-auto"
-                style={{
-                  borderLeft: "6px solid transparent",
-                  borderRight: "6px solid transparent",
-                  borderTop: "6px solid rgba(0,0,0,0.85)",
-                }}
-              />
+              {/* Arrow on bottom for non-Meta tooltips */}
+              {!isMeta && (
+                <div
+                  className="w-0 h-0 mx-auto"
+                  style={{
+                    borderLeft: "6px solid transparent",
+                    borderRight: "6px solid transparent",
+                    borderTop: "6px solid rgba(0,0,0,0.85)",
+                  }}
+                />
+              )}
             </motion.div>
 
             {/* Pulsing "click me" indicator for undiscovered zones */}
