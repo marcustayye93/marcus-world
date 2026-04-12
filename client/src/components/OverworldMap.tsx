@@ -27,7 +27,7 @@ const BUILDING_HOTSPOTS: Record<string, {
   music:      { x: 57, y: 22, w: 20, h: 32 },
   university: { x: 12, y: 50, w: 22, h: 30 },
   farm:       { x: 40, y: 65, w: 22, h: 22 },
-  coffee:     { x: 70, y: 50, w: 18, h: 24 },
+  coffee:     { x: 68, y: 52, w: 22, h: 26 },
 };
 
 // Year-only subtitles positioned cleanly below each baked-in label
@@ -88,7 +88,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
   return (
     <div
       className="relative w-full select-none"
-      style={{ height: "calc(100vh - 60px)", marginTop: "60px" }}
+      style={{ height: "calc(100vh - 85px)", marginTop: "85px" }}
     >
       {/* Map background */}
       <div
