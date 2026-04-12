@@ -5,7 +5,7 @@
  */
 
 import { motion } from "framer-motion";
-import { User, MessageSquare, Lightbulb, Map } from "lucide-react";
+import { User, MessageSquare, Lightbulb, Map, FileText } from "lucide-react";
 
 interface HUDProps {
   discoveredZones: Set<string>;
@@ -14,6 +14,7 @@ interface HUDProps {
   onAboutClick: () => void;
   onTestimonialsClick: () => void;
   onHintClick: () => void;
+  onSnapshotClick?: () => void;
 }
 
 export default function HUD({
@@ -23,6 +24,7 @@ export default function HUD({
   onAboutClick,
   onTestimonialsClick,
   onHintClick,
+  onSnapshotClick,
 }: HUDProps) {
   const progress = discoveredZones.size;
 
@@ -89,6 +91,9 @@ export default function HUD({
 
         {/* Right: Nav buttons */}
         <div className="flex items-center gap-1 sm:gap-1.5">
+          {onSnapshotClick && (
+            <HUDButton icon={<FileText size={13} />} label="R\u00c9SUM\u00c9" onClick={onSnapshotClick} />
+          )}
           <HUDButton icon={<User size={13} />} label="ABOUT" onClick={onAboutClick} />
           <HUDButton icon={<MessageSquare size={13} />} label="WORDS" onClick={onTestimonialsClick} />
           <HUDButton icon={<Lightbulb size={13} />} label="HINT" onClick={onHintClick} className="hidden sm:flex" />

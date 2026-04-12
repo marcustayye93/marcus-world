@@ -15,6 +15,7 @@ import AboutSection from "@/components/AboutSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import MobileNav from "@/components/MobileNav";
 import CompletionBanner from "@/components/CompletionBanner";
+import ResumeSnapshot from "@/components/ResumeSnapshot";
 import { ZONES, EASTER_EGGS, type Zone } from "@/lib/gameData";
 
 export default function Home() {
@@ -25,6 +26,7 @@ export default function Home() {
   const [discoveredZones, setDiscoveredZones] = useState<Set<string>>(new Set());
   const [showAbout, setShowAbout] = useState(false);
   const [showTestimonials, setShowTestimonials] = useState(false);
+  const [showSnapshot, setShowSnapshot] = useState(false);
   const [easterEggCount, setEasterEggCount] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [showCompletion, setShowCompletion] = useState(false);
@@ -99,13 +101,14 @@ export default function Home() {
         if (activeZone) handleCloseZone();
         else if (showAbout) setShowAbout(false);
         else if (showTestimonials) setShowTestimonials(false);
+        else if (showSnapshot) setShowSnapshot(false);
         else if (showCompletion) setShowCompletion(false);
         else if (showDialog) setShowDialog(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [showDialog, activeZone, showAbout, showTestimonials, showCompletion, handleNextDialog, handleCloseZone, gameStartTime]);
+  }, [showDialog, activeZone, showAbout, showTestimonials, showSnapshot, showCompletion, handleNextDialog, handleCloseZone, gameStartTime]);
 
   // Konami code Easter egg (only triggers on specific sequence, won't conflict with movement)
   useEffect(() => {
@@ -164,12 +167,14 @@ export default function Home() {
                 setShowDialog(true);
                 setDialogIndex(Math.floor(Math.random() * EASTER_EGGS.punnyDialogues.length));
               }}
+              onSnapshotClick={() => setShowSnapshot(true)}
             />
 
             <OverworldMap
               zones={ZONES}
               discoveredZones={discoveredZones}
               onZoneClick={handleZoneClick}
+              onSnapshotClick={() => setShowSnapshot(true)}
             />
 
             {isMobile && (
@@ -178,6 +183,7 @@ export default function Home() {
                 onZoneClick={handleZoneClick}
                 onAboutClick={() => setShowAbout(true)}
                 onTestimonialsClick={() => setShowTestimonials(true)}
+                onSnapshotClick={() => setShowSnapshot(true)}
               />
             )}
 
@@ -207,6 +213,12 @@ export default function Home() {
             <AnimatePresence>
               {showTestimonials && (
                 <TestimonialsSection onClose={() => setShowTestimonials(false)} />
+              )}
+            </AnimatePresence>
+
+            <AnimatePresence>
+              {showSnapshot && (
+                <ResumeSnapshot onClose={() => setShowSnapshot(false)} />
               )}
             </AnimatePresence>
 

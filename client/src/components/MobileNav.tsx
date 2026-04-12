@@ -5,7 +5,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, User, MessageSquare } from "lucide-react";
+import { Menu, X, User, MessageSquare, FileText } from "lucide-react";
 import type { Zone } from "@/lib/gameData";
 
 interface MobileNavProps {
@@ -13,9 +13,10 @@ interface MobileNavProps {
   onZoneClick: (zone: Zone) => void;
   onAboutClick: () => void;
   onTestimonialsClick: () => void;
+  onSnapshotClick?: () => void;
 }
 
-export default function MobileNav({ zones, onZoneClick, onAboutClick, onTestimonialsClick }: MobileNavProps) {
+export default function MobileNav({ zones, onZoneClick, onAboutClick, onTestimonialsClick, onSnapshotClick }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -76,6 +77,21 @@ export default function MobileNav({ zones, onZoneClick, onAboutClick, onTestimon
                 ))}
 
                 <div className="border-t border-gray-200 my-1" />
+
+                {onSnapshotClick && (
+                  <button
+                    onClick={() => {
+                      onSnapshotClick();
+                      setIsOpen(false);
+                    }}
+                    className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-emerald-50 transition-colors text-left"
+                  >
+                    <FileText size={18} className="text-emerald-700" />
+                    <span className="text-xs font-semibold text-gray-700" style={{ fontFamily: "'Nunito', sans-serif" }}>
+                      R\u00e9sum\u00e9 Snapshot
+                    </span>
+                  </button>
+                )}
 
                 <button
                   onClick={() => {

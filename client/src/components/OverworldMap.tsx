@@ -15,6 +15,7 @@ interface OverworldMapProps {
   zones: Zone[];
   discoveredZones: Set<string>;
   onZoneClick: (zone: Zone) => void;
+  onSnapshotClick?: () => void;
 }
 
 // Clickable hotspot areas over each building (percentage of map)
@@ -30,7 +31,16 @@ const BUILDING_HOTSPOTS: Record<string, {
   coffee:     { x: 70, y: 50, w: 18, h: 24 },   // Coffee Shop — lower right
 };
 
-export default function OverworldMap({ zones, discoveredZones, onZoneClick }: OverworldMapProps) {
+// Special zones that aren't regular Zone objects (handled separately)
+const SPECIAL_HOTSPOTS: Record<string, {
+  x: number; y: number; w: number; h: number;
+  label: string; color: string;
+}> = {
+  // The compass/scroll icon in the top-left corner of the map image
+  snapshot: { x: 0, y: 0, w: 7, h: 12, label: "📋", color: "#8B6914" },
+};
+
+export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSnapshotClick }: OverworldMapProps) {
   const [hoveredZone, setHoveredZone] = useState<string | null>(null);
 
   return (
@@ -48,26 +58,31 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick }: Ov
         }}
       />
 
-      {/* Permanent META HQ label — matching the brown wooden sign style of other buildings */}
+      {/* Permanent META HQ label — matching the baked-in wooden sign style */}
       <div
         className="absolute z-[5] pointer-events-none flex justify-center"
         style={{ left: "35%", top: "55%", width: "25%" }}
       >
         <div
-          className="px-3 py-1 sm:px-4 sm:py-1.5"
+          className="px-3 py-0.5 sm:px-5 sm:py-1"
           style={{
-            background: "linear-gradient(180deg, #C4A265 0%, #A0844A 100%)",
-            border: "3px solid #7A6235",
-            borderRadius: "4px",
-            boxShadow: "0 3px 6px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2)",
+            background: "#C4A67D",
+            border: "3px solid #8B7355",
+            borderTop: "2px solid #D4BC9A",
+            borderLeft: "2px solid #D4BC9A",
+            borderRight: "3px solid #7A6548",
+            borderBottom: "3px solid #7A6548",
+            borderRadius: "0px",
+            imageRendering: "pixelated" as any,
+            boxShadow: "1px 2px 0px rgba(0,0,0,0.25)",
           }}
         >
           <span
             className="pixel-text text-[8px] sm:text-[10px] md:text-[12px]"
             style={{
-              color: "#3D2B0F",
-              textShadow: "0 1px 0 rgba(255,255,255,0.2)",
-              letterSpacing: "2px",
+              color: "#2D1F0E",
+              letterSpacing: "3px",
+              textShadow: "0.5px 0.5px 0px rgba(210,190,160,0.4)",
             }}
           >
             META HQ
@@ -201,6 +216,43 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick }: Ov
           </motion.button>
         );
       })}
+
+      {/* Résumé Snapshot button — floating scroll/parchment style */}
+      {onSnapshotClick && (
+        <motion.button
+          className="absolute z-20 cursor-pointer group"
+          style={{ left: "1%", top: "1%", width: "5.5%", height: "10%" }}
+          onClick={onSnapshotClick}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.95 }}
+          title="Marcus at a Glance"
+        >
+          {/* Hover tooltip */}
+          <motion.div
+            className="absolute left-full ml-2 top-1/2 -translate-y-1/2 z-30 pointer-events-none whitespace-nowrap"
+            initial={{ opacity: 0, x: -8 }}
+            whileHover={{ opacity: 1, x: 0 }}
+          >
+            <div
+              className="px-3 py-2 rounded-lg"
+              style={{
+                background: "rgba(0,0,0,0.85)",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+              }}
+            >
+              <span className="pixel-text text-[7px] sm:text-[8px] text-white">
+                MARCUS AT A GLANCE
+              </span>
+              <p
+                className="text-[10px] text-white/60 mt-0.5"
+                style={{ fontFamily: "'Nunito', sans-serif" }}
+              >
+                One-sheet r\u00e9sum\u00e9 snapshot
+              </p>
+            </div>
+          </motion.div>
+        </motion.button>
+      )}
 
       {/* Instruction hint at bottom */}
       <motion.div
