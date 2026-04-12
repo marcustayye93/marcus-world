@@ -14,6 +14,7 @@ import DialogBox from "@/components/DialogBox";
 import AboutSection from "@/components/AboutSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import MobileNav from "@/components/MobileNav";
+import MobileBuildingList from "@/components/MobileBuildingList";
 import CompletionBanner from "@/components/CompletionBanner";
 import ResumeSnapshot from "@/components/ResumeSnapshot";
 import ConnectFooter from "@/components/ConnectFooter";
@@ -220,6 +221,15 @@ export default function Home() {
               onZoneClick={handleZoneClick}
               onSnapshotClick={() => setShowSnapshot(true)}
             />
+
+            {/* Mobile building list — always visible on small screens */}
+            {isMobile && (
+              <MobileBuildingList
+                zones={ZONES}
+                discoveredZones={discoveredZones}
+                onZoneClick={handleZoneClick}
+              />
+            )}
 
             {isMobile && (
               <MobileNav
