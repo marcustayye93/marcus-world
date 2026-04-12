@@ -5,7 +5,7 @@
  */
 
 import { motion } from "framer-motion";
-import { X, Mail, Linkedin, Phone, Github, Globe, Music } from "lucide-react";
+import { X, Mail, Linkedin } from "lucide-react";
 
 interface ConnectFooterProps {
   onClose: () => void;
@@ -28,23 +28,16 @@ const SOCIAL_LINKS = [
     color: "#0A66C2",
     description: "Let's connect professionally",
   },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+65 8201 7955",
-    href: "tel:+6582017955",
-    color: "#34A853",
-    description: "Give me a ring",
-  },
+
 ];
 
 const FUN_FACTS = [
   "Marcus once performed clarinet for Singapore's Prime Minister.",
   "He scaled a brand from $8K/day to $50K/day in ad spend — with 3x ROAS.",
-  "He's a member of Mensa Singapore (99th percentile IQ).",
+  "He's a member of Mensa Singapore — always curious, always learning.",
   "He shepherded 70 animals across 2 farms in New Zealand.",
   "He launched a coffee enterprise with 80 student baristas.",
-  "He plays 6 musical instruments and was a DJ.",
+  "He plays 5 musical instruments and was a DJ.",
 ];
 
 export default function ConnectFooter({ onClose }: ConnectFooterProps) {
@@ -125,7 +118,7 @@ export default function ConnectFooter({ onClose }: ConnectFooterProps) {
             <motion.a
               key={link.label}
               href={link.href}
-              target={link.label === "Email" || link.label === "Phone" ? undefined : "_blank"}
+              target={link.label === "Email" ? undefined : "_blank"}
               rel="noopener noreferrer"
               className="flex items-center gap-4 p-3 group transition-all"
               style={{

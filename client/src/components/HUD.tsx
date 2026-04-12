@@ -98,10 +98,10 @@ export default function HUD({
         {/* Right: Nav buttons */}
         <div className="flex items-center gap-1 sm:gap-1.5">
           {onSnapshotClick && (
-            <HUDButton icon={<FileText size={13} />} label="R\u00c9SUM\u00c9" onClick={onSnapshotClick} />
+            <HUDButton icon={<FileText size={13} />} label="RESUME" onClick={onSnapshotClick} />
           )}
           <HUDButton icon={<User size={13} />} label="ABOUT" onClick={onAboutClick} />
-          <HUDButton icon={<MessageSquare size={13} />} label="WORDS" onClick={onTestimonialsClick} />
+          <HUDButton icon={<MessageSquare size={13} />} label="TESTIMONIALS" onClick={onTestimonialsClick} />
           {onConnectClick && (
             <HUDButton icon={<Mail size={13} />} label="CONNECT" onClick={onConnectClick} />
           )}

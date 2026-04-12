@@ -249,7 +249,7 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
               <UniqueCard
                 icon={<Brain size={16} />}
                 title="Mensa Member"
-                desc="IQ ranked at the 99th percentile"
+                desc="A lifelong love of learning and problem-solving"
                 color="#7C3AED"
               />
               <UniqueCard
@@ -261,7 +261,7 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
               <UniqueCard
                 icon={<Music size={16} />}
                 title="Multi-Instrumentalist"
-                desc="6 instruments, performed for Singapore's PM"
+                desc="5 instruments, performed for Singapore's PM"
                 color="#B71C1C"
               />
               <UniqueCard

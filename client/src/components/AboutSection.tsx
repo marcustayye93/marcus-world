@@ -119,10 +119,10 @@ export default function AboutSection({ onClose }: AboutSectionProps) {
                 MENSA SINGAPORE
               </p>
               <p className="text-white text-sm sm:text-base font-bold" style={{ fontFamily: "'Nunito', sans-serif" }}>
-                IQ ranked at the 99th percentile
+                Member of Mensa Singapore
               </p>
               <p className="text-indigo-300 text-xs mt-1" style={{ fontFamily: "'Nunito', sans-serif" }}>
-                Top 1% of the population
+                A lifelong love of learning and problem-solving
               </p>
             </div>
           </motion.div>
