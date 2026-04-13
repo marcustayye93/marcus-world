@@ -22,7 +22,7 @@ const RPG_STATS = [
     icon: Swords,
     color: "#10B981",
     bgColor: "#D1FAE5",
-    description: "Meta's top 1% clients in ANZ — 2025 Client Hero (Infinite Potential Award, APAC)",
+    description: "Scaling 25+ verticals in ANZ — 2025 Client Hero (Infinite Potential Award, APAC)",
   },
   {
     name: "Leadership",
@@ -49,7 +49,7 @@ const RPG_STATS = [
     icon: Zap,
     color: "#8B5CF6",
     bgColor: "#EDE9FE",
-    description: "Beauty counters → IT → Meta → Farming → Music",
+    description: "Luxury retail → Global strategy → IT → Meta → Farming → Music",
   },
   {
     name: "Music",
