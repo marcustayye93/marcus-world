@@ -5,8 +5,10 @@
  * No character movement — pure click-to-explore.
  * v3 map has baked-in labels for: META HQ, DFS GROUP, MUSIC HALL, UNIVERSITY, COFFEE SHOP, BARN
  * 
- * MOBILE: Map fits viewport width (no horizontal scroll). Vertical layout only.
- * DESKTOP: Full-width map, no scrolling needed.
+ * MOBILE: Map is displayed at 200vw width (large enough to see details), centered horizontally,
+ *   with overflow-x hidden and overflow-y auto. Users scroll vertically only.
+ *   The left/right tree edges get cropped but all buildings remain fully visible.
+ * DESKTOP: Full-width map fills viewport, no scrolling needed.
  */
 
 import { useState, useEffect, useCallback } from "react";
@@ -47,6 +49,9 @@ const YEAR_LABELS: Array<{
   { year: "2016–2018",    x: 78,   y: 81 },
 ];
 
+// Mobile map width as vw — large enough to keep buildings visible and detailed
+const MOBILE_MAP_WIDTH_VW = 200;
+
 export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSnapshotClick }: OverworldMapProps) {
   const [hoveredZone, setHoveredZone] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -62,25 +67,42 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
     onZoneClick(zone);
   }, [onZoneClick]);
 
-  // On mobile: map is 100vw wide, aspect ratio preserved via padding-bottom
-  // The original map image is roughly 16:9 landscape
-  // We use aspect-ratio to let the map fill width and grow vertically
   return (
     <div
       className="relative w-full select-none"
       style={
         isMobile
-          ? { marginTop: "85px", overflow: "hidden" }
-          : { height: "calc(100vh - 85px)", marginTop: "85px", overflow: "hidden" }
+          ? {
+              marginTop: "85px",
+              overflowX: "hidden",  // NO horizontal scroll
+              overflowY: "auto",    // vertical scroll allowed
+            }
+          : {
+              height: "calc(100vh - 85px)",
+              marginTop: "85px",
+              overflow: "hidden",
+            }
       }
     >
-      {/* Map container — on mobile, width=100vw and height determined by aspect ratio */}
+      {/* Map inner container
+          Desktop: fills parent 100% width and height
+          Mobile: wider than viewport (200vw), centered with negative margin,
+                  height set by aspect ratio. Horizontal overflow is hidden by parent. */}
       <div
-        className="relative w-full h-full"
+        className="relative"
         style={
           isMobile
-            ? { width: "100%", aspectRatio: "16 / 9" }
-            : {}
+            ? {
+                width: `${MOBILE_MAP_WIDTH_VW}vw`,
+                // Center the wider-than-viewport map so the middle (Meta HQ) is visible
+                marginLeft: `${-(MOBILE_MAP_WIDTH_VW - 100) / 2}vw`,
+                // Maintain the original 16:9 aspect ratio
+                aspectRatio: "2752 / 1536",
+              }
+            : {
+                width: "100%",
+                height: "100%",
+              }
         }
       >
         {/* Map background */}
@@ -121,7 +143,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
                 className="pixel-text"
                 style={{
                   color: label.isCareer ? "#FFD700" : "#D4C4A0",
-                  fontSize: isMobile ? "clamp(4px, 1.8vw, 9px)" : "clamp(5px, 0.65vw, 8px)",
+                  fontSize: isMobile ? "clamp(5px, 1.2vw, 10px)" : "clamp(5px, 0.65vw, 8px)",
                   letterSpacing: "1.5px",
                   textAlign: "center",
                   display: "block",
@@ -262,7 +284,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
         {onSnapshotClick && (
           <motion.button
             className="absolute z-20 cursor-pointer group"
-            style={{ left: "1%", top: "1%", width: isMobile ? "10%" : "5.5%", height: "10%" }}
+            style={{ left: "1%", top: "1%", width: isMobile ? "8%" : "5.5%", height: "10%" }}
             onClick={onSnapshotClick}
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.95 }}
@@ -294,6 +316,28 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
           </motion.button>
         )}
       </div>
+
+      {/* Mobile: subtle scroll-down hint */}
+      {isMobile && (
+        <motion.div
+          className="absolute top-2 left-1/2 -translate-x-1/2 z-20 pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+        >
+          <div
+            className="px-3 py-1.5 rounded-full"
+            style={{
+              background: "rgba(0,0,0,0.6)",
+              backdropFilter: "blur(4px)",
+            }}
+          >
+            <span className="pixel-text text-[6px] text-white/80">
+              SCROLL DOWN TO EXPLORE ▼
+            </span>
+          </div>
+        </motion.div>
+      )}
 
       {/* Desktop instruction hint at bottom */}
       {!isMobile && (
