@@ -49,8 +49,9 @@ const YEAR_LABELS: Array<{
   { year: "2016–2018",    x: 78,   y: 81 },
 ];
 
-// Mobile map width as vw — large enough to keep buildings visible and detailed
-const MOBILE_MAP_WIDTH_VW = 200;
+// Mobile: show the FULL map width (no cropping). The 16:9 image at 100vw
+// becomes tall enough on a portrait phone to require vertical scrolling.
+// All buildings are visible — no horizontal crop.
 
 export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSnapshotClick }: OverworldMapProps) {
   const [hoveredZone, setHoveredZone] = useState<string | null>(null);
@@ -86,17 +87,17 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
     >
       {/* Map inner container
           Desktop: fills parent 100% width and height
-          Mobile: wider than viewport (200vw), centered with negative margin,
-                  height set by aspect ratio. Horizontal overflow is hidden by parent. */}
+          Mobile: full width (100%), aspect ratio preserved — the map is wide so
+                  it becomes tall on portrait screens, creating natural vertical scroll.
+                  No horizontal cropping — all buildings visible. */}
       <div
         className="relative"
         style={
           isMobile
             ? {
-                width: `${MOBILE_MAP_WIDTH_VW}vw`,
-                // Center the wider-than-viewport map so the middle (Meta HQ) is visible
-                marginLeft: `${-(MOBILE_MAP_WIDTH_VW - 100) / 2}vw`,
-                // Maintain the original 16:9 aspect ratio
+                width: "100%",
+                // Maintain the original aspect ratio — on a portrait phone this
+                // makes the map roughly 56vw tall, enough to scroll
                 aspectRatio: "2752 / 1536",
               }
             : {
