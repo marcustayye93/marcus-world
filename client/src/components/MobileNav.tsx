@@ -22,9 +22,9 @@ export default function MobileNav({ zones, onZoneClick, onAboutClick, onTestimon
 
   return (
     <>
-      {/* Toggle button — positioned above the building strip to avoid blocking it */}
+      {/* Toggle button */}
       <motion.button
-        className="fixed bottom-[140px] right-3 z-40 w-12 h-12 rounded-full flex items-center justify-center shadow-xl"
+        className="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full flex items-center justify-center shadow-xl"
         style={{
           background: "linear-gradient(135deg, #2E7D32, #1B5E20)",
           border: "3px solid #1B5E20",
@@ -43,7 +43,7 @@ export default function MobileNav({ zones, onZoneClick, onAboutClick, onTestimon
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed bottom-[190px] right-3 z-40 w-56"
+            className="fixed bottom-20 right-5 z-40 w-56"
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -89,7 +89,7 @@ export default function MobileNav({ zones, onZoneClick, onAboutClick, onTestimon
                   >
                     <FileText size={18} className="text-emerald-700" />
                     <span className="text-xs font-semibold text-gray-700" style={{ fontFamily: "'Nunito', sans-serif" }}>
-                      Resume
+                      R\u00e9sum\u00e9 Snapshot
                     </span>
                   </button>
                 )}
@@ -116,7 +116,7 @@ export default function MobileNav({ zones, onZoneClick, onAboutClick, onTestimon
                 >
                   <MessageSquare size={18} className="text-amber-600" />
                   <span className="text-xs font-semibold text-gray-700" style={{ fontFamily: "'Nunito', sans-serif" }}>
-                    Testimonials
+                    Kind Words
                   </span>
                 </button>
 
