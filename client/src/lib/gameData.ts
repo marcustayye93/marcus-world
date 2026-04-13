@@ -30,7 +30,7 @@ export interface Testimonial {
 }
 
 export const ASSET_URLS = {
-  overworld: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/overworld-v3_35ebdbcb.png",
+  overworld: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/overworld-v4-no-title_1c5ef7ac.png",
   heroBanner: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/hero-banner-YMBrx9qDKh5f9D6vUa5Rn5.webp",
   metaZone: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/meta-zone-PkF4uLVE2rTffZCUxrcZEq.webp",
   coffeeZone: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/coffee-zone-6ACcPwrxrVFNXvv2J37j5h.webp",
