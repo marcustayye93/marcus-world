@@ -5,12 +5,12 @@
  * No character movement — pure click-to-explore.
  * v3 map has baked-in labels for: META HQ, DFS GROUP, MUSIC HALL, UNIVERSITY, COFFEE SHOP, BARN
  * 
- * MOBILE: Map is wider than viewport, users can swipe/drag horizontally to pan.
- * Starts centered on Meta HQ, with a subtle hint arrow animation.
+ * MOBILE: Map fits viewport width (no horizontal scroll). Vertical layout only.
+ * DESKTOP: Full-width map, no scrolling needed.
  */
 
-import { useState, useRef, useEffect, useCallback } from "react";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
 import { ASSET_URLS, type Zone } from "@/lib/gameData";
 
 interface OverworldMapProps {
@@ -47,53 +47,9 @@ const YEAR_LABELS: Array<{
   { year: "2016–2018",    x: 78,   y: 81 },
 ];
 
-function WoodenPlaqueLabel({ text }: { text: string }) {
-  return (
-    <div
-      style={{
-        background: "linear-gradient(180deg, #D4C4A0 0%, #C8B88A 50%, #BCA87A 100%)",
-        border: "3px solid #3D2B1A",
-        outline: "1px solid #8B7355",
-        outlineOffset: "-5px",
-        boxShadow: "2px 3px 0px rgba(0,0,0,0.5), inset 0 1px 0px rgba(255,255,255,0.3), inset 0 -1px 0px rgba(0,0,0,0.15)",
-        padding: "3px 10px 2px 10px",
-        lineHeight: 1,
-        imageRendering: "pixelated" as any,
-      }}
-    >
-      <span
-        className="pixel-text"
-        style={{
-          color: "#2A1A0A",
-          fontSize: "clamp(6px, 0.9vw, 12px)",
-          letterSpacing: "2px",
-          textShadow: "none",
-          display: "block",
-          textAlign: "center",
-        }}
-      >
-        {text}
-      </span>
-    </div>
-  );
-}
-
 export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSnapshotClick }: OverworldMapProps) {
   const [hoveredZone, setHoveredZone] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [showSwipeHint, setShowSwipeHint] = useState(true);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Touch panning state
-  const x = useMotionValue(0);
-  const touchStartX = useRef(0);
-  const touchStartMotionX = useRef(0);
-  const isDragging = useRef(false);
-  const dragDistance = useRef(0);
-
-  // Mobile: map is 260vw wide so ALL buildings are fully visible when swiping
-  // DFS Group & University on the far left, Coffee Shop on the far right
-  const MAP_WIDTH_VW = 260;
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -102,87 +58,30 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Center the map on Meta HQ initially (Meta is at ~47.5% of map width)
-  useEffect(() => {
-    if (isMobile) {
-      const viewportWidth = window.innerWidth;
-      const mapWidth = (MAP_WIDTH_VW / 100) * viewportWidth;
-      const metaCenterX = 0.475 * mapWidth;
-      const initialX = -(metaCenterX - viewportWidth / 2);
-      const maxDrag = -(mapWidth - viewportWidth);
-      const clampedX = Math.max(maxDrag, Math.min(0, initialX));
-      x.set(clampedX);
-    }
-  }, [isMobile, x]);
-
-  // Hide swipe hint after first interaction
-  const hideHint = useCallback(() => {
-    if (showSwipeHint) setShowSwipeHint(false);
-  }, [showSwipeHint]);
-
-  const getClampedX = useCallback((rawX: number) => {
-    if (!isMobile) return 0;
-    const viewportWidth = window.innerWidth;
-    const mapWidth = (MAP_WIDTH_VW / 100) * viewportWidth;
-    const maxDrag = -(mapWidth - viewportWidth);
-    return Math.max(maxDrag, Math.min(0, rawX));
-  }, [isMobile]);
-
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-    touchStartMotionX.current = x.get();
-    isDragging.current = false;
-    dragDistance.current = 0;
-  }, [x]);
-
-  const handleTouchMove = useCallback((e: React.TouchEvent) => {
-    const deltaX = e.touches[0].clientX - touchStartX.current;
-    dragDistance.current = Math.abs(deltaX);
-    if (dragDistance.current > 5) {
-      isDragging.current = true;
-      hideHint();
-    }
-    const newX = touchStartMotionX.current + deltaX;
-    x.set(getClampedX(newX));
-  }, [x, getClampedX, hideHint]);
-
-  const handleTouchEnd = useCallback(() => {
-    // Snap with momentum
-    const currentX = x.get();
-    const clampedX = getClampedX(currentX);
-    if (currentX !== clampedX) {
-      animate(x, clampedX, { type: "spring", stiffness: 300, damping: 30 });
-    }
-    // Reset drag state after a short delay to prevent click-through
-    setTimeout(() => {
-      isDragging.current = false;
-    }, 50);
-  }, [x, getClampedX]);
-
   const handleZoneClick = useCallback((zone: Zone) => {
-    // On mobile, don't trigger click if user was dragging/swiping
-    if (isMobile && dragDistance.current > 10) return;
     onZoneClick(zone);
-  }, [isMobile, onZoneClick]);
+  }, [onZoneClick]);
 
-  // Desktop: normal layout. Mobile: wider pannable map.
-  const mapStyle = isMobile
-    ? { width: `${MAP_WIDTH_VW}vw`, height: "100%" }
-    : { width: "100%", height: "100%" };
-
+  // On mobile: map is 100vw wide, aspect ratio preserved via padding-bottom
+  // The original map image is roughly 16:9 landscape
+  // We use aspect-ratio to let the map fill width and grow vertically
   return (
     <div
-      className="relative w-full select-none overflow-hidden"
-      style={{ height: "calc(100vh - 85px)", marginTop: "85px" }}
-      ref={containerRef}
+      className="relative w-full select-none"
+      style={
+        isMobile
+          ? { marginTop: "85px", overflow: "hidden" }
+          : { height: "calc(100vh - 85px)", marginTop: "85px", overflow: "hidden" }
+      }
     >
-      {/* Pannable map container */}
-      <motion.div
-        className="relative h-full"
-        style={isMobile ? { x, ...mapStyle } : mapStyle}
-        onTouchStart={isMobile ? handleTouchStart : undefined}
-        onTouchMove={isMobile ? handleTouchMove : undefined}
-        onTouchEnd={isMobile ? handleTouchEnd : undefined}
+      {/* Map container — on mobile, width=100vw and height determined by aspect ratio */}
+      <div
+        className="relative w-full h-full"
+        style={
+          isMobile
+            ? { width: "100%", aspectRatio: "16 / 9" }
+            : {}
+        }
       >
         {/* Map background */}
         <div
@@ -222,7 +121,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
                 className="pixel-text"
                 style={{
                   color: label.isCareer ? "#FFD700" : "#D4C4A0",
-                  fontSize: isMobile ? "clamp(5px, 1.2vw, 10px)" : "clamp(5px, 0.65vw, 8px)",
+                  fontSize: isMobile ? "clamp(4px, 1.8vw, 9px)" : "clamp(5px, 0.65vw, 8px)",
                   letterSpacing: "1.5px",
                   textAlign: "center",
                   display: "block",
@@ -287,7 +186,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
                 </motion.div>
               )}
 
-              {/* Floating tooltip on hover (desktop only) */}
+              {/* Floating tooltip on hover — desktop only */}
               {!isMobile && (
                 <motion.div
                   className="absolute left-1/2 -translate-x-1/2 z-20 pointer-events-none"
@@ -363,7 +262,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
         {onSnapshotClick && (
           <motion.button
             className="absolute z-20 cursor-pointer group"
-            style={{ left: "1%", top: "1%", width: isMobile ? "8%" : "5.5%", height: "10%" }}
+            style={{ left: "1%", top: "1%", width: isMobile ? "10%" : "5.5%", height: "10%" }}
             onClick={onSnapshotClick}
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.95 }}
@@ -394,38 +293,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
             </motion.div>
           </motion.button>
         )}
-      </motion.div>
-
-      {/* Mobile swipe hint — shows on first load, fades after interaction */}
-      {isMobile && showSwipeHint && (
-        <motion.div
-          className="absolute bottom-16 left-1/2 -translate-x-1/2 z-30"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          <div
-            className="px-4 py-2.5 rounded-full flex items-center gap-2"
-            style={{
-              background: "rgba(0,0,0,0.75)",
-              backdropFilter: "blur(4px)",
-              border: "1px solid rgba(255,255,255,0.15)",
-            }}
-          >
-            <motion.span
-              animate={{ x: [-8, 8, -8] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="text-lg"
-            >
-              👆
-            </motion.span>
-            <span className="pixel-text text-[7px] text-white/90">
-              SWIPE TO EXPLORE MAP
-            </span>
-          </div>
-        </motion.div>
-      )}
+      </div>
 
       {/* Desktop instruction hint at bottom */}
       {!isMobile && (

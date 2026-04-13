@@ -46,7 +46,7 @@ export default function DialogBox({ message, onNext, onDismiss, isLast }: Dialog
 
   return (
     <motion.div
-      className="fixed bottom-20 sm:bottom-8 left-1/2 -translate-x-1/2 z-30 w-[90%] max-w-xl"
+      className="fixed bottom-[160px] sm:bottom-8 left-1/2 -translate-x-1/2 z-30 w-[90%] max-w-xl"
       initial={{ y: 50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: 50, opacity: 0 }}
