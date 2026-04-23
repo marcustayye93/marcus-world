@@ -102,9 +102,9 @@ export default function IntroScreen({ onStart, onSkipToResume }: IntroScreenProp
               <div
                 className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full overflow-hidden"
                 style={{
-                  border: "3px solid #D4A853",
+                  border: "3px solid var(--color-rpg-amber)",
                   boxShadow:
-                    "0 0 0 2px #1a2e1a, 0 0 0 5px #8B6914, 0 0 20px rgba(212,168,83,0.4), inset 0 0 10px rgba(0,0,0,0.3)",
+                    "0 0 0 2px #1a2e1a, 0 0 0 5px var(--color-rpg-border), 0 0 20px rgba(212,168,83,0.4), inset 0 0 10px rgba(0,0,0,0.3)",
                 }}
               >
                 <motion.img

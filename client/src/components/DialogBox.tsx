@@ -60,15 +60,16 @@ export default function DialogBox({ message, onNext, onDismiss, isLast }: Dialog
         <div
           className="absolute -top-3 left-4 px-3 py-1 rounded-md"
           style={{
-            background: "#2E7D32",
+            background: "var(--color-zone-dfs)",
             border: "2px solid #1B5E20",
+            boxShadow: "2px 2px 0 rgba(0,0,0,0.2)",
           }}
         >
           <span className="pixel-text text-[7px] text-white">MARCUS</span>
         </div>
 
         {/* Text */}
-        <p className="text-sm sm:text-base leading-relaxed text-gray-700 mt-1" style={{ fontFamily: "'Nunito', sans-serif" }}>
+        <p className="text-sm sm:text-base leading-relaxed mt-1" style={{ fontFamily: "'Nunito', sans-serif", color: "var(--color-rpg-shadow)" }}>
           {displayedText}
           {isTyping && (
             <span className="inline-block w-2 h-4 bg-gray-700 ml-0.5 animate-pulse" />

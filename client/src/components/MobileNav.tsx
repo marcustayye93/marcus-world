@@ -26,7 +26,7 @@ export default function MobileNav({ zones, onZoneClick, onAboutClick, onTestimon
       <motion.button
         className="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full flex items-center justify-center shadow-xl"
         style={{
-          background: "linear-gradient(135deg, #2E7D32, #1B5E20)",
+          background: "linear-gradient(135deg, var(--color-zone-dfs), #1B5E20)",
           border: "3px solid #1B5E20",
         }}
         onClick={() => setIsOpen(!isOpen)}
@@ -51,8 +51,8 @@ export default function MobileNav({ zones, onZoneClick, onAboutClick, onTestimon
             <div
               className="rounded-xl overflow-hidden"
               style={{
-                background: "#faf6ee",
-                border: "3px solid #2E7D32",
+                background: "var(--color-rpg-parchment)",
+                border: "3px solid var(--color-zone-dfs)",
                 boxShadow: "4px 4px 0 rgba(0,0,0,0.2)",
               }}
             >
@@ -116,7 +116,7 @@ export default function MobileNav({ zones, onZoneClick, onAboutClick, onTestimon
                 >
                   <MessageSquare size={18} className="text-amber-600" />
                   <span className="text-xs font-semibold text-gray-700" style={{ fontFamily: "'Nunito', sans-serif" }}>
-                    Kind Words
+                    Testimonials
                   </span>
                 </button>
 

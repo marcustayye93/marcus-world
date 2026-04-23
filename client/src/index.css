@@ -48,6 +48,23 @@
   --color-forest: oklch(0.42 0.12 155);
   --color-earth: oklch(0.45 0.08 55);
   --color-amber: oklch(0.72 0.16 65);
+
+  /* DESIGN.md zone colors */
+  --color-zone-meta: #10B981;
+  --color-zone-dfs: #2E7D32;
+  --color-zone-music: #E65100;
+  --color-zone-university: #1565C0;
+  --color-zone-farm: #5A8A3C;
+  --color-zone-coffee: #5D4037;
+
+  /* DESIGN.md RPG chrome */
+  --color-rpg-border: #8B6914;
+  --color-rpg-parchment: #faf6ee;
+  --color-rpg-plaque-light: #D4C4A0;
+  --color-rpg-plaque-dark: #3D2B1A;
+  --color-rpg-shadow: #2A1A0A;
+  --color-rpg-gold: #FFD700;
+  --color-rpg-amber: #F59E0B;
 }
 
 :root {
@@ -145,6 +162,11 @@
   image-rendering: crisp-edges;
 }
 
+/* DESIGN.md: Standardized transition for all interactive elements */
+.rpg-transition {
+  transition: all 200ms ease;
+}
+
 /* RPG dialog box style */
 .rpg-box {
   background: oklch(0.99 0.005 95);
@@ -156,10 +178,11 @@
   font-family: 'Nunito', sans-serif;
 }
 
-/* Pixel font for headings */
+/* DESIGN.md: Pixel font for headings — always uppercase, consistent line-height */
 .pixel-text {
   font-family: 'Press Start 2P', monospace;
   line-height: 1.8;
+  text-transform: uppercase;
 }
 
 /* Floating animation */

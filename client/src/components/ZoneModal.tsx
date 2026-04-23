@@ -38,9 +38,9 @@ export default function ZoneModal({ zone, onClose }: ZoneModalProps) {
       <motion.div
         className="relative w-full max-w-2xl max-h-[90vh] overflow-hidden rounded-xl"
         style={{
-          background: "#faf6ee",
+          background: "var(--color-rpg-parchment)",
           border: `4px solid ${zone.color}`,
-          boxShadow: `0 0 0 2px #faf6ee, 0 0 0 6px ${zone.color}, 6px 6px 0 rgba(0,0,0,0.25)`,
+          boxShadow: `0 0 0 2px var(--color-rpg-parchment), 0 0 0 6px ${zone.color}, 6px 6px 0 rgba(0,0,0,0.25)`,
         }}
         initial={{ scale: 0.85, y: 40, opacity: 0 }}
         animate={{ scale: 1, y: 0, opacity: 1 }}
@@ -90,8 +90,8 @@ export default function ZoneModal({ zone, onClose }: ZoneModalProps) {
         <div className="overflow-y-auto p-5 sm:p-6" style={{ maxHeight: "calc(90vh - 14rem)" }}>
           {/* Description */}
           <motion.p
-            className="text-sm sm:text-base leading-relaxed mb-6 text-gray-600"
-            style={{ fontFamily: "'Nunito', sans-serif" }}
+            className="text-sm sm:text-base leading-relaxed mb-6"
+            style={{ fontFamily: "'Nunito', sans-serif", color: "#4a4540" }}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
