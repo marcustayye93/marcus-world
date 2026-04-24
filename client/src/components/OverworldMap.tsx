@@ -287,6 +287,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
           return (
             <motion.button
               key={zone.id}
+              aria-label={`Explore ${zone.name} — ${zone.tagline}`}
               className="absolute z-10 rounded-lg cursor-pointer"
               style={{
                 left: `${hotspot.x}%`,
@@ -404,6 +405,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
         {/* Résumé Snapshot button — floating scroll/parchment style */}
         {onSnapshotClick && (
           <motion.button
+            aria-label="Open Marcus at a Glance résumé snapshot"
             className="absolute z-20 cursor-pointer group"
             style={{ left: "1%", top: "1%", width: isMobile ? "8%" : "5.5%", height: "10%" }}
             onClick={onSnapshotClick}

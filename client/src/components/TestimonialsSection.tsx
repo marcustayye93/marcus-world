@@ -49,6 +49,7 @@ export default function TestimonialsSection({ onClose }: TestimonialsSectionProp
             </p>
           </div>
           <button
+            aria-label="Close testimonials"
             onClick={onClose}
             className="w-8 h-8 rounded-full bg-amber-100 hover:bg-amber-200 flex items-center justify-center transition-colors"
           >

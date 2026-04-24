@@ -56,6 +56,7 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
           }}
         >
           <button
+            aria-label="Close résumé snapshot"
             onClick={onClose}
             className="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/30 hover:bg-black/50 flex items-center justify-center text-white transition-colors backdrop-blur-sm z-10"
           >

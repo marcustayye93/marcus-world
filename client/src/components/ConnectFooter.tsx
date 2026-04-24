@@ -101,6 +101,7 @@ export default function ConnectFooter({ onClose }: ConnectFooterProps) {
             </div>
           </div>
           <button
+            aria-label="Close connect panel"
             onClick={onClose}
             className="w-8 h-8 flex items-center justify-center text-[#7CB850]/60 hover:text-[#A8E06C] transition-colors"
             style={{

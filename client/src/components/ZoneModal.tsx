@@ -79,6 +79,7 @@ export default function ZoneModal({ zone, onClose }: ZoneModalProps) {
 
           {/* Close button */}
           <button
+            aria-label="Close zone details"
             onClick={onClose}
             className="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center text-white transition-colors backdrop-blur-sm"
           >
@@ -166,6 +167,7 @@ export default function ZoneModal({ zone, onClose }: ZoneModalProps) {
             </span>
           </div>
           <button
+            aria-label="Close zone details"
             onClick={onClose}
             className="pixel-text text-[7px] sm:text-[8px] px-4 py-2 rounded-lg text-white transition-all hover:opacity-80 active:scale-95"
             style={{ background: zone.color, boxShadow: `0 2px 0 ${zone.color}80` }}

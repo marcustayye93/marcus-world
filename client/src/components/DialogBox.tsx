@@ -53,6 +53,7 @@ export default function DialogBox({ message, onNext, onDismiss, isLast }: Dialog
       transition={{ type: "spring", damping: 20 }}
     >
       <button
+        aria-label={isLast ? 'Close dialogue' : isTyping ? 'Skip typing animation' : 'Next dialogue'}
         onClick={handleClick}
         className="w-full text-left rpg-box rounded-xl p-4 sm:p-5 relative"
       >

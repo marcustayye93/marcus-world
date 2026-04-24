@@ -128,6 +128,7 @@ export default function AboutSection({ onClose }: AboutSectionProps) {
             </div>
           </div>
           <button
+            aria-label="Close about section"
             onClick={onClose}
             className="w-8 h-8 rounded-full bg-emerald-100 hover:bg-emerald-200 flex items-center justify-center transition-colors"
           >
