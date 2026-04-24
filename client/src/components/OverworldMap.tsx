@@ -13,6 +13,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { ASSET_URLS, type Zone } from "@/lib/gameData";
 import AmbientAnimations from "@/components/AmbientAnimations";
+import MapNPCs from "@/components/MapNPCs";
 
 interface OverworldMapProps {
   zones: Zone[];
@@ -79,8 +80,12 @@ function WoodenPlaqueLabel({ text }: { text: string }) {
   );
 }
 
+// Keyboard navigation order — spatial layout: top to bottom, left to right
+const KEYBOARD_NAV_ORDER = ["meta", "dfs", "music", "university", "farm", "coffee"];
+
 export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSnapshotClick }: OverworldMapProps) {
   const [hoveredZone, setHoveredZone] = useState<string | null>(null);
+  const [focusedIndex, setFocusedIndex] = useState(-1);
   const [isMobile, setIsMobile] = useState(false);
   const [showSwipeHint, setShowSwipeHint] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -166,6 +171,38 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
     onZoneClick(zone);
   }, [isMobile, onZoneClick]);
 
+  // Keyboard navigation — arrow keys / Tab to cycle, Enter to open
+  useEffect(() => {
+    if (isMobile) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Only handle when no modal is open (check if body has modal overlay)
+      const hasModal = document.querySelector('[class*="fixed inset-0"]');
+      if (hasModal) return;
+
+      if (e.key === "Tab" || e.key === "ArrowRight" || e.key === "ArrowDown") {
+        e.preventDefault();
+        setFocusedIndex((prev) => {
+          const next = prev >= KEYBOARD_NAV_ORDER.length - 1 ? 0 : prev + 1;
+          setHoveredZone(KEYBOARD_NAV_ORDER[next]);
+          return next;
+        });
+      } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+        e.preventDefault();
+        setFocusedIndex((prev) => {
+          const next = prev <= 0 ? KEYBOARD_NAV_ORDER.length - 1 : prev - 1;
+          setHoveredZone(KEYBOARD_NAV_ORDER[next]);
+          return next;
+        });
+      } else if (e.key === "Enter" && focusedIndex >= 0) {
+        const zoneId = KEYBOARD_NAV_ORDER[focusedIndex];
+        const zone = zones.find((z) => z.id === zoneId);
+        if (zone) onZoneClick(zone);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobile, focusedIndex, zones, onZoneClick]);
+
   // Desktop: normal layout. Mobile: wider pannable map.
   const mapStyle = isMobile
     ? { width: `${MAP_WIDTH_VW}vw`, height: "100%" }
@@ -197,6 +234,9 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
 
         {/* Ambient animations — clouds, birds, smoke, sparkles */}
         <AmbientAnimations />
+
+        {/* NPC characters with testimonial snippets */}
+        <MapNPCs />
 
         {/* Year subtitles below each building's baked-in label */}
         {YEAR_LABELS.map((label, i) => (
@@ -244,6 +284,8 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
           if (!hotspot) return null;
           const isDiscovered = discoveredZones.has(zone.id);
           const isHovered = hoveredZone === zone.id;
+          const isFocused = KEYBOARD_NAV_ORDER[focusedIndex] === zone.id;
+          const isHighlighted = isHovered || isFocused;
           const isMeta = zone.id === "meta";
 
           return (
@@ -270,7 +312,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
                   boxShadow: `0 0 20px ${zone.color}30, inset 0 0 20px ${zone.color}15`,
                 }}
                 initial={{ opacity: 0 }}
-                animate={{ opacity: isHovered ? 1 : 0 }}
+                animate={{ opacity: isHighlighted ? 1 : 0 }}
                 transition={{ duration: 0.25 }}
               />
 
@@ -297,7 +339,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
                   className="absolute left-1/2 -translate-x-1/2 z-20 pointer-events-none"
                   style={isMeta ? { top: "calc(100% + 8px)" } : { bottom: "calc(100% + 8px)" }}
                   initial={{ opacity: 0, y: isMeta ? -8 : 8 }}
-                  animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : (isMeta ? -8 : 8) }}
+                  animate={{ opacity: isHighlighted ? 1 : 0, y: isHighlighted ? 0 : (isMeta ? -8 : 8) }}
                   transition={{ duration: 0.2 }}
                 >
                   {isMeta && (
