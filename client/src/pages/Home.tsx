@@ -18,6 +18,7 @@ import MobileBuildingList from "@/components/MobileBuildingList";
 import CompletionBanner from "@/components/CompletionBanner";
 import ResumeSnapshot from "@/components/ResumeSnapshot";
 import ConnectFooter from "@/components/ConnectFooter";
+import QuestChecklist from "@/components/QuestChecklist";
 import { ZONES, EASTER_EGGS, ASSET_URLS, type Zone } from "@/lib/gameData";
 import { playStartGame, playBuildingEnter, playDiscovery, playClose, playTab, playClick, setMuted } from "@/lib/sfx";
 
@@ -35,6 +36,11 @@ export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
   const [showCompletion, setShowCompletion] = useState(false);
   const [completionShown, setCompletionShown] = useState(false);
+
+  // Quest tracking state
+  const [resumeOpened, setResumeOpened] = useState(false);
+  const [aboutOpened, setAboutOpened] = useState(false);
+  const [testimonialsOpened, setTestimonialsOpened] = useState(false);
 
   // Music state
   const [musicMuted, setMusicMuted] = useState(false);
@@ -241,14 +247,14 @@ export default function Home() {
               discoveredZones={discoveredZones}
               totalZones={ZONES.length}
               easterEggs={easterEggCount}
-              onAboutClick={() => { playTab(); setShowAbout(true); }}
-              onTestimonialsClick={() => { playTab(); setShowTestimonials(true); }}
+              onAboutClick={() => { playTab(); setShowAbout(true); setAboutOpened(true); }}
+              onTestimonialsClick={() => { playTab(); setShowTestimonials(true); setTestimonialsOpened(true); }}
               onHintClick={() => {
                 playClick();
                 setShowDialog(true);
                 setDialogIndex(Math.floor(Math.random() * EASTER_EGGS.punnyDialogues.length));
               }}
-              onSnapshotClick={() => { playTab(); setShowSnapshot(true); }}
+              onSnapshotClick={() => { playTab(); setShowSnapshot(true); setResumeOpened(true); }}
               onConnectClick={() => { playTab(); setShowConnect(true); }}
               musicMuted={musicMuted}
               onToggleMusic={handleToggleMusic}
@@ -327,6 +333,16 @@ export default function Home() {
                 <CompletionBanner onDismiss={() => setShowCompletion(false)} />
               )}
             </AnimatePresence>
+
+            {/* Quest checklist — desktop only, bottom-right */}
+            <QuestChecklist
+              discoveredZones={discoveredZones}
+              totalZones={ZONES.length}
+              resumeOpened={resumeOpened}
+              testimonialsOpened={testimonialsOpened}
+              aboutOpened={aboutOpened}
+              easterEggFound={easterEggCount > 0}
+            />
           </motion.div>
         )}
       </AnimatePresence>
