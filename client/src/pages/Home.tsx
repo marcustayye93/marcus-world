@@ -241,11 +241,11 @@ export default function Home() {
       // Go straight to resume
       setTimeout(() => { setShowSnapshot(true); setResumeOpened(true); }, 400);
     } else if (mode === "quick") {
-      // Quick tour: auto-open first dialog, no quest checklist
+      // Quick tour: skip dialog, auto-open About section for a quick overview
       setTimeout(() => {
-        setShowDialog(true);
-        setDialogIndex(0);
-      }, 300);
+        setShowAbout(true);
+        setAboutOpened(true);
+      }, 600);
     } else {
       // Full adventure: show dialog
       setTimeout(() => {
@@ -372,15 +372,15 @@ export default function Home() {
               )}
             </AnimatePresence>
 
-            {/* Quest checklist — desktop only, bottom-right */}
-            <QuestChecklist
+            {/* Quest checklist — only show in full adventure mode */}
+            {immersionMode !== "quick" && immersionMode !== "resume" && <QuestChecklist
               discoveredZones={discoveredZones}
               totalZones={ZONES.length}
               resumeOpened={resumeOpened}
               testimonialsOpened={testimonialsOpened}
               aboutOpened={aboutOpened}
               easterEggFound={easterEggCount > 0}
-            />
+            />}
           </motion.div>
         )}
       </AnimatePresence>

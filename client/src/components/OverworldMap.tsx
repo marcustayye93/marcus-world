@@ -407,7 +407,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
           <motion.button
             aria-label="Open Marcus at a Glance résumé snapshot"
             className="absolute z-20 cursor-pointer group"
-            style={{ left: "1%", top: "1%", width: isMobile ? "8%" : "5.5%", height: "10%" }}
+            style={{ left: "1%", top: "12%", width: isMobile ? "8%" : "5.5%", height: "10%" }}
             onClick={onSnapshotClick}
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.95 }}
