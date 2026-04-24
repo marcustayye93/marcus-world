@@ -13,7 +13,6 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { ASSET_URLS, type Zone } from "@/lib/gameData";
 import AmbientAnimations from "@/components/AmbientAnimations";
-import MapNPCs from "@/components/MapNPCs";
 
 interface OverworldMapProps {
   zones: Zone[];
@@ -234,9 +233,6 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
 
         {/* Ambient animations — clouds, birds, smoke, sparkles */}
         <AmbientAnimations />
-
-        {/* NPC characters with testimonial snippets */}
-        <MapNPCs />
 
         {/* Year subtitles below each building's baked-in label */}
         {YEAR_LABELS.map((label, i) => (
