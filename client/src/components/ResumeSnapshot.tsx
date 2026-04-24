@@ -79,9 +79,9 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
               Account Manager at Meta | Business Transformation Leader
             </p>
             <div className="flex flex-wrap gap-3 text-xs text-emerald-100/70" style={{ fontFamily: "'Nunito', sans-serif" }}>
-              <a href="mailto:marcustayve@gmail.com" className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <a href="mailto:marcustayye@gmail.com" className="flex items-center gap-1.5 hover:text-white transition-colors">
                 <Mail size={13} />
-                marcustayve@gmail.com
+                marcustayye@gmail.com
               </a>
               <a href="https://www.linkedin.com/in/mtye/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
                 <Linkedin size={13} />

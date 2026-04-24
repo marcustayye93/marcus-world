@@ -15,8 +15,8 @@ const SOCIAL_LINKS = [
   {
     icon: Mail,
     label: "Email",
-    value: "marcustayve@gmail.com",
-    href: "mailto:marcustayve@gmail.com",
+    value: "marcustayye@gmail.com",
+    href: "mailto:marcustayye@gmail.com",
     color: "#EA4335",
     description: "Drop me a line",
   },

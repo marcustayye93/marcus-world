@@ -315,7 +315,7 @@ export default function AboutSection({ onClose }: AboutSectionProps) {
             <p className="pixel-text text-[7px] sm:text-[8px] text-gray-400 mb-3">CONNECT WITH MARCUS</p>
             <div className="flex gap-3 justify-center">
               <a
-                href="mailto:marcustayve@gmail.com"
+                href="mailto:marcustayye@gmail.com"
                 className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-bold hover:bg-emerald-700 transition-all hover:shadow-lg active:scale-95"
                 style={{ fontFamily: "'Nunito', sans-serif" }}
               >
