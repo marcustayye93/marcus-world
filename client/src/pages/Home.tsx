@@ -19,11 +19,14 @@ import CompletionBanner from "@/components/CompletionBanner";
 import ResumeSnapshot from "@/components/ResumeSnapshot";
 import ConnectFooter from "@/components/ConnectFooter";
 import QuestChecklist from "@/components/QuestChecklist";
+import PixelLoadingScreen from "@/components/PixelLoadingScreen";
 import { ZONES, EASTER_EGGS, ASSET_URLS, type Zone } from "@/lib/gameData";
 import { playStartGame, playBuildingEnter, playDiscovery, playClose, playTab, playClick, setMuted } from "@/lib/sfx";
 
 export default function Home() {
+  const [assetsLoaded, setAssetsLoaded] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
+  const [immersionMode, setImmersionMode] = useState<"full" | "quick" | "resume" | null>(null);
   const [activeZone, setActiveZone] = useState<Zone | null>(null);
   const [dialogIndex, setDialogIndex] = useState(0);
   const [showDialog, setShowDialog] = useState(false);
@@ -220,20 +223,55 @@ export default function Home() {
     return () => window.removeEventListener("keydown", handleKonami);
   }, []);
 
+  // Assets to preload
+  const assetsToPreload = [
+    ASSET_URLS.overworld,
+    ASSET_URLS.marcusPortrait,
+    ASSET_URLS.bgMusic,
+  ];
+
+  // Handle immersion mode selection
+  const handleImmersionSelect = useCallback((mode: "full" | "quick" | "resume") => {
+    setImmersionMode(mode);
+    playStartGame();
+    setGameStarted(true);
+    setGameStartTime(Date.now());
+
+    if (mode === "resume") {
+      // Go straight to resume
+      setTimeout(() => { setShowSnapshot(true); setResumeOpened(true); }, 400);
+    } else if (mode === "quick") {
+      // Quick tour: auto-open first dialog, no quest checklist
+      setTimeout(() => {
+        setShowDialog(true);
+        setDialogIndex(0);
+      }, 300);
+    } else {
+      // Full adventure: show dialog
+      setTimeout(() => {
+        setShowDialog(true);
+        setDialogIndex(0);
+      }, 300);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#f0e6d3] overflow-hidden relative">
+      {/* Pixel loading screen — preloads key assets */}
+      {!assetsLoaded && (
+        <PixelLoadingScreen
+          onLoaded={() => setAssetsLoaded(true)}
+          assetsToLoad={assetsToPreload}
+        />
+      )}
+
       <AnimatePresence mode="wait">
         {!gameStarted ? (
           <IntroScreen
             key="intro"
             onStart={handleStartGame}
-            onSkipToResume={() => {
-              playStartGame();
-              setGameStarted(true);
-              setGameStartTime(Date.now());
-              // Open Resume Snapshot immediately after game starts
-              setTimeout(() => setShowSnapshot(true), 400);
-            }}
+            onSkipToResume={() => handleImmersionSelect("resume")}
+            onImmersionSelect={handleImmersionSelect}
           />
         ) : (
           <motion.div

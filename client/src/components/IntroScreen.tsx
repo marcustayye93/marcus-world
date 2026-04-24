@@ -12,9 +12,10 @@ import { ASSET_URLS } from "@/lib/gameData";
 interface IntroScreenProps {
   onStart: () => void;
   onSkipToResume?: () => void;
+  onImmersionSelect?: (mode: "full" | "quick" | "resume") => void;
 }
 
-export default function IntroScreen({ onStart, onSkipToResume }: IntroScreenProps) {
+export default function IntroScreen({ onStart, onSkipToResume, onImmersionSelect }: IntroScreenProps) {
   const [showPrompt, setShowPrompt] = useState(false);
 
   useEffect(() => {
@@ -220,18 +221,52 @@ export default function IntroScreen({ onStart, onSkipToResume }: IntroScreenProp
             or press ENTER / SPACE
           </p>
 
-          {/* Skip to Resume for recruiters */}
-          {onSkipToResume && (
-            <motion.button
-              onClick={onSkipToResume}
-              className="mt-3 text-white/40 hover:text-white/70 text-[10px] sm:text-[11px] underline underline-offset-2 transition-colors"
-              style={{ fontFamily: "'Nunito', sans-serif" }}
+          {/* Immersion mode selector */}
+          {onImmersionSelect && (
+            <motion.div
+              className="mt-4 flex flex-col items-center gap-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.8 }}
+              transition={{ delay: 1.6 }}
             >
-              Short on time? Skip to resume
-            </motion.button>
+              <p
+                className="text-white/30 text-[9px] mb-1"
+                style={{ fontFamily: "'Nunito', sans-serif" }}
+              >
+                Or choose your path:
+              </p>
+              <div className="flex gap-2 sm:gap-3">
+                {[
+                  { mode: "full" as const, label: "Full Adventure", icon: "⚔️", desc: "Explore everything" },
+                  { mode: "quick" as const, label: "Quick Tour", icon: "⚡", desc: "Highlights only" },
+                  { mode: "resume" as const, label: "Just the Résumé", icon: "📄", desc: "Skip to resume" },
+                ].map((option, i) => (
+                  <motion.button
+                    key={option.mode}
+                    onClick={() => onImmersionSelect(option.mode)}
+                    className="group flex flex-col items-center px-3 py-2 rounded-lg border border-white/10 hover:border-emerald-500/40 bg-white/5 hover:bg-emerald-900/20 transition-all"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.8 + i * 0.1 }}
+                  >
+                    <span className="text-lg mb-0.5">{option.icon}</span>
+                    <span
+                      className="pixel-text text-[6px] sm:text-[7px] text-white/70 group-hover:text-emerald-300 transition-colors"
+                    >
+                      {option.label}
+                    </span>
+                    <span
+                      className="text-[8px] text-white/30 group-hover:text-white/50 mt-0.5 transition-colors"
+                      style={{ fontFamily: "'Nunito', sans-serif" }}
+                    >
+                      {option.desc}
+                    </span>
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
           )}
         </motion.div>
       </motion.div>
