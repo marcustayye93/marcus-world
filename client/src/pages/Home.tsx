@@ -223,11 +223,14 @@ export default function Home() {
     return () => window.removeEventListener("keydown", handleKonami);
   }, []);
 
-  // Assets to preload
+  // Assets to preload — images only; music loads in background to avoid stalling
   const assetsToPreload = [
     ASSET_URLS.overworld,
     ASSET_URLS.marcusPortrait,
-    ASSET_URLS.bgMusic,
+    ASSET_URLS.metaZone,
+    ASSET_URLS.coffeeZone,
+    ASSET_URLS.farmZone,
+    ASSET_URLS.musicZone,
   ];
 
   // Handle immersion mode selection
