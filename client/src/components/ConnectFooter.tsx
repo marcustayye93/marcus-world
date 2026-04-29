@@ -33,11 +33,19 @@ const SOCIAL_LINKS = [
 
 const FUN_FACTS = [
   "Marcus once performed clarinet for Singapore's Prime Minister.",
-  "He scaled a brand from $8K/day to $50K/day in ad spend \u2014 with 3x ROAS.",
+  "He scaled a single client from $8K/day to $50K/day in ad spend while maintaining 3x ROAS.",
   "He once traveled to Yun Nan, China for 5 weeks of earthquake disaster relief.",
   "He shepherded 70 animals across 2 farms in New Zealand.",
   "He launched a coffee enterprise with 80 student baristas.",
   "He plays 5 musical instruments and was a DJ.",
+  "He has managed clients across 17 different verticals at Meta.",
+  "He over-achieved revenue targets for 5 consecutive quarters.",
+  "He scored 100/100 on client satisfaction, the highest in APAC.",
+  "He earned 4 promotions in 5 years at DFS Group.",
+  "He speaks three languages: English, Chinese/Mandarin, and Cantonese.",
+  "He won the 2025 Infinite Potential Award for Client Hero.",
+  "He helped an e-commerce client expand into 4 new countries, including the US.",
+  "He drove US$684K in incremental ad spend for a single client in just 32 days.",
 ];
 
 export default function ConnectFooter({ onClose }: ConnectFooterProps) {

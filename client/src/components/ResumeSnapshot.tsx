@@ -206,12 +206,12 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
               location="Australia & New Zealand"
               color="#10B981"
               bullets={[
-                "Managing the top 1% of clients across ANZ, spanning 25+ business verticals",
-                "Drove US$684K incremental spend for SABI Group — 280% uplift in 32 days",
-                "Shifted Great Southern Bank's budget from Google to Meta — US$94K incremental",
-                "Facilitated 4-market expansion for Cheekywinx → US launch in 2026",
-                "Highest CSAT in APAC (100/100) — 2025 Client Hero Award",
-                "Revenue attainment: Q2 111%, Q3 109%, Q4 109%",
+                "Managing the top 1% of clients across ANZ, across 17 verticals including automotive, CPG, healthcare, gaming, media, retail, and travel",
+                "Drove US$684K incremental ad spend for a single client, a 280% multiplication of sustained revenue in just 32 days",
+                "Awarded 2025 Infinite Potential Award for Client Hero, with the highest CSAT in APAC (100/100)",
+                "Over-achieved revenue targets for 5 consecutive quarters (Q2 111%, Q3 109%, Q4 109%)",
+                "Facilitated market expansion tests across 4 new countries for an e-commerce client, leading to US market entry in 2026",
+                "Shifted a major financial institution's digital budget from a major competitor to Meta, unlocking US$94K incremental spend",
               ]}
               delay={0.25}
             />
