@@ -32,7 +32,6 @@ const SOCIAL_LINKS = [
 ];
 
 const FUN_FACTS = [
-  // Personal & adventures
   "Marcus once performed clarinet for Singapore's Prime Minister.",
   "He once got robbed in Marrakech, but managed to get out of it by befriending his robbers.",
   "He once stayed in a haunted house in rural China on an earthquake relief mission.",
@@ -44,15 +43,10 @@ const FUN_FACTS = [
   "He launched a coffee enterprise with 80 student baristas.",
   "He plays 5 musical instruments and was a DJ.",
   "He speaks three languages: English, Chinese/Mandarin, and Cantonese.",
-  // Career achievements
-  "He has managed clients across 17 different verticals at Meta.",
-  "He over-achieved revenue targets for 5 consecutive quarters.",
-  "He scored 100/100 on client satisfaction, the highest in APAC.",
-  "He earned 4 promotions in 5 years at DFS Group.",
-  "He won the 2025 Infinite Potential Award for Client Hero.",
-  "He helped an e-commerce client expand into 4 new countries, including the US.",
-  "He drove US$684K in incremental ad spend for a single client in just 32 days.",
-  "He scaled a single client from $8K/day to $50K/day in ad spend while maintaining 3x ROAS.",
+  "He used to have long curly hair down to his shoulders.",
+  "He is the biggest John Mayer fan. John Mayer was his inspiration when learning guitar.",
+  "He knows every line from every episode of The Office (US). Take him to a pub quiz!",
+  "He's trying to pick up running, but is failing spectacularly at it. Half marathon one day!",
 ];
 
 export default function ConnectFooter({ onClose }: ConnectFooterProps) {
