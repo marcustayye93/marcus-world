@@ -82,6 +82,8 @@ export default function ZoneModal({ zone, onClose }: ZoneModalProps) {
             src={zone.image}
             alt={zone.name}
             className="w-full h-full object-cover pixel-render"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
