@@ -31,7 +31,7 @@ const BUILDING_HOTSPOTS: Record<string, {
   university: { x: 12, y: 50, w: 22, h: 30 },
   farm:       { x: 40, y: 65, w: 22, h: 22 },
   coffee:     { x: 68, y: 52, w: 22, h: 26 },
-  ai:         { x: 38, y: 57, w: 20, h: 20 },
+  ai:         { x: 32, y: 38, w: 20, h: 27 },
 };
 
 // Year-only subtitles positioned cleanly below each baked-in label
@@ -47,7 +47,7 @@ const YEAR_LABELS: Array<{
   { year: "2015–2019",    x: 22,   y: 84, isCareer: true },
   { year: "2019",         x: 50,   y: 87 },
   { year: "2016\u20132018",    x: 78,   y: 81 },
-  { year: "AI NATIVE",       x: 47,   y: 77, isCareer: true },
+  { year: "AI NATIVE",       x: 42,   y: 62, isCareer: true },
 ];
 
 function WoodenPlaqueLabel({ text }: { text: string }) {
@@ -275,26 +275,6 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
             </div>
           </div>
         ))}
-
-        {/* AI Native robot sprite overlay — no building exists on the base map */}
-        <div
-          className="absolute z-[5] pointer-events-none"
-          style={{
-            left: "42%",
-            top: "56%",
-            width: "12%",
-            transform: "translateX(-50%)",
-          }}
-        >
-          <img
-            src={ASSET_URLS.aiZone}
-            alt="AI Native Lab"
-            className="w-full h-auto pixel-render rounded-lg"
-            style={{
-              filter: "drop-shadow(0 4px 8px rgba(0,200,83,0.3))",
-            }}
-          />
-        </div>
 
         {/* Clickable building hotspots */}
         {zones.map((zone) => {
