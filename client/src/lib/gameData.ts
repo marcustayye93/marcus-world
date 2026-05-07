@@ -39,6 +39,7 @@ export const ASSET_URLS = {
   resumePdf: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/MarcusTayResume_b2b2b87a.pdf",
   bgMusic: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/overworld-bgm_4012e5f3.mp3",
   marcusPortrait: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/marcus-pixel-portrait-9hGUvzbeRPLcFSFbrGmwWx.webp",
+  aiZone: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/ai-zone-building-GfVhEf2JVSkp3uD7acKJqW.webp",
 };
 
 // Zone hitbox rectangles (percentage of map dimensions) for character collision
@@ -53,6 +54,7 @@ export const ZONE_HITBOXES: Record<string, ZoneHitbox> = {
   university: { x1: 12, y1: 52, x2: 33, y2: 78 },   // University — lower left
   farm:       { x1: 40, y1: 60, x2: 60, y2: 82 },   // Barn — lower center
   coffee:     { x1: 70, y1: 52, x2: 86, y2: 72 },   // Coffee Shop — lower right
+  ai:         { x1: 35, y1: 55, x2: 60, y2: 78 },   // AI Native — below Meta HQ
 };
 
 // Label positions for each zone on the map (percentage)
@@ -63,6 +65,7 @@ export const ZONE_LABEL_POSITIONS: Record<string, { x: number; y: number }> = {
   university: { x: 22, y: 78 },
   farm:       { x: 50, y: 82 },
   coffee:     { x: 78, y: 72 },
+  ai:         { x: 47, y: 78 },
 };
 
 export const ZONES: Zone[] = [
@@ -83,7 +86,7 @@ export const ZONES: Zone[] = [
           "Managing the top 1% of clients across Australia & New Zealand, with hands-on experience across 17 verticals including automotive, CPG, financial services, healthcare, gaming, media, retail, and travel",
           "Drove US$684K incremental ad spend for a single client, a 280% multiplication of sustained revenue, through strategic testing and KPI validation in just 32 days",
           "Awarded 2025 Infinite Potential Award for Client Hero, with the highest client satisfaction score in APAC (100/100)",
-          "Over-achieved revenue targets for 5 consecutive quarters (Q2 111%, Q3 109%, Q4 109%) and hit 100% of all performance metrics in H2",
+          "Far surpassed sales targets for 4 consecutive quarters, consistently overachieving across all performance metrics",
           "Facilitated market expansion tests across 4 new countries for an e-commerce client, leading to US market entry in 2026",
           "Shifted a major financial institution's digital budget from a major competitor to Meta, unlocking US$94K incremental spend through competitive repositioning",
         ],
@@ -257,6 +260,29 @@ export const ZONES: Zone[] = [
         period: "Apr 2010 \u2013 Feb 2013",
         bullets: [
           "Diploma in Banking and Financial Services",
+        ],
+      },
+    ],
+  },
+  {
+    id: "ai",
+    name: "AI Native",
+    icon: "\uD83E\uDD16",
+    tagline: "26 AI platforms, 609 peers outpaced, daily AI-first workflows",
+    description: "Systematically integrated AI across every function of my role, selecting the right tool for each task and embedding it into daily operations until it became default workflow rather than occasional experiment.",
+    image: ASSET_URLS.aiZone,
+    color: "#00C853",
+    bgGradient: "from-green-500/10 to-cyan-500/10",
+    details: [
+      {
+        title: "AI Integration & Adoption",
+        bullets: [
+          "Integrated AI tools across 6 distinct business functions (CRM, analytics, productivity, code development, knowledge retrieval, and task automation), embedding AI into daily sales workflows rather than treating it as a standalone experiment",
+          "Consistently applied AI to core Account Management responsibilities every working day for 30+ consecutive days, demonstrating habitual rather than experimental adoption",
+          "Operated across 26 distinct AI platforms simultaneously, identifying and matching the right AI tool to each business task rather than relying on a single general-purpose assistant",
+          "Outpaced 609 peers in AI adoption breadth and session volume, ranking above the 90th percentile in both tool diversity and practical usage frequency",
+          "Built and maintained AI-assisted automations for CRM management, calendar scheduling, data analytics, and agentic task execution, reducing manual effort across the full sales cycle",
+          "Deployed autonomous AI agents (agentic workflows) for multi-step task completion, going beyond simple prompt-response interactions to orchestrate complex, chained operations",
         ],
       },
     ],

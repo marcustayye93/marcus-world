@@ -26,7 +26,7 @@ interface Quest {
 const QUESTS: Quest[] = [
   {
     id: "explore-all",
-    label: "Explore all 6 zones",
+    label: "Explore all 7 zones",
     check: (p) => p.discoveredZones.size >= p.totalZones,
   },
   {

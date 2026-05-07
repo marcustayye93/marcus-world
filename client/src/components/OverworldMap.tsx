@@ -31,6 +31,7 @@ const BUILDING_HOTSPOTS: Record<string, {
   university: { x: 12, y: 50, w: 22, h: 30 },
   farm:       { x: 40, y: 65, w: 22, h: 22 },
   coffee:     { x: 68, y: 52, w: 22, h: 26 },
+  ai:         { x: 38, y: 57, w: 20, h: 20 },
 };
 
 // Year-only subtitles positioned cleanly below each baked-in label
@@ -45,7 +46,8 @@ const YEAR_LABELS: Array<{
   { year: "2006–PRESENT", x: 67,   y: 59 },
   { year: "2015–2019",    x: 22,   y: 84, isCareer: true },
   { year: "2019",         x: 50,   y: 87 },
-  { year: "2016–2018",    x: 78,   y: 81 },
+  { year: "2016\u20132018",    x: 78,   y: 81 },
+  { year: "AI NATIVE",       x: 47,   y: 77, isCareer: true },
 ];
 
 function WoodenPlaqueLabel({ text }: { text: string }) {
@@ -80,7 +82,7 @@ function WoodenPlaqueLabel({ text }: { text: string }) {
 }
 
 // Keyboard navigation order — spatial layout: top to bottom, left to right
-const KEYBOARD_NAV_ORDER = ["meta", "dfs", "music", "university", "farm", "coffee"];
+const KEYBOARD_NAV_ORDER = ["meta", "dfs", "music", "ai", "university", "farm", "coffee"];
 
 export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSnapshotClick }: OverworldMapProps) {
   const [hoveredZone, setHoveredZone] = useState<string | null>(null);

@@ -209,7 +209,7 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
                 "Managing the top 1% of clients across ANZ, across 17 verticals including automotive, CPG, healthcare, gaming, media, retail, and travel",
                 "Drove US$684K incremental ad spend for a single client, a 280% multiplication of sustained revenue in just 32 days",
                 "Awarded 2025 Infinite Potential Award for Client Hero, with the highest CSAT in APAC (100/100)",
-                "Over-achieved revenue targets for 5 consecutive quarters (Q2 111%, Q3 109%, Q4 109%)",
+                "Far surpassed sales targets for 4 consecutive quarters, consistently overachieving across all performance metrics",
                 "Facilitated market expansion tests across 4 new countries for an e-commerce client, leading to US market entry in 2026",
                 "Shifted a major financial institution's digital budget from a major competitor to Meta, unlocking US$94K incremental spend",
               ]}
