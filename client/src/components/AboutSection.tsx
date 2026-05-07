@@ -163,6 +163,26 @@ export default function AboutSection({ onClose }: AboutSectionProps) {
             ))}
           </motion.div>
 
+          {/* Career Intent Banner */}
+          <motion.div
+            className="relative p-3 rounded-xl text-center"
+            style={{
+              background: "linear-gradient(135deg, #064e3b15 0%, #0f766e15 100%)",
+              border: "2px solid #10B98140",
+            }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.12 }}
+          >
+            <p className="pixel-text text-[6px] sm:text-[7px] text-emerald-600 mb-1 tracking-widest">CURRENTLY EXPLORING</p>
+            <p className="text-sm text-gray-700 font-semibold" style={{ fontFamily: "'Nunito', sans-serif" }}>
+              Tech Sales &amp; AI Strategy roles
+            </p>
+            <p className="text-xs text-gray-500 mt-1" style={{ fontFamily: "'Nunito', sans-serif" }}>
+              Helping companies harness AI to transform how they operate
+            </p>
+          </motion.div>
+
           {/* ═══ RPG STATS BAR ═══ */}
           <motion.div
             className="rounded-xl overflow-hidden"

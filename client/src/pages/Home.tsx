@@ -13,7 +13,7 @@ import HUD from "@/components/HUD";
 import DialogBox from "@/components/DialogBox";
 import AboutSection from "@/components/AboutSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import MobileNav from "@/components/MobileNav";
+// MobileNav removed — MobileBuildingList now handles all mobile navigation
 import MobileBuildingList from "@/components/MobileBuildingList";
 import CompletionBanner from "@/components/CompletionBanner";
 import ResumeSnapshot from "@/components/ResumeSnapshot";
@@ -308,23 +308,16 @@ export default function Home() {
               onSnapshotClick={() => setShowSnapshot(true)}
             />
 
-            {/* Mobile building list — always visible on small screens */}
+            {/* Mobile building list — primary mobile navigation */}
             {isMobile && (
               <MobileBuildingList
                 zones={ZONES}
                 discoveredZones={discoveredZones}
                 onZoneClick={handleZoneClick}
-              />
-            )}
-
-            {isMobile && (
-              <MobileNav
-                zones={ZONES}
-                onZoneClick={handleZoneClick}
-                onAboutClick={() => setShowAbout(true)}
-                onTestimonialsClick={() => setShowTestimonials(true)}
-                onSnapshotClick={() => setShowSnapshot(true)}
-                onConnectClick={() => setShowConnect(true)}
+                onSnapshotClick={() => { playTab(); setShowSnapshot(true); setResumeOpened(true); }}
+                onAboutClick={() => { playTab(); setShowAbout(true); setAboutOpened(true); }}
+                onTestimonialsClick={() => { playTab(); setShowTestimonials(true); setTestimonialsOpened(true); }}
+                onConnectClick={() => { playTab(); setShowConnect(true); }}
               />
             )}
 

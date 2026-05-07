@@ -194,6 +194,17 @@ export default function IntroScreen({ onStart, onSkipToResume, onImmersionSelect
           An interactive adventure through the world of Marcus — account manager at Meta, musician, coffee lover, farmer, and lifelong explorer.
         </motion.p>
 
+        {/* Career intent */}
+        <motion.p
+          className="text-emerald-300/80 text-[9px] sm:text-[10px] leading-snug mb-4 max-w-xs mx-auto tracking-wide"
+          style={{ fontFamily: "'Nunito', sans-serif" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.0 }}
+        >
+          Exploring opportunities in tech sales &amp; AI strategy — helping companies harness AI to transform how they operate.
+        </motion.p>
+
         {/* Start button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
