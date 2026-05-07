@@ -276,6 +276,26 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
           </div>
         ))}
 
+        {/* AI Native robot sprite overlay — no building exists on the base map */}
+        <div
+          className="absolute z-[5] pointer-events-none"
+          style={{
+            left: "42%",
+            top: "56%",
+            width: "12%",
+            transform: "translateX(-50%)",
+          }}
+        >
+          <img
+            src={ASSET_URLS.aiZone}
+            alt="AI Native Lab"
+            className="w-full h-auto pixel-render rounded-lg"
+            style={{
+              filter: "drop-shadow(0 4px 8px rgba(0,200,83,0.3))",
+            }}
+          />
+        </div>
+
         {/* Clickable building hotspots */}
         {zones.map((zone) => {
           const hotspot = BUILDING_HOTSPOTS[zone.id];
