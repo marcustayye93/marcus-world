@@ -190,12 +190,52 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
             </div>
           </motion.div>
 
-          {/* Professional Experience */}
+          {/* AI Native */}
           <motion.div
             className="mb-6"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
+          >
+            <SectionHeader title="AI NATIVE" />
+            <div
+              className="p-3.5 rounded-xl mb-2"
+              style={{ background: "#00C85308", border: "2px solid #00C85320" }}
+            >
+              <p
+                className="text-xs text-gray-600 leading-relaxed italic mb-3"
+                style={{ fontFamily: "'Nunito', sans-serif" }}
+              >
+                Systematically integrated AI across every function of my role, selecting the right tool for each task and embedding it into daily operations until it became default workflow rather than occasional experiment.
+              </p>
+              <ul className="space-y-1.5">
+                {[
+                  "Integrated AI tools across 6 distinct business functions (CRM, analytics, productivity, code development, knowledge retrieval, and task automation), embedding AI into daily sales workflows",
+                  "Applied AI to core Account Management responsibilities every working day for 30+ consecutive days, demonstrating habitual rather than experimental adoption",
+                  "Operated across 26 distinct AI platforms simultaneously, matching the right tool to each business task rather than relying on a single general-purpose assistant",
+                  "Outpaced 609 peers in AI adoption breadth and session volume, ranking above the 90th percentile in both tool diversity and practical usage frequency",
+                  "Built AI-assisted automations for CRM management, calendar scheduling, data analytics, and agentic task execution, reducing manual effort across the full sales cycle",
+                  "Deployed autonomous AI agents (agentic workflows) for multi-step task completion, orchestrating complex, chained operations beyond simple prompt-response interactions",
+                ].map((bullet, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-2 text-[11px] sm:text-xs text-gray-700"
+                    style={{ fontFamily: "'Nunito', sans-serif" }}
+                  >
+                    <span className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#00C853" }} />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+
+          {/* Professional Experience */}
+          <motion.div
+            className="mb-6"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
           >
             <SectionHeader title="PROFESSIONAL EXPERIENCE" />
 
