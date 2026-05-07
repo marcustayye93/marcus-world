@@ -326,12 +326,43 @@ export default function AboutSection({ onClose }: AboutSectionProps) {
             </StatCard>
           </div>
 
+          {/* Testimonial Highlights */}
+          <motion.div
+            className="space-y-2.5"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.75 }}
+          >
+            <p className="pixel-text text-[7px] sm:text-[8px] text-gray-400 text-center tracking-widest mb-2">WHAT OTHERS SAY</p>
+            {[
+              { quote: "A truly rare talent!", name: "Robert Calzadilla", role: "President (North Asia), Louis Vuitton" },
+              { quote: "Marcus can do anything he puts his mind to.", name: "Meenal Kumar", role: "Business Development Director, DFS Group" },
+              { quote: "Marcus would be an asset to any team.", name: "Monique Cheung", role: "Senior Manager, Adidas" },
+            ].map((t, i) => (
+              <div
+                key={i}
+                className="p-3 rounded-xl flex items-start gap-3"
+                style={{ background: "#f0fdf4", border: "1.5px solid #10B98125" }}
+              >
+                <span className="text-emerald-400 text-lg leading-none mt-0.5">&ldquo;</span>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs sm:text-[13px] text-gray-700 italic leading-relaxed" style={{ fontFamily: "'Nunito', sans-serif" }}>
+                    {t.quote}
+                  </p>
+                  <p className="text-[10px] text-gray-400 mt-1" style={{ fontFamily: "'Nunito', sans-serif" }}>
+                    {t.name} &middot; {t.role}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
           {/* Contact */}
           <motion.div
             className="text-center pt-4 border-t-2 border-dashed border-gray-200"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
+            transition={{ delay: 0.85 }}
           >
             <p className="pixel-text text-[7px] sm:text-[8px] text-gray-400 mb-3">CONNECT WITH MARCUS</p>
             <div className="flex gap-3 justify-center">

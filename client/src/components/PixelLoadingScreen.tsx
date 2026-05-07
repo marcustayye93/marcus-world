@@ -7,12 +7,14 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const LOADING_TIPS = [
-  "Tip: Click on buildings to explore each chapter of Marcus's journey!",
-  "Tip: Use the quest checklist to track your exploration progress.",
-  "Tip: Press the keyboard arrows to navigate between buildings.",
-  "Tip: Try the Konami code for a secret Easter egg!",
-  "Tip: Click RESUME to see a traditional résumé snapshot.",
-  "Tip: Marcus speaks English, Chinese/Mandarin, and basic Cantonese.",
+  "Click on buildings to explore each chapter of Marcus's journey.",
+  "The Emerald City in the center is Meta HQ. Start there!",
+  "Hit Resume for a clean one-page snapshot of Marcus's experience.",
+  "Check out Testimonials to hear from Louis Vuitton, Adidas & DFS leaders.",
+  "The green robot lab is Marcus's AI zone. 26 platforms and counting.",
+  "Try the Konami code for a secret Easter egg.",
+  "Marcus speaks English, Mandarin, and Cantonese. Useful at dim sum.",
+  "Click Connect to reach out. Always happy to chat over coffee.",
 ];
 
 interface PixelLoadingScreenProps {

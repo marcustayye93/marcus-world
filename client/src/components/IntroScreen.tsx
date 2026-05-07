@@ -196,7 +196,7 @@ export default function IntroScreen({ onStart, onSkipToResume, onImmersionSelect
 
         {/* Career intent */}
         <motion.p
-          className="text-emerald-300/80 text-[9px] sm:text-[10px] leading-snug mb-4 max-w-xs mx-auto tracking-wide"
+          className="text-emerald-300/80 text-[9px] sm:text-[10px] leading-snug mb-3 max-w-xs mx-auto tracking-wide"
           style={{ fontFamily: "'Nunito', sans-serif" }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -204,6 +204,24 @@ export default function IntroScreen({ onStart, onSkipToResume, onImmersionSelect
         >
           Exploring opportunities in tech sales &amp; AI strategy — helping companies harness AI to transform how they operate.
         </motion.p>
+
+        {/* Logo cloud — brands worked with */}
+        <motion.div
+          className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 mb-4 max-w-sm mx-auto"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.1 }}
+        >
+          {["Meta", "DFS Group", "Louis Vuitton", "Adidas", "AgriG8", "NUS"].map((brand, i) => (
+            <span
+              key={brand}
+              className="text-[9px] sm:text-[10px] text-white/30 tracking-wide"
+              style={{ fontFamily: "'Nunito', sans-serif" }}
+            >
+              {brand}
+            </span>
+          ))}
+        </motion.div>
 
         {/* Start button */}
         <motion.div
