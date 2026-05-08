@@ -41,7 +41,7 @@ const YEAR_LABELS: Array<{
   y: number;
   isCareer?: boolean;
 }> = [
-  { year: "2024–PRESENT", x: 47.5, y: 49, isCareer: true },
+  { year: "2024–PRESENT", x: 47.5, y: 42, isCareer: true },
   { year: "2019–2024",    x: 17,   y: 50, isCareer: true },
   { year: "2006–PRESENT", x: 67,   y: 59 },
   { year: "2015–2019",    x: 22,   y: 84, isCareer: true },
