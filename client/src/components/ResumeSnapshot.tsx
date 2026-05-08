@@ -210,12 +210,12 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
               </p>
               <ul className="space-y-1.5">
                 {[
-                  "Integrated AI tools across 6 distinct business functions (CRM, analytics, productivity, code development, knowledge retrieval, and task automation), embedding AI into daily sales workflows",
-                  "Applied AI to core Account Management responsibilities every working day for 30+ consecutive days, demonstrating habitual rather than experimental adoption",
-                  "Operated across 26 distinct AI platforms simultaneously, matching the right tool to each business task rather than relying on a single general-purpose assistant",
-                  "Outpaced 609 peers in AI adoption breadth and session volume, ranking above the 90th percentile in both tool diversity and practical usage frequency",
-                  "Built AI-assisted automations for CRM management, calendar scheduling, data analytics, and agentic task execution, reducing manual effort across the full sales cycle",
-                  "Deployed autonomous AI agents (agentic workflows) for multi-step task completion, orchestrating complex, chained operations beyond simple prompt-response interactions",
+                  "Operated across 26 AI platforms spanning 6 business functions (CRM, analytics, productivity, code, knowledge retrieval, task automation), consistently matching the right tool to each problem",
+                  "Ranked in the 95th percentile company-wide for AI usage intensity, with an average of 1,799 AI-assisted actions per day fully embedded into core workflows",
+                  "Built and deployed autonomous AI agents that orchestrate complex, multi-step operations (data pulls, CRM updates, scheduling, report generation) without manual intervention",
+                  "Adopted 12 new AI tools within a single month, rapidly evaluating, testing, and integrating emerging capabilities as they became available",
+                  "Automated the full sales operations layer (pipeline management, client research, meeting prep, analytics, task routing) through purpose-built AI workflows",
+                  "Exceeded the 90th percentile in tool diversity and usage frequency across all peers in the same job profile, demonstrating breadth and depth rather than surface-level experimentation",
                 ].map((bullet, i) => (
                   <li
                     key={i}

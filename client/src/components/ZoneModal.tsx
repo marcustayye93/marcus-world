@@ -21,9 +21,9 @@ const ZONE_PROOF_METRICS: Record<string, Array<{ value: string; label: string; i
     { value: "90+", label: "Stakeholders managed globally", icon: "🌐" },
   ],
   ai: [
-    { value: "26", label: "AI platforms operated simultaneously", icon: "🤖" },
-    { value: "90th %ile", label: "Outpaced 609 peers in adoption", icon: "🏆" },
-    { value: "30+ Days", label: "Consecutive daily AI usage", icon: "🔥" },
+    { value: "1,799", label: "AI-assisted actions per day", icon: "⚡" },
+    { value: "95th %ile", label: "Company-wide AI usage intensity", icon: "🏆" },
+    { value: "26", label: "AI platforms across 6 functions", icon: "🤖" },
   ],
   music: [
     { value: "5", label: "Instruments mastered", icon: "🎵" },

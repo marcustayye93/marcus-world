@@ -31,7 +31,7 @@ const BUILDING_HOTSPOTS: Record<string, {
   university: { x: 12, y: 50, w: 22, h: 30 },
   farm:       { x: 40, y: 65, w: 22, h: 22 },
   coffee:     { x: 68, y: 52, w: 22, h: 26 },
-  ai:         { x: 32, y: 38, w: 20, h: 27 },
+  ai:         { x: 35, y: 55, w: 20, h: 22 },
 };
 
 // Year-only subtitles positioned cleanly below each baked-in label
@@ -47,7 +47,7 @@ const YEAR_LABELS: Array<{
   { year: "2015–2019",    x: 22,   y: 84, isCareer: true },
   { year: "2019",         x: 50,   y: 87 },
   { year: "2016\u20132018",    x: 78,   y: 81 },
-  { year: "AI NATIVE",       x: 42,   y: 62, isCareer: true },
+  { year: "AI NATIVE",       x: 44,   y: 68, isCareer: true },
 ];
 
 function WoodenPlaqueLabel({ text }: { text: string }) {

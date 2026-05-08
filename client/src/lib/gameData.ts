@@ -54,7 +54,7 @@ export const ZONE_HITBOXES: Record<string, ZoneHitbox> = {
   university: { x1: 12, y1: 52, x2: 33, y2: 78 },   // University — lower left
   farm:       { x1: 40, y1: 60, x2: 60, y2: 82 },   // Barn — lower center
   coffee:     { x1: 70, y1: 52, x2: 86, y2: 72 },   // Coffee Shop — lower right
-  ai:         { x1: 35, y1: 55, x2: 60, y2: 78 },   // AI Native — below Meta HQ
+  ai:         { x1: 35, y1: 55, x2: 55, y2: 77 },   // AI Native — below Meta HQ
 };
 
 // Label positions for each zone on the map (percentage)
@@ -65,7 +65,7 @@ export const ZONE_LABEL_POSITIONS: Record<string, { x: number; y: number }> = {
   university: { x: 22, y: 78 },
   farm:       { x: 50, y: 82 },
   coffee:     { x: 78, y: 72 },
-  ai:         { x: 47, y: 78 },
+  ai:         { x: 44, y: 68 },
 };
 
 export const ZONES: Zone[] = [
@@ -268,7 +268,7 @@ export const ZONES: Zone[] = [
     id: "ai",
     name: "AI Native",
     icon: "\uD83E\uDD16",
-    tagline: "26 AI platforms, 609 peers outpaced, daily AI-first workflows",
+    tagline: "26 AI platforms, 1,799 AI actions per day, 95th percentile company-wide",
     description: "Systematically integrated AI across every function of my role, selecting the right tool for each task and embedding it into daily operations until it became default workflow rather than occasional experiment.",
     image: ASSET_URLS.aiZone,
     color: "#00C853",
@@ -277,12 +277,12 @@ export const ZONES: Zone[] = [
       {
         title: "AI Integration & Adoption",
         bullets: [
-          "Integrated AI tools across 6 distinct business functions (CRM, analytics, productivity, code development, knowledge retrieval, and task automation), embedding AI into daily sales workflows rather than treating it as a standalone experiment",
-          "Consistently applied AI to core Account Management responsibilities every working day for 30+ consecutive days, demonstrating habitual rather than experimental adoption",
-          "Operated across 26 distinct AI platforms simultaneously, identifying and matching the right AI tool to each business task rather than relying on a single general-purpose assistant",
-          "Outpaced 609 peers in AI adoption breadth and session volume, ranking above the 90th percentile in both tool diversity and practical usage frequency",
-          "Built and maintained AI-assisted automations for CRM management, calendar scheduling, data analytics, and agentic task execution, reducing manual effort across the full sales cycle",
-          "Deployed autonomous AI agents (agentic workflows) for multi-step task completion, going beyond simple prompt-response interactions to orchestrate complex, chained operations",
+          "Operated across 26 AI platforms spanning 6 business functions (CRM, analytics, productivity, code, knowledge retrieval, task automation), consistently matching the right tool to each problem rather than relying on a single general-purpose assistant",
+          "Ranked in the 95th percentile company-wide for AI usage intensity, with an average of 1,799 AI-assisted actions per day fully embedded into core workflows",
+          "Built and deployed autonomous AI agents that orchestrate complex, multi-step operations (data pulls, CRM updates, scheduling, report generation) without manual intervention at each stage",
+          "Adopted 12 new AI tools within a single month, rapidly evaluating, testing, and integrating emerging capabilities as they became available",
+          "Automated the full sales operations layer (pipeline management, client research, meeting prep, analytics, task routing) through purpose-built AI workflows, eliminating repetitive manual processes",
+          "Exceeded the 90th percentile in tool diversity and usage frequency across all peers in the same job profile, demonstrating breadth and depth rather than surface-level experimentation",
         ],
       },
     ],
