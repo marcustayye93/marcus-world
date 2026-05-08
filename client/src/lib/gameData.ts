@@ -73,7 +73,7 @@ export const ZONES: Zone[] = [
     id: "meta",
     name: "Meta HQ",
     icon: "💼",
-    tagline: "US$684K incremental spend in 32 days — highest CSAT in APAC",
+    tagline: "US$684K incremental spend in 32 days — APAC Client Hero Winner",
     description: "Account Manager at Meta, driving measurable client growth across Australia & New Zealand through strategic partnerships, budget optimization, and market expansion.",
     image: ASSET_URLS.metaZone,
     color: "#10B981",
