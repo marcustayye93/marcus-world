@@ -132,7 +132,7 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
               className="text-xs sm:text-[13px] text-gray-600 leading-relaxed"
               style={{ fontFamily: "'Nunito', sans-serif" }}
             >
-              A client-facing or business development role where I can combine strategic thinking with genuine relationship-building — ideally at the intersection of technology, media, and commerce. I thrive in fast-paced, cross-functional environments where curiosity is rewarded and impact is measurable.
+              A client strategy role that combines relationship building with AI and technology. I thrive in cross-functional environments where I can bridge commercial outcomes with operational innovation.
             </p>
           </motion.div>
 

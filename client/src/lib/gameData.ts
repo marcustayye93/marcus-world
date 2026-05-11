@@ -36,7 +36,7 @@ export const ASSET_URLS = {
   coffeeZone: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/coffee-zone-6ACcPwrxrVFNXvv2J37j5h.webp",
   farmZone: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/farm-zone-nqWu2CgWo7jWD8nc2o2LRv.webp",
   musicZone: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/music-zone-AcvduB7tx7g4g9p6ZycqL2.webp",
-  resumePdf: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/MarcusTayResume_b2b2b87a.pdf",
+  resumePdf: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/MarcusTayResume_updated_afc214de.pdf",
   bgMusic: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/overworld-bgm_4012e5f3.mp3",
   marcusPortrait: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/marcus-pixel-portrait-9hGUvzbeRPLcFSFbrGmwWx.webp",
   aiZone: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/ai-zone-building-GfVhEf2JVSkp3uD7acKJqW.webp",
@@ -256,8 +256,8 @@ export const ZONES: Zone[] = [
         ],
       },
       {
-        title: "Nanyang Polytechnic \u2014 Singapore",
-        period: "Apr 2010 \u2013 Feb 2013",
+        title: "Nanyang Polytechnic - Singapore",
+        period: "Apr 2010 - Feb 2013",
         bullets: [
           "Diploma in Banking and Financial Services",
         ],

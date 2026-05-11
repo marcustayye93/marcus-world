@@ -202,7 +202,7 @@ export default function IntroScreen({ onStart, onSkipToResume, onImmersionSelect
           animate={{ opacity: 1 }}
           transition={{ delay: 1.0 }}
         >
-          Exploring opportunities in tech sales &amp; AI strategy — helping companies harness AI to transform how they operate.
+          Exploring client strategy roles that combine relationship building with AI and technology.
         </motion.p>
 
         {/* Logo cloud — brands worked with */}
