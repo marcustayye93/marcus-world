@@ -191,7 +191,7 @@ export default function IntroScreen({ onStart, onSkipToResume, onImmersionSelect
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
         >
-          An interactive adventure through the world of Marcus — account manager at Meta, musician, coffee lover, farmer, and lifelong explorer.
+          An interactive adventure through the world of Marcus — client success professional, AI evangelist, musician, coffee lover, farmer, and lifelong explorer.
         </motion.p>
 
         {/* Career intent */}
@@ -202,7 +202,7 @@ export default function IntroScreen({ onStart, onSkipToResume, onImmersionSelect
           animate={{ opacity: 1 }}
           transition={{ delay: 1.0 }}
         >
-          Exploring client strategy roles that combine relationship building with AI and technology.
+          Seeking a Customer Success, Solutions Consulting, or Partner Success role in Singapore.
         </motion.p>
 
         {/* Logo cloud — brands worked with */}

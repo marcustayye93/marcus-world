@@ -176,10 +176,10 @@ export default function AboutSection({ onClose }: AboutSectionProps) {
           >
             <p className="pixel-text text-[6px] sm:text-[7px] text-emerald-600 mb-1 tracking-widest">CURRENTLY EXPLORING</p>
             <p className="text-sm text-gray-700 font-semibold" style={{ fontFamily: "'Nunito', sans-serif" }}>
-              Client Strategy roles combining relationship building with AI/Technology
+              Customer Success, Solutions Consulting, or Partner Success roles in Singapore
             </p>
             <p className="text-xs text-gray-500 mt-1" style={{ fontFamily: "'Nunito', sans-serif" }}>
-              Thriving in cross-functional environments that bridge commercial outcomes with innovation
+              Deep platform expertise. AI-native. Passionate about helping businesses adopt technology practically.
             </p>
           </motion.div>
 

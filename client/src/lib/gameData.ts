@@ -36,7 +36,7 @@ export const ASSET_URLS = {
   coffeeZone: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/coffee-zone-6ACcPwrxrVFNXvv2J37j5h.webp",
   farmZone: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/farm-zone-nqWu2CgWo7jWD8nc2o2LRv.webp",
   musicZone: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/music-zone-AcvduB7tx7g4g9p6ZycqL2.webp",
-  resumePdf: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/MarcusTayResume_updated_afc214de.pdf",
+  resumePdf: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/MarcusTay_Resume_126db7e5.pdf",
   bgMusic: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/overworld-bgm_4012e5f3.mp3",
   marcusPortrait: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/marcus-pixel-portrait-9hGUvzbeRPLcFSFbrGmwWx.webp",
   aiZone: "https://d2xsxph8kpxj0f.cloudfront.net/310519663320869327/6ybe28EnqpiBRaiiogZ2qt/ai-zone-building-GfVhEf2JVSkp3uD7acKJqW.webp",
@@ -73,22 +73,25 @@ export const ZONES: Zone[] = [
     id: "meta",
     name: "Meta HQ",
     icon: "💼",
-    tagline: "US$684K incremental spend in 32 days — APAC Client Hero Winner",
-    description: "Account Manager at Meta, driving measurable client growth across Australia & New Zealand through strategic partnerships, budget optimization, and market expansion.",
+    tagline: "100/100 CSAT (highest in APAC) — scalable onboarding frameworks — 11 measurement studies — US$684K in 32 days",
+    description: "Account Manager & Meta Platform Consultant, earning the highest client satisfaction score in APAC while building scalable frameworks, consultative measurement playbooks, and driving measurable growth across Australia & New Zealand.",
     image: ASSET_URLS.metaZone,
     color: "#10B981",
     bgGradient: "from-emerald-500/10 to-teal-500/10",
     details: [
       {
-        title: "Account Manager — Meta",
+        title: "Account Manager & Meta Platform Consultant",
         period: "2024 – Present",
         bullets: [
-          "Managing the top 1% of clients across Australia & New Zealand, with hands-on experience across 17 verticals including automotive, CPG, financial services, healthcare, gaming, media, retail, and travel",
-          "Drove US$684K incremental ad spend for a single client, a 280% multiplication of sustained revenue, through strategic testing and KPI validation in just 32 days",
-          "Awarded 2025 Infinite Potential Award for Client Hero, with the highest client satisfaction score in APAC (100/100)",
-          "Far surpassed sales targets for 4 consecutive quarters, consistently overachieving across all performance metrics",
-          "Facilitated market expansion tests across 4 new countries for an e-commerce client, leading to US market entry in 2026",
-          "Shifted a major financial institution's digital budget from a major competitor to Meta, unlocking US$94K incremental spend through competitive repositioning",
+          "Achieved a perfect 100/100 CSAT score across 76 client responses - the highest volume and highest score in all of APAC, resulting in the 2025 Infinite Potential Award (Client Hero)",
+          "Acted as primary strategic advisor on Meta's advertising platform for enterprise clients, guiding measurement strategy, campaign architecture, and audience targeting across ANZ",
+          "Built a scalable client onboarding framework that shifted new client revenue pacing from 40% below target to 25% above target - a 65 percentage-point improvement. Templates adopted across ANZ and APAC teams",
+          "Co-designed and delivered client onboarding webinars that scaled activation to 160 new accounts in a single quarter",
+          "Developed a consultative measurement playbook (Search Lift, Brand Lift, Conversion Lift) applied across 11 studies, proving Meta's incremental value and building evidence-based investment cases for clients",
+          "Identified a market-specific opportunity (EOFY in Australia) that a US-based client was unaware of, then built the full promotional strategy and cross-border expansion plan, unlocking US$150K incremental investment in one quarter",
+          "Facilitated market expansion tests across 4 new countries for an e-commerce client, resulting in US market entry in 2026",
+          "Drove US$684K incremental ad spend for a single client (280% increase in 32 days) and shifted a financial institution's budget from a competitor to Meta (+US$94K)",
+          "Managed the top 1% of clients across ANZ, spanning automotive, CPG, healthcare, gaming, media, retail, and travel",
         ],
       },
     ],
@@ -269,7 +272,7 @@ export const ZONES: Zone[] = [
     name: "AI Native",
     icon: "\uD83E\uDD16",
     tagline: "26 AI platforms, 1,799 AI actions per day, 95th percentile company-wide",
-    description: "Systematically integrated AI across every function of my role, selecting the right tool for each task and embedding it into daily operations until it became default workflow rather than occasional experiment.",
+    description: "Systematically integrated AI across every function of my role until it became default workflow. Passionate about helping others adopt AI practically - from building the workflows to teaching the skeptics.",
     image: ASSET_URLS.aiZone,
     color: "#00C853",
     bgGradient: "from-green-500/10 to-cyan-500/10",
@@ -292,9 +295,9 @@ export const ZONES: Zone[] = [
 // Proof artifacts — standout metric callouts per zone
 export const ZONE_PROOF_METRICS: Record<string, Array<{ value: string; label: string; icon: string }>> = {
   meta: [
-    { value: "US$684K", label: "Incremental spend in 32 days", icon: "\uD83D\uDCB0" },
-    { value: "100/100", label: "Client satisfaction (highest in APAC)", icon: "\u2B50" },
-    { value: "4 Quarters", label: "Consecutively surpassed targets", icon: "\uD83D\uDCC8" },
+    { value: "100/100", label: "CSAT — highest volume & score in APAC", icon: "⭐" },
+    { value: "65pp", label: "Revenue pacing improvement via onboarding framework", icon: "📈" },
+    { value: "US$684K", label: "Incremental spend driven in 32 days", icon: "💰" },
   ],
   dfs: [
     { value: "4 Promotions", label: "In 5 years across 6 countries", icon: "\uD83D\uDE80" },
@@ -319,6 +322,24 @@ export const ZONE_PROOF_METRICS: Record<string, Array<{ value: string; label: st
 };
 
 export const TESTIMONIALS: Testimonial[] = [
+  {
+    name: "Robert Fazekas",
+    title: "Client, SkyCity Entertainment",
+    company: "New Zealand",
+    quote: "Marcus has been really helpful to making sure we succeed on Meta's platform. He doesn't sit back and wait for us - he's been very proactive at suggesting new tools and approaches to help us achieve our business goals. His demeanour was always a positive and friendly one which made meetings more enjoyable. I believe he's a real asset to your team.",
+  },
+  {
+    name: "Tobias Hall",
+    title: "Tour Marketing and Admin Coordinator",
+    company: "DRW Entertainment, Australia",
+    quote: "You have been by far one of, if not THE, most attentive Meta rep that we've had the pleasure of working with.",
+  },
+  {
+    name: "Lisa Francazio",
+    title: "Group Manager, Channel Planning",
+    company: "Visit Victoria, Australia",
+    quote: "You're a fabulous account manager (best we've had at Meta).",
+  },
   {
     name: "Robert Calzadilla",
     title: "President (North Asia)",

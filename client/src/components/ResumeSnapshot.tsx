@@ -77,7 +77,7 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
               className="text-emerald-200/90 text-sm sm:text-base font-semibold mb-3"
               style={{ fontFamily: "'Nunito', sans-serif" }}
             >
-              Account Manager at Meta | Business Transformation Leader
+              Account Manager & Meta Platform Consultant | AI-Native Operator
             </p>
             <div className="flex flex-wrap gap-3 text-xs text-emerald-100/70" style={{ fontFamily: "'Nunito', sans-serif" }}>
               <a href="mailto:marcustayye@gmail.com" className="flex items-center gap-1.5 hover:text-white transition-colors">
@@ -110,8 +110,45 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
               className="text-sm text-gray-600 leading-relaxed italic border-l-3 pl-4"
               style={{ fontFamily: "'Nunito', sans-serif", borderColor: "#2D5016" }}
             >
-              Passionate and results-driven executive with a proven track record in account management, IT project delivery, and business development. From scaling Meta's top clients 10x to orchestrating technology rollouts across 6 countries — I bring curiosity, tenacity, and a genuine love for building relationships.
+              Client-focused technology professional who earned the highest client satisfaction score in APAC (100/100 across 76 responses) while managing Meta's top 1% accounts across 17 verticals. Deep platform expertise built through 1.5 years of hands-on solutions consulting on Meta's advertising ecosystem. AI-native operator who builds autonomous workflows and helps businesses adopt emerging tools practically.
             </p>
+          </motion.div>
+
+          {/* Core Capabilities */}
+          <motion.div
+            className="mb-6"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.16 }}
+          >
+            <SectionHeader title="CORE CAPABILITIES" />
+            <div className="flex flex-wrap gap-1.5">
+              {[
+                { label: "Client Success & Retention", color: "#10B981" },
+                { label: "Platform Consulting & Enablement", color: "#10B981" },
+                { label: "AI Workflow Automation", color: "#10B981" },
+                { label: "Stakeholder Management (90+)", color: "#3B82F6" },
+                { label: "Cross-Functional Delivery", color: "#3B82F6" },
+                { label: "Digital Advertising Strategy", color: "#3B82F6" },
+                { label: "Data-Driven Client Advisory", color: "#8B5CF6" },
+                { label: "Market Expansion", color: "#8B5CF6" },
+                { label: "Client Onboarding", color: "#F59E0B" },
+                { label: "Enterprise Account Management", color: "#F59E0B" },
+              ].map((skill) => (
+                <span
+                  key={skill.label}
+                  className="px-2.5 py-1 rounded-md text-[10px] sm:text-[11px] font-semibold"
+                  style={{
+                    fontFamily: "'Nunito', sans-serif",
+                    background: `${skill.color}10`,
+                    color: skill.color,
+                    border: `1px solid ${skill.color}25`,
+                  }}
+                >
+                  {skill.label}
+                </span>
+              ))}
+            </div>
           </motion.div>
 
           {/* What I'm Looking For */}
@@ -132,7 +169,7 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
               className="text-xs sm:text-[13px] text-gray-600 leading-relaxed"
               style={{ fontFamily: "'Nunito', sans-serif" }}
             >
-              A client strategy role that combines relationship building with AI and technology. I thrive in cross-functional environments where I can bridge commercial outcomes with operational innovation.
+              A Customer Success, Solutions Consulting, or Partner Success role in Singapore. I earned the highest client satisfaction score in APAC (100/100) and build scalable frameworks that help clients succeed on complex platforms. AI-native operator passionate about helping businesses adopt emerging tools practically.
             </p>
           </motion.div>
 
@@ -190,46 +227,6 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
             </div>
           </motion.div>
 
-          {/* AI Native */}
-          <motion.div
-            className="mb-6"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            <SectionHeader title="AI NATIVE" />
-            <div
-              className="p-3.5 rounded-xl mb-2"
-              style={{ background: "#00C85308", border: "2px solid #00C85320" }}
-            >
-              <p
-                className="text-xs text-gray-600 leading-relaxed italic mb-3"
-                style={{ fontFamily: "'Nunito', sans-serif" }}
-              >
-                Systematically integrated AI across every function of my role, selecting the right tool for each task and embedding it into daily operations until it became default workflow rather than occasional experiment.
-              </p>
-              <ul className="space-y-1.5">
-                {[
-                  "Operated across 26 AI platforms spanning 6 business functions (CRM, analytics, productivity, code, knowledge retrieval, task automation), consistently matching the right tool to each problem",
-                  "Ranked in the 95th percentile company-wide for AI usage intensity, with an average of 1,799 AI-assisted actions per day fully embedded into core workflows",
-                  "Built and deployed autonomous AI agents that orchestrate complex, multi-step operations (data pulls, CRM updates, scheduling, report generation) without manual intervention",
-                  "Adopted 12 new AI tools within a single month, rapidly evaluating, testing, and integrating emerging capabilities as they became available",
-                  "Automated the full sales operations layer (pipeline management, client research, meeting prep, analytics, task routing) through purpose-built AI workflows",
-                  "Exceeded the 90th percentile in tool diversity and usage frequency across all peers in the same job profile, demonstrating breadth and depth rather than surface-level experimentation",
-                ].map((bullet, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-2 text-[11px] sm:text-xs text-gray-700"
-                    style={{ fontFamily: "'Nunito', sans-serif" }}
-                  >
-                    <span className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#00C853" }} />
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-
           {/* Professional Experience */}
           <motion.div
             className="mb-6"
@@ -241,20 +238,63 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
 
             <ExperienceEntry
               company="Meta"
-              role="Account Manager"
+              role="Account Manager & Meta Platform Consultant"
               period="2024 – Present"
               location="Australia & New Zealand"
               color="#10B981"
               bullets={[
-                "Managing the top 1% of clients across ANZ, across 17 verticals including automotive, CPG, healthcare, gaming, media, retail, and travel",
-                "Drove US$684K incremental ad spend for a single client, a 280% multiplication of sustained revenue in just 32 days",
-                "Awarded 2025 Infinite Potential Award for Client Hero, with the highest CSAT in APAC (100/100)",
-                "Far surpassed sales targets for 4 consecutive quarters, consistently overachieving across all performance metrics",
-                "Facilitated market expansion tests across 4 new countries for an e-commerce client, leading to US market entry in 2026",
-                "Shifted a major financial institution's digital budget from a major competitor to Meta, unlocking US$94K incremental spend",
+                "Achieved a perfect 100/100 CSAT score across 76 client responses - the highest volume and highest score in all of APAC, resulting in the 2025 Infinite Potential Award (Client Hero)",
+                "Primary strategic advisor on Meta's advertising platform for enterprise clients, guiding measurement strategy, campaign architecture, and audience targeting across ANZ",
+                "Built a scalable client onboarding framework that shifted new client revenue pacing from 40% below target to 25% above target (65 percentage-point improvement). Templates adopted across ANZ and APAC teams",
+                "Co-designed onboarding webinars that scaled client activation to 160 new accounts in a single quarter",
+                "Developed a consultative measurement playbook (Search Lift, Brand Lift, Conversion Lift) across 11 studies, proving incremental value and building evidence-based investment cases",
+                "Identified a market-specific opportunity (EOFY in Australia) invisible to a US-based client, built the full promotional strategy and cross-border expansion plan, unlocking US$150K incremental investment in one quarter",
+                "Facilitated market expansion across 4 new countries for an e-commerce client, resulting in US market entry in 2026",
+                "Drove US$684K incremental ad spend for a single client (280% increase in 32 days) and shifted a financial institution's budget from a competitor to Meta (+US$94K)",
+                "Managed top 1% clients across ANZ spanning automotive, CPG, healthcare, gaming, media, retail, and travel",
               ]}
               delay={0.25}
             />
+
+            {/* AI Native */}
+            <motion.div
+              className="mb-6"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.27 }}
+            >
+              <SectionHeader title="AI NATIVE" />
+              <div
+                className="p-3.5 rounded-xl mb-2"
+                style={{ background: "#00C85308", border: "2px solid #00C85320" }}
+              >
+                <p
+                  className="text-xs text-gray-600 leading-relaxed italic mb-3"
+                  style={{ fontFamily: "'Nunito', sans-serif" }}
+                >
+                  Systematically integrated AI across every function of my role, selecting the right tool for each task and embedding it into daily operations until it became default workflow rather than occasional experiment.
+                </p>
+                <ul className="space-y-1.5">
+                  {[
+                    "Operated across 26 AI platforms spanning 6 business functions (CRM, analytics, productivity, code, knowledge retrieval, task automation), consistently matching the right tool to each problem",
+                    "Ranked in the 95th percentile company-wide for AI usage intensity, with an average of 1,799 AI-assisted actions per day fully embedded into core workflows",
+                    "Built and deployed autonomous AI agents that orchestrate complex, multi-step operations (data pulls, CRM updates, scheduling, report generation) without manual intervention",
+                    "Adopted 12 new AI tools within a single month, rapidly evaluating, testing, and integrating emerging capabilities as they became available",
+                    "Automated the full sales operations layer (pipeline management, client research, meeting prep, analytics, task routing) through purpose-built AI workflows",
+                    "Exceeded the 90th percentile in tool diversity and usage frequency across all peers in the same job profile, demonstrating breadth and depth rather than surface-level experimentation",
+                  ].map((bullet, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-2 text-[11px] sm:text-xs text-gray-700"
+                      style={{ fontFamily: "'Nunito', sans-serif" }}
+                    >
+                      <span className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#00C853" }} />
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
 
             {/* DFS Group — show as one block with internal promotions */}
             <motion.div
@@ -426,7 +466,7 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
           style={{ borderColor: "#8B691425", background: "#8B691408" }}
         >
           <span className="pixel-text text-[5px] sm:text-[6px] opacity-30">
-            LAST UPDATED: APRIL 2026
+            LAST UPDATED: MAY 2026
           </span>
           <div className="flex items-center gap-2">
             <a
