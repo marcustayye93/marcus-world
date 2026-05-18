@@ -246,6 +246,22 @@ body.konami-active::after {
   animation: float 1s ease-in-out infinite;
 }
 
+/* Reduced motion support — accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-pixel-bounce,
+  .animate-sparkle {
+    animation: none !important;
+  }
+
+  /* Disable Framer Motion transitions globally */
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;

@@ -289,6 +289,35 @@ export const ZONES: Zone[] = [
   },
 ];
 
+// Proof artifacts — standout metric callouts per zone
+export const ZONE_PROOF_METRICS: Record<string, Array<{ value: string; label: string; icon: string }>> = {
+  meta: [
+    { value: "US$684K", label: "Incremental spend in 32 days", icon: "\uD83D\uDCB0" },
+    { value: "100/100", label: "Client satisfaction (highest in APAC)", icon: "\u2B50" },
+    { value: "4 Quarters", label: "Consecutively surpassed targets", icon: "\uD83D\uDCC8" },
+  ],
+  dfs: [
+    { value: "4 Promotions", label: "In 5 years across 6 countries", icon: "\uD83D\uDE80" },
+    { value: "+205%", label: "VIP event targets exceeded", icon: "\uD83C\uDFAF" },
+    { value: "90+", label: "Stakeholders managed globally", icon: "\uD83C\uDF10" },
+  ],
+  ai: [
+    { value: "1,799", label: "AI-assisted actions per day", icon: "\u26A1" },
+    { value: "95th %ile", label: "Company-wide AI usage intensity", icon: "\uD83C\uDFC6" },
+    { value: "26", label: "AI platforms across 6 functions", icon: "\uD83E\uDD16" },
+  ],
+  music: [
+    { value: "5", label: "Instruments mastered", icon: "\uD83C\uDFB5" },
+    { value: "PM & President", label: "Performed for heads of state", icon: "\uD83C\uDFAD" },
+  ],
+  farm: [
+    { value: "70", label: "Animals cared for across 2 farms", icon: "\uD83D\uDC04" },
+  ],
+  coffee: [
+    { value: "80", label: "Student baristas hired & trained", icon: "\u2615" },
+  ],
+};
+
 export const TESTIMONIALS: Testimonial[] = [
   {
     name: "Robert Calzadilla",

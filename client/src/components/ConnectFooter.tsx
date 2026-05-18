@@ -4,6 +4,7 @@
  * Appears as a modal overlay, matching the site's aesthetic
  */
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { X, Mail, Linkedin } from "lucide-react";
 
@@ -51,6 +52,13 @@ const FUN_FACTS = [
 
 export default function ConnectFooter({ onClose }: ConnectFooterProps) {
   const randomFact = FUN_FACTS[Math.floor(Math.random() * FUN_FACTS.length)];
+
+  // Lock body scroll while modal is open
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = prev; };
+  }, []);
 
   return (
     <motion.div

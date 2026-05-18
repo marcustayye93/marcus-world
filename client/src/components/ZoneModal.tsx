@@ -6,36 +6,8 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { X, ExternalLink } from "lucide-react";
+import { ZONE_PROOF_METRICS } from "@/lib/gameData";
 import type { Zone } from "@/lib/gameData";
-
-// Proof artifacts — standout metric callouts per zone
-const ZONE_PROOF_METRICS: Record<string, Array<{ value: string; label: string; icon: string }>> = {
-  meta: [
-    { value: "US$684K", label: "Incremental spend in 32 days", icon: "💰" },
-    { value: "100/100", label: "Client satisfaction (highest in APAC)", icon: "⭐" },
-    { value: "4 Quarters", label: "Consecutively surpassed targets", icon: "📈" },
-  ],
-  dfs: [
-    { value: "4 Promotions", label: "In 5 years across 6 countries", icon: "🚀" },
-    { value: "+205%", label: "VIP event targets exceeded", icon: "🎯" },
-    { value: "90+", label: "Stakeholders managed globally", icon: "🌐" },
-  ],
-  ai: [
-    { value: "1,799", label: "AI-assisted actions per day", icon: "⚡" },
-    { value: "95th %ile", label: "Company-wide AI usage intensity", icon: "🏆" },
-    { value: "26", label: "AI platforms across 6 functions", icon: "🤖" },
-  ],
-  music: [
-    { value: "5", label: "Instruments mastered", icon: "🎵" },
-    { value: "PM & President", label: "Performed for heads of state", icon: "🎭" },
-  ],
-  farm: [
-    { value: "70", label: "Animals cared for across 2 farms", icon: "🐄" },
-  ],
-  coffee: [
-    { value: "80", label: "Student baristas hired & trained", icon: "☕" },
-  ],
-};
 
 interface ZoneModalProps {
   zone: Zone;

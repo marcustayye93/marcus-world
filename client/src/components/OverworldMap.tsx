@@ -180,7 +180,7 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
       const hasModal = document.querySelector('[class*="fixed inset-0"]');
       if (hasModal) return;
 
-      if (e.key === "Tab" || e.key === "ArrowRight" || e.key === "ArrowDown") {
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") {
         e.preventDefault();
         setFocusedIndex((prev) => {
           const next = prev >= KEYBOARD_NAV_ORDER.length - 1 ? 0 : prev + 1;
