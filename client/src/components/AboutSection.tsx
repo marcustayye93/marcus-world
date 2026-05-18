@@ -176,7 +176,7 @@ export default function AboutSection({ onClose }: AboutSectionProps) {
           >
             <p className="pixel-text text-[6px] sm:text-[7px] text-emerald-600 mb-1 tracking-widest">CURRENTLY EXPLORING</p>
             <p className="text-sm text-gray-700 font-semibold" style={{ fontFamily: "'Nunito', sans-serif" }}>
-              Customer Success, Solutions Consulting, or Partner Success roles in Singapore
+              Customer Success, Solutions Consulting, or Partner Success role in Singapore
             </p>
             <p className="text-xs text-gray-500 mt-1" style={{ fontFamily: "'Nunito', sans-serif" }}>
               Deep platform expertise. AI-native. Passionate about helping businesses adopt technology practically.
