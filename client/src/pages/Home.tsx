@@ -4,24 +4,28 @@
  * An interactive overworld map where visitors click on buildings to explore zones
  */
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import IntroScreen from "@/components/IntroScreen";
-import OverworldMap from "@/components/OverworldMap";
-import ZoneModal from "@/components/ZoneModal";
 import HUD from "@/components/HUD";
 import DialogBox from "@/components/DialogBox";
-import AboutSection from "@/components/AboutSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-// MobileNav removed — MobileBuildingList now handles all mobile navigation
-import MobileBuildingList from "@/components/MobileBuildingList";
-import CompletionBanner from "@/components/CompletionBanner";
-import ResumeSnapshot from "@/components/ResumeSnapshot";
-import ConnectFooter from "@/components/ConnectFooter";
-import QuestChecklist from "@/components/QuestChecklist";
 import PixelLoadingScreen from "@/components/PixelLoadingScreen";
+
+// Lazy-loaded: OverworldMap is large (524 lines) and only renders after game starts
+const OverworldMap = lazy(() => import("@/components/OverworldMap"));
 import { ZONES, EASTER_EGGS, ASSET_URLS, type Zone } from "@/lib/gameData";
 import { playStartGame, playBuildingEnter, playDiscovery, playClose, playTab, playClick, setMuted } from "@/lib/sfx";
+
+// Lazy-loaded components — these are conditionally rendered (modals/overlays)
+// and don't need to be in the initial bundle
+const ZoneModal = lazy(() => import("@/components/ZoneModal"));
+const AboutSection = lazy(() => import("@/components/AboutSection"));
+const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
+const ResumeSnapshot = lazy(() => import("@/components/ResumeSnapshot"));
+const ConnectFooter = lazy(() => import("@/components/ConnectFooter"));
+const CompletionBanner = lazy(() => import("@/components/CompletionBanner"));
+const MobileBuildingList = lazy(() => import("@/components/MobileBuildingList"));
+const QuestChecklist = lazy(() => import("@/components/QuestChecklist"));
 
 export default function Home() {
   const [assetsLoaded, setAssetsLoaded] = useState(false);
@@ -297,24 +301,28 @@ export default function Home() {
               onToggleMusic={handleToggleMusic}
             />
 
-            <OverworldMap
-              zones={ZONES}
-              discoveredZones={discoveredZones}
-              onZoneClick={handleZoneClick}
-              onSnapshotClick={() => setShowSnapshot(true)}
-            />
-
-            {/* Mobile building list — primary mobile navigation */}
-            {isMobile && (
-              <MobileBuildingList
+            <Suspense fallback={null}>
+              <OverworldMap
                 zones={ZONES}
                 discoveredZones={discoveredZones}
                 onZoneClick={handleZoneClick}
-                onSnapshotClick={() => { playTab(); setShowSnapshot(true); setResumeOpened(true); }}
-                onAboutClick={() => { playTab(); setShowAbout(true); setAboutOpened(true); }}
-                onTestimonialsClick={() => { playTab(); setShowTestimonials(true); setTestimonialsOpened(true); }}
-                onConnectClick={() => { playTab(); setShowConnect(true); }}
+                onSnapshotClick={() => setShowSnapshot(true)}
               />
+            </Suspense>
+
+            {/* Mobile building list — primary mobile navigation */}
+            {isMobile && (
+              <Suspense fallback={null}>
+                <MobileBuildingList
+                  zones={ZONES}
+                  discoveredZones={discoveredZones}
+                  onZoneClick={handleZoneClick}
+                  onSnapshotClick={() => { playTab(); setShowSnapshot(true); setResumeOpened(true); }}
+                  onAboutClick={() => { playTab(); setShowAbout(true); setAboutOpened(true); }}
+                  onTestimonialsClick={() => { playTab(); setShowTestimonials(true); setTestimonialsOpened(true); }}
+                  onConnectClick={() => { playTab(); setShowConnect(true); }}
+                />
+              </Suspense>
             )}
 
             <AnimatePresence>
@@ -330,49 +338,65 @@ export default function Home() {
 
             <AnimatePresence>
               {activeZone && (
-                <ZoneModal zone={activeZone} onClose={handleCloseZone} />
+                <Suspense fallback={null}>
+                  <ZoneModal zone={activeZone} onClose={handleCloseZone} />
+                </Suspense>
               )}
             </AnimatePresence>
 
             <AnimatePresence>
               {showAbout && (
-                <AboutSection onClose={() => { playClose(); setShowAbout(false); }} />
+                <Suspense fallback={null}>
+                  <AboutSection onClose={() => { playClose(); setShowAbout(false); }} />
+                </Suspense>
               )}
             </AnimatePresence>
 
             <AnimatePresence>
               {showTestimonials && (
-                <TestimonialsSection onClose={() => { playClose(); setShowTestimonials(false); }} />
+                <Suspense fallback={null}>
+                  <TestimonialsSection onClose={() => { playClose(); setShowTestimonials(false); }} />
+                </Suspense>
               )}
             </AnimatePresence>
 
             <AnimatePresence>
               {showSnapshot && (
-                <ResumeSnapshot onClose={() => { playClose(); setShowSnapshot(false); }} />
+                <Suspense fallback={null}>
+                  <ResumeSnapshot onClose={() => { playClose(); setShowSnapshot(false); }} />
+                </Suspense>
               )}
             </AnimatePresence>
 
             <AnimatePresence>
               {showConnect && (
-                <ConnectFooter onClose={() => { playClose(); setShowConnect(false); }} />
+                <Suspense fallback={null}>
+                  <ConnectFooter onClose={() => { playClose(); setShowConnect(false); }} />
+                </Suspense>
               )}
             </AnimatePresence>
 
             <AnimatePresence>
               {showCompletion && (
-                <CompletionBanner onDismiss={() => setShowCompletion(false)} />
+                <Suspense fallback={null}>
+                  <CompletionBanner onDismiss={() => setShowCompletion(false)} />
+                </Suspense>
               )}
             </AnimatePresence>
 
             {/* Quest checklist — only show in full adventure mode */}
-            {immersionMode !== "quick" && immersionMode !== "resume" && <QuestChecklist
-              discoveredZones={discoveredZones}
-              totalZones={ZONES.length}
-              resumeOpened={resumeOpened}
-              testimonialsOpened={testimonialsOpened}
-              aboutOpened={aboutOpened}
-              easterEggFound={easterEggCount > 0}
-            />}
+            {immersionMode !== "quick" && immersionMode !== "resume" && (
+              <Suspense fallback={null}>
+                <QuestChecklist
+                  discoveredZones={discoveredZones}
+                  totalZones={ZONES.length}
+                  resumeOpened={resumeOpened}
+                  testimonialsOpened={testimonialsOpened}
+                  aboutOpened={aboutOpened}
+                  easterEggFound={easterEggCount > 0}
+                />
+              </Suspense>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
