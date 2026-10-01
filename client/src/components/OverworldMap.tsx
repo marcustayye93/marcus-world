@@ -32,6 +32,15 @@ const BUILDING_HOTSPOTS: Record<string, {
   farm:       { x: 40, y: 65, w: 22, h: 22 },
   coffee:     { x: 68, y: 52, w: 22, h: 26 },
   ai:         { x: 35, y: 55, w: 20, h: 22 },
+  workshop:   { x: 64, y: 70, w: 18, h: 30 },
+};
+
+// The Workshop building sprite — overlaid on the right grass patch.
+// Positioned to match the workshop hotspot above.
+const WORKSHOP_BUILDING = {
+  x: 66, y: 78, w: 14,
+  labelX: 72, labelY: 74,
+  yearX: 72, yearY: 76.8,
 };
 
 // Year-only subtitles positioned cleanly below each baked-in label
@@ -82,7 +91,7 @@ function WoodenPlaqueLabel({ text }: { text: string }) {
 }
 
 // Keyboard navigation order — spatial layout: top to bottom, left to right
-const KEYBOARD_NAV_ORDER = ["meta", "dfs", "music", "ai", "university", "farm", "coffee"];
+const KEYBOARD_NAV_ORDER = ["meta", "dfs", "music", "workshop", "ai", "university", "farm", "coffee"];
 
 export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSnapshotClick }: OverworldMapProps) {
   const [hoveredZone, setHoveredZone] = useState<string | null>(null);
@@ -235,6 +244,72 @@ export default function OverworldMap({ zones, discoveredZones, onZoneClick, onSn
 
         {/* Ambient animations — clouds, birds, smoke, sparkles */}
         <AmbientAnimations />
+
+        {/* The Workshop building — overlaid sprite on the right grass patch */}
+        <div
+          className="absolute z-[5] pointer-events-none"
+          style={{
+            left: `${WORKSHOP_BUILDING.x}%`,
+            top: `${WORKSHOP_BUILDING.y}%`,
+            width: `${WORKSHOP_BUILDING.w}%`,
+          }}
+        >
+          <img
+            src="/workshop-building.webp"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-auto pixel-render"
+            style={{ filter: "drop-shadow(3px 5px 0 rgba(0,0,0,0.28))" }}
+            loading="lazy"
+            decoding="async"
+            draggable={false}
+          />
+        </div>
+
+        {/* Wooden plaque label for The Workshop */}
+        <div
+          className="absolute z-[15] pointer-events-none"
+          style={{
+            left: `${WORKSHOP_BUILDING.labelX}%`,
+            top: `${WORKSHOP_BUILDING.labelY}%`,
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <WoodenPlaqueLabel text="THE WORKSHOP" />
+        </div>
+
+        {/* Year badge below The Workshop plaque */}
+        <div
+          className="absolute z-[15] pointer-events-none"
+          style={{
+            left: `${WORKSHOP_BUILDING.yearX}%`,
+            top: `${WORKSHOP_BUILDING.yearY}%`,
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <div
+            style={{
+              background: "linear-gradient(180deg, rgba(139, 105, 20, 0.9) 0%, rgba(100, 75, 10, 0.95) 100%)",
+              borderRadius: "3px",
+              padding: "2px 8px",
+              boxShadow: "1px 2px 0px rgba(0,0,0,0.4), inset 0 1px 0px rgba(255,215,0,0.3)",
+              border: "1px solid rgba(255, 215, 0, 0.4)",
+            }}
+          >
+            <span
+              className="pixel-text"
+              style={{
+                color: "#FFD700",
+                fontSize: isMobile ? "clamp(5px, 1.2vw, 10px)" : "clamp(5px, 0.65vw, 8px)",
+                letterSpacing: "1.5px",
+                textAlign: "center",
+                display: "block",
+              }}
+            >
+              2024–PRESENT
+            </span>
+          </div>
+        </div>
 
         {/* Year subtitles below each building's baked-in label */}
         {YEAR_LABELS.map((label, i) => (

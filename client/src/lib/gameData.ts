@@ -55,6 +55,7 @@ export const ZONE_HITBOXES: Record<string, ZoneHitbox> = {
   farm:       { x1: 40, y1: 60, x2: 60, y2: 82 },   // Barn — lower center
   coffee:     { x1: 70, y1: 52, x2: 86, y2: 72 },   // Coffee Shop — lower right
   ai:         { x1: 35, y1: 55, x2: 55, y2: 77 },   // AI Native — below Meta HQ
+  workshop:   { x1: 66, y1: 78, x2: 80, y2: 97 },   // The Workshop — south meadow
 };
 
 // Label positions for each zone on the map (percentage)
@@ -66,6 +67,7 @@ export const ZONE_LABEL_POSITIONS: Record<string, { x: number; y: number }> = {
   farm:       { x: 50, y: 82 },
   coffee:     { x: 78, y: 72 },
   ai:         { x: 44, y: 68 },
+  workshop:   { x: 73, y: 74.5 },
 };
 
 export const ZONES: Zone[] = [
@@ -271,24 +273,32 @@ export const ZONES: Zone[] = [
     id: "ai",
     name: "AI Native",
     icon: "\uD83E\uDD16",
-    tagline: "26 AI platforms, 1,799 AI actions per day, 95th percentile company-wide",
-    description: "Systematically integrated AI across every function of my role until it became default workflow. Passionate about helping others adopt AI practically - from building the workflows to teaching the skeptics.",
+    tagline: "AI as infrastructure, not a chat window.",
+    description: "I don't just use AI tools, I build systems out of them. Across my ventures, AI runs as infrastructure: multi-agent setups that research, monitor, and publish while I sleep.",
     image: ASSET_URLS.aiZone,
     color: "#00C853",
     bgGradient: "from-green-500/10 to-cyan-500/10",
     details: [
       {
-        title: "AI Integration & Adoption",
+        title: "AI Systems & Infrastructure",
         bullets: [
-          "Operated across 26 AI platforms spanning 6 business functions (CRM, analytics, productivity, code, knowledge retrieval, task automation), consistently matching the right tool to each problem rather than relying on a single general-purpose assistant",
-          "Ranked in the 95th percentile company-wide for AI usage intensity, with an average of 1,799 AI-assisted actions per day fully embedded into core workflows",
-          "Built and deployed autonomous AI agents that orchestrate complex, multi-step operations (data pulls, CRM updates, scheduling, report generation) without manual intervention at each stage",
-          "Adopted 12 new AI tools within a single month, rapidly evaluating, testing, and integrating emerging capabilities as they became available",
-          "Automated the full sales operations layer (pipeline management, client research, meeting prep, analytics, task routing) through purpose-built AI workflows, eliminating repetitive manual processes",
-          "Exceeded the 90th percentile in tool diversity and usage frequency across all peers in the same job profile, demonstrating breadth and depth rather than surface-level experimentation",
+          "I run a standing AI council: four model seats covering strategy, adversarial review, methodology, and failure modes. They debate my product decisions, and every conclusion gets recorded as a lock.",
+          "I build decision gates and autonomous agents: scheduled research runs, monitoring watches, and approval-gated publishing pipelines.",
+          "My daily operations run through AI. The ventures, trading drafts, research, even household ops, with memory systems that compound over time.",
         ],
       },
     ],
+  },
+  {
+    id: "workshop",
+    name: "The Workshop",
+    icon: "\uD83D\uDD28",
+    tagline: "Every build is a crafted item.",
+    description: "Outside work, I turn ideas into things you can touch. An idea becomes something fun, something interactive, something I can share with the people I love. Nine projects so far. Eight you can play right now, one still in the forge. Tap any item to inspect it, then go try the demo yourself.",
+    image: "/workshop-icons/icon-gethowmuch.webp",
+    color: "#B87333",
+    bgGradient: "from-amber-600/10 to-orange-800/10",
+    details: [],
   },
 ];
 

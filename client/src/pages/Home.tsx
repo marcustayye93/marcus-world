@@ -19,6 +19,7 @@ import { playStartGame, playBuildingEnter, playDiscovery, playClose, playTab, pl
 // Lazy-loaded components — these are conditionally rendered (modals/overlays)
 // and don't need to be in the initial bundle
 const ZoneModal = lazy(() => import("@/components/ZoneModal"));
+const WorkshopModal = lazy(() => import("@/components/WorkshopModal"));
 const AboutSection = lazy(() => import("@/components/AboutSection"));
 const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
 const ResumeSnapshot = lazy(() => import("@/components/ResumeSnapshot"));
@@ -339,7 +340,11 @@ export default function Home() {
             <AnimatePresence>
               {activeZone && (
                 <Suspense fallback={null}>
-                  <ZoneModal zone={activeZone} onClose={handleCloseZone} />
+                  {activeZone.id === "workshop" ? (
+                    <WorkshopModal onClose={handleCloseZone} />
+                  ) : (
+                    <ZoneModal zone={activeZone} onClose={handleCloseZone} />
+                  )}
                 </Suspense>
               )}
             </AnimatePresence>
