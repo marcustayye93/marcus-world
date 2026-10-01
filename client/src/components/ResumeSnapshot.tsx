@@ -2,7 +2,7 @@
  * ResumeSnapshot — A clean, one-sheet résumé view
  * Design: Professional yet themed to match the pixel art world.
  * Opens as a full-screen modal with a scrollable, print-friendly résumé layout.
- * Includes: Skills & Tools, Languages, DFS promotion clarity, What I'm Looking For
+ * Includes: Skills & Tools, Languages, DFS promotion clarity, Current Class
  */
 
 import { useEffect } from "react";
@@ -151,7 +151,7 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
             </div>
           </motion.div>
 
-          {/* What I'm Looking For */}
+          {/* Current class */}
           <motion.div
             className="mb-6 p-3.5 rounded-xl"
             style={{ background: "#EFF6FF", border: "2px solid #3B82F620" }}
@@ -169,7 +169,7 @@ export default function ResumeSnapshot({ onClose }: ResumeSnapshotProps) {
               className="text-xs sm:text-[13px] text-gray-600 leading-relaxed"
               style={{ fontFamily: "'Nunito', sans-serif" }}
             >
-              A Customer Success, Solutions Consulting, or Partner Success role in Singapore. I earned the highest client satisfaction score in APAC (100/100) and build scalable frameworks that help clients succeed on complex platforms. AI-native operator passionate about helping businesses adopt emerging tools practically.
+              Client success leader at Meta by day. Builder of products, businesses, and pixel worlds by night. I earned the highest client satisfaction score in APAC (100/100) and build scalable frameworks that help clients succeed on complex platforms. AI-native operator passionate about helping businesses adopt emerging tools practically.
             </p>
           </motion.div>
 

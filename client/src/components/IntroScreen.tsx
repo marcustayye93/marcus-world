@@ -202,7 +202,7 @@ export default function IntroScreen({ onStart, onSkipToResume, onImmersionSelect
           animate={{ opacity: 1 }}
           transition={{ delay: 1.0 }}
         >
-          Seeking a Customer Success, Solutions Consulting, or Partner Success role in Singapore.
+          Client success leader at Meta by day. Builder of products, businesses, and pixel worlds by night.
         </motion.p>
 
         {/* Logo cloud — brands worked with */}
